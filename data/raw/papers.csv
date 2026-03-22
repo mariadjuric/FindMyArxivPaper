@@ -1,0 +1,13 @@
+paper_id,title,abstract,category,year
+1,Transformers for Scientific Claim Verification,"We study transformer encoders for verifying scientific claims against evidence passages and measure retrieval and entailment quality.",cs.CL,2024
+2,Graph Neural Networks for Molecule Property Prediction,"This work applies graph neural networks to molecular property prediction with uncertainty estimates and benchmark comparisons.",cs.LG,2023
+3,Vision Transformers for Medical Image Segmentation,"We propose a vision transformer model for semantic segmentation in medical imaging and compare against CNN baselines.",cs.CV,2024
+4,Contrastive Learning for Scientific Abstract Retrieval,"Contrastive pretraining improves semantic search over scientific abstracts by learning domain-specific text representations.",cs.CL,2022
+5,Diffusion Models for Inverse Problems,"We investigate diffusion-based generative priors for solving inverse problems arising in imaging and physics.",physics.comp-ph,2024
+6,Self-Supervised Representation Learning for Remote Sensing,"Self-supervised methods are evaluated for remote sensing image understanding with limited labels.",cs.CV,2023
+7,Large Language Models for Literature Review Assistance,"We analyze large language models for summarizing and organizing related work in scientific domains.",cs.CL,2024
+8,Bayesian Neural Networks for Experimental Physics,"Bayesian neural networks are used to model uncertainty in experimental measurements and simulation-to-data transfer.",physics.data-an,2021
+9,Multimodal Learning for Document Figure Understanding,"This paper studies multimodal encoders that jointly model scientific figures and captions for document understanding.",cs.CV,2024
+10,Topic Modeling of arXiv Abstracts,"We compare modern topic discovery pipelines for organizing arXiv abstracts across machine learning and physics.",cs.CL,2022
+11,Neural Operators for PDE Surrogates,"Neural operator models are evaluated as surrogate models for partial differential equations in scientific computing.",cs.LG,2023
+12,Few-Shot Visual Recognition in Scientific Images,"We benchmark few-shot learning methods on scientific image classification tasks with scarce labels.",cs.CV,2022
