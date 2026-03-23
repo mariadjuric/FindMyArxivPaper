@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from datetime import datetime, UTC
 from pathlib import Path
 
 import numpy as np
@@ -84,6 +85,7 @@ def build_site(df: pd.DataFrame, embeddings: np.ndarray, site_dir: Path = SITE_D
             "projection": "UMAP",
             "umap_neighbors": int(min(UMAP_N_NEIGHBORS, max(2, len(df) - 1))) if len(df) > 1 else 0,
             "umap_min_dist": float(UMAP_MIN_DIST),
+            "last_updated": datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC"),
         },
         "title": "FMAP: FindMyArxivPaper Astro Atlas",
     }
@@ -354,6 +356,7 @@ def _html_template() -> str:
         </div>
 
         <div class=\"subtle\" id=\"projectionSummary\">Projection: loading…</div>
+        <div class=\"subtle\" id=\"lastUpdatedSummary\" style=\"margin-top:6px;\">Last updated: loading…</div>
 
         <div class=\"controls\">
           <input id=\"search\" placeholder=\"Search titles, abstracts, authors, categories\" />
@@ -422,6 +425,7 @@ def _html_template() -> str:
     const paperCount = document.getElementById('paperCount');
     const categoryCount = document.getElementById('categoryCount');
     const projectionSummary = document.getElementById('projectionSummary');
+    const lastUpdatedSummary = document.getElementById('lastUpdatedSummary');
 
     let selected = null;
     let hovered = null;
@@ -440,6 +444,9 @@ def _html_template() -> str:
     projectionSummary.textContent = payload.stats?.projection
       ? `Projection: ${payload.stats.projection} · neighbors ${payload.stats.umap_neighbors} · min_dist ${payload.stats.umap_min_dist}`
       : 'Projection metadata unavailable';
+    lastUpdatedSummary.textContent = payload.stats?.last_updated
+      ? `Last updated: ${payload.stats.last_updated}`
+      : 'Last updated: unavailable';
 
     function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
 

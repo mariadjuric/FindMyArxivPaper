@@ -12,6 +12,23 @@ The project name is **FMAP: FindMyArxivPaper**.
 
 ---
 
+## Preview
+
+Static preview of the current atlas snapshot:
+
+![FMAP atlas preview](docs/images/atlas-preview.png)
+
+Tracked site snapshot in the repo:
+- [HTML entry point](docs/site/index.html)
+- [Data payload](docs/site/data.js)
+
+Important note:
+- GitHub will happily store these files, but it will **not automatically serve the HTML snapshot as a live interactive app** unless you use GitHub Pages or another static host.
+- So in the README, the image is the reliable preview.
+- The tracked HTML is useful as a repo artifact, downloadable snapshot, and source reference.
+
+---
+
 ## What FMAP does
 
 FMAP can:
