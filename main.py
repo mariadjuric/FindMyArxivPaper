@@ -21,6 +21,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input", type=str, default=None, help="Path to input CSV when --source csv is used")
     parser.add_argument("--max-results", type=int, default=500, help="Max arXiv results when --source arxiv")
     parser.add_argument("--categories", type=str, default="", help="Comma-separated arXiv categories for --source arxiv")
+    parser.add_argument("--from-year", type=int, default=None, help="Earliest publication year to fetch for --source arxiv")
+    parser.add_argument("--to-year", type=int, default=None, help="Latest publication year to fetch for --source arxiv")
     parser.add_argument("--skip-site", action="store_true", help="Skip static site generation")
     return parser.parse_args()
 
@@ -36,7 +38,13 @@ def resolve_dataset(args: argparse.Namespace) -> Path:
         categories = [c.strip() for c in args.categories.split(",") if c.strip()]
         print_section("Fetching arXiv data")
         try:
-            df = fetch_arxiv_dataset(categories=categories or None, max_results=args.max_results, output_path=ARXIV_DATA_PATH)
+            df = fetch_arxiv_dataset(
+                categories=categories or None,
+                max_results=args.max_results,
+                output_path=ARXIV_DATA_PATH,
+                from_year=args.from_year,
+                to_year=args.to_year,
+            )
         except ArxivFetchError as exc:
             raise RuntimeError(
                 "arXiv fetch failed. If the API is slow or rate-limiting you, rerun later or reuse a cached "

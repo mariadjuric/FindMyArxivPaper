@@ -179,13 +179,21 @@ python main.py --source arxiv --max-results 500
 
 If arXiv is slow or rate-limits you, FMAP will retry and fall back to the cached CSV if one already exists.
 
-### 5. Fetch custom arXiv categories
+### 5. Fetch a historical year range
+
+```bash
+python main.py --source arxiv --max-results 10000 --from-year 2020 --to-year 2026
+```
+
+This fetches year-by-year so FMAP can cover a broader historical range instead of only the recent tail.
+
+### 6. Fetch custom arXiv categories
 
 ```bash
 python main.py --source arxiv --max-results 800 --categories "astro-ph.GA,astro-ph.CO,astro-ph.HE,astro-ph.IM"
 ```
 
-### 6. Open the generated website
+### 7. Open the generated website
 
 After running the pipeline, open:
 

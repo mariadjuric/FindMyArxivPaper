@@ -42,6 +42,29 @@ def build_category_query(categories: Iterable[str]) -> str:
     return " OR ".join(f"cat:{c}" for c in cats)
 
 
+def build_year_query(from_year: int | None = None, to_year: int | None = None) -> str:
+    if from_year is None and to_year is None:
+        return ""
+    start_year = from_year if from_year is not None else to_year
+    end_year = to_year if to_year is not None else from_year
+    if start_year is None or end_year is None:
+        return ""
+    if start_year > end_year:
+        start_year, end_year = end_year, start_year
+    start_stamp = f"{start_year}0101000000"
+    end_stamp = f"{end_year}1231235959"
+    return f"submittedDate:[{start_stamp} TO {end_stamp}]"
+
+
+def combine_query_parts(*parts: str) -> str:
+    cleaned = [part.strip() for part in parts if part and part.strip()]
+    if not cleaned:
+        return ""
+    if len(cleaned) == 1:
+        return cleaned[0]
+    return " AND ".join(f"({part})" for part in cleaned)
+
+
 def fetch_arxiv_dataset(
     categories: list[str] | None = None,
     max_results: int = 500,
@@ -49,59 +72,87 @@ def fetch_arxiv_dataset(
     batch_size: int = 100,
     timeout_seconds: int = 30,
     allow_cached_fallback: bool = True,
+    from_year: int | None = None,
+    to_year: int | None = None,
 ) -> pd.DataFrame:
     categories = categories or list(DEFAULT_ARXIV_CATEGORIES)
-    search_query = build_category_query(categories)
+    category_query = build_category_query(categories)
+    target_count = int(max_results)
     records: list[dict] = []
     seen_urls: set[str] = set()
-    start = 0
-    target_count = int(max_results)
     partial_failure: Exception | None = None
-    exhausted = False
-    batch_number = 0
     total_raw_seen = 0
     total_duplicates_skipped = 0
+    total_non_astro_skipped = 0
+    total_batches = 0
+
+    if from_year is not None and to_year is not None and from_year > to_year:
+        from_year, to_year = to_year, from_year
+
+    year_ranges = _resolve_year_ranges(from_year=from_year, to_year=to_year)
 
     print(f"Target astro-ph papers: {target_count}")
+    if year_ranges:
+        print(f"Year filter: {year_ranges[0][0]} to {year_ranges[-1][1]}")
+    else:
+        print("Year filter: none (recent-tail query)")
 
-    while len(records) < target_count and not exhausted:
-        current_batch = min(batch_size, max(1, target_count - len(records)))
-        batch_number += 1
-        try:
-            batch_records = _fetch_batch(
-                search_query,
-                start=start,
-                max_results=current_batch,
-                timeout_seconds=timeout_seconds,
+    for window_start, window_end in year_ranges or [(None, None)]:
+        if len(records) >= target_count:
+            break
+        window_query = combine_query_parts(category_query, build_year_query(window_start, window_end))
+        window_label = f"{window_start}" if window_start == window_end else f"{window_start}-{window_end}" if window_start is not None else "all years"
+        print(f"\nFetching window: {window_label}")
+
+        start = 0
+        exhausted = False
+        window_batch = 0
+
+        while len(records) < target_count and not exhausted:
+            current_batch = min(batch_size, max(1, target_count - len(records)))
+            window_batch += 1
+            total_batches += 1
+            try:
+                batch_records = _fetch_batch(
+                    window_query,
+                    start=start,
+                    max_results=current_batch,
+                    timeout_seconds=timeout_seconds,
+                )
+            except ArxivFetchError as exc:
+                partial_failure = exc
+                exhausted = True
+                break
+
+            if not batch_records:
+                print(f"Window {window_label} batch {window_batch}: arXiv returned 0 rows at start={start}. No more results available.")
+                exhausted = True
+                break
+
+            start += current_batch
+            total_raw_seen += len(batch_records)
+
+            filtered_batch, skipped_non_astro, skipped_duplicates = _filter_and_dedupe_records(batch_records, seen_urls)
+            total_non_astro_skipped += skipped_non_astro
+            total_duplicates_skipped += skipped_duplicates
+            records.extend(filtered_batch)
+
+            print(
+                f"Window {window_label} batch {window_batch}: fetched {len(batch_records)} raw | "
+                f"kept {len(filtered_batch)} astro-ph | non-astro skipped {skipped_non_astro} | "
+                f"duplicates skipped {skipped_duplicates} | total kept {len(records)}/{target_count}"
             )
-        except ArxivFetchError as exc:
-            partial_failure = exc
-            break
 
-        if not batch_records:
-            print(f"Batch {batch_number}: arXiv returned 0 rows at start={start}. No more results available.")
-            exhausted = True
-            break
+            if len(batch_records) < current_batch:
+                print(
+                    f"Window {window_label} batch {window_batch}: arXiv returned fewer rows than requested "
+                    f"({len(batch_records)} < {current_batch})."
+                )
+                exhausted = True
+                break
 
-        start += current_batch
-        total_raw_seen += len(batch_records)
-
-        filtered_batch, skipped_non_astro, skipped_duplicates = _filter_and_dedupe_records(batch_records, seen_urls)
-        total_duplicates_skipped += skipped_duplicates
-        records.extend(filtered_batch)
-
-        print(
-            f"Batch {batch_number}: fetched {len(batch_records)} raw | kept {len(filtered_batch)} astro-ph | "
-            f"non-astro skipped {skipped_non_astro} | duplicates skipped {skipped_duplicates} | "
-            f"total kept {len(records)}/{target_count}"
-        )
-
-        if len(batch_records) < current_batch:
-            print(f"Batch {batch_number}: arXiv returned fewer rows than requested ({len(batch_records)} < {current_batch}).")
-            exhausted = True
-            break
-        if len(records) < target_count and not exhausted:
-            time.sleep(3)
+            if len(records) < target_count and not exhausted:
+                time.sleep(3)
 
     if records:
         df = _finalize_dataframe(pd.DataFrame(records), limit=target_count)
@@ -109,14 +160,15 @@ def fetch_arxiv_dataset(
         df.to_csv(output_path, index=False)
         if len(df) < target_count:
             print(
-                f"Requested {target_count} astro-ph papers, but only {len(df)} were available from arXiv for this query. "
+                f"Requested {target_count} astro-ph papers, but only {len(df)} were available from arXiv for this query range. "
                 "Using the maximum available."
             )
         else:
             print(
-                f"Completed arXiv fetch with {len(df)} astro-ph papers retained "
-                f"from {total_raw_seen} raw results across {batch_number} batches."
+                f"Completed arXiv fetch with {len(df)} astro-ph papers retained from {total_raw_seen} raw results across {total_batches} batches."
             )
+        if total_non_astro_skipped:
+            print(f"Total non-astro rows skipped: {total_non_astro_skipped}")
         if total_duplicates_skipped:
             print(f"Total duplicates skipped: {total_duplicates_skipped}")
         return df
@@ -134,6 +186,18 @@ def fetch_arxiv_dataset(
     raise ArxivFetchError(
         f"No arXiv records were fetched and no cached dataset was available at {output_path}."
     )
+
+
+def _resolve_year_ranges(from_year: int | None, to_year: int | None) -> list[tuple[int, int]]:
+    if from_year is None and to_year is None:
+        return []
+    start_year = from_year if from_year is not None else to_year
+    end_year = to_year if to_year is not None else from_year
+    if start_year is None or end_year is None:
+        return []
+    if start_year > end_year:
+        start_year, end_year = end_year, start_year
+    return [(year, year) for year in range(end_year, start_year - 1, -1)]
 
 
 def _filter_and_dedupe_records(records: list[dict], seen_urls: set[str]) -> tuple[list[dict], int, int]:
