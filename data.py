@@ -142,18 +142,55 @@ CATEGORY_BLUEPRINTS = {
     },
 }
 
+GLOBAL_SHARED_TERMS = [
+    "benchmark",
+    "dataset",
+    "generalization",
+    "embedding model",
+    "evaluation",
+    "transfer learning",
+    "uncertainty",
+    "robustness",
+    "ablation",
+    "scientific workflow",
+]
+
+CROSS_CATEGORY_TERMS = [
+    "document retrieval",
+    "representation learning",
+    "image segmentation",
+    "question answering",
+    "optimization",
+    "calibration curve",
+    "simulation grid",
+    "causal effect",
+    "event reconstruction",
+    "posterior intervals",
+]
+
+NEIGHBOR_MAP = {
+    "cs.CL": ["cs.LG", "stat.ML"],
+    "cs.CV": ["cs.LG", "physics.data-an"],
+    "cs.LG": ["cs.CL", "stat.ML"],
+    "physics.comp-ph": ["physics.data-an", "cs.LG"],
+    "physics.data-an": ["physics.comp-ph", "cs.CV"],
+    "stat.ML": ["cs.LG", "cs.CL"],
+}
+
 
 def make_sample_dataset(samples_per_class: int = 167, perfect: bool = False) -> pd.DataFrame:
     records = []
     paper_id = 1
     base_year = 2020
+    categories = list(CATEGORY_BLUEPRINTS.items())
 
-    for category_index, (category, blueprint) in enumerate(CATEGORY_BLUEPRINTS.items()):
+    for category_index, (category, blueprint) in enumerate(categories):
         prefixes = blueprint["title_prefixes"]
         keywords = blueprint["keywords"]
         shared_keywords = blueprint["shared_keywords"]
         venues = blueprint["venues"]
         domain = blueprint["domain"]
+        neighbors = NEIGHBOR_MAP[category]
 
         for i in range(samples_per_class):
             prefix = prefixes[i % len(prefixes)]
@@ -172,10 +209,26 @@ def make_sample_dataset(samples_per_class: int = 167, perfect: bool = False) -> 
                     f"Results emphasize category-specific signals such as {keyword_a}, {keyword_b}, and deployment constraints typical for {category} workflows."
                 )
             else:
-                title = f"{prefix} for {domain.title()} Study {study_id}"
+                neighbor_category = neighbors[i % len(neighbors)]
+                neighbor_blueprint = CATEGORY_BLUEPRINTS[neighbor_category]
+                neighbor_keyword = neighbor_blueprint["keywords"][(i + 1) % len(neighbor_blueprint["keywords"])]
+                global_term = GLOBAL_SHARED_TERMS[(i + category_index) % len(GLOBAL_SHARED_TERMS)]
+                cross_term = CROSS_CATEGORY_TERMS[(i * 2 + category_index) % len(CROSS_CATEGORY_TERMS)]
+
+                title_style = i % 4
+                if title_style == 0:
+                    title = f"{prefix} for {domain.title()} Study {study_id}"
+                elif title_style == 1:
+                    title = f"{prefix}: {keyword_a.title()} and {cross_term.title()}"
+                elif title_style == 2:
+                    title = f"Benchmarking {shared_keyword.title()} in {domain.title()}"
+                else:
+                    title = f"A Comparative Study of {keyword_a.title()} for Scientific Workflows"
+
                 abstract = (
-                    f"We study {keyword_a} for {domain} with comparisons against strong baselines. "
-                    f"The paper discusses {keyword_b}, {shared_keyword}, and evaluation on {venue} style tasks. "
+                    f"We study {keyword_a} for {domain} with comparisons against strong baselines and shared evaluation datasets. "
+                    f"The paper discusses {keyword_b}, {shared_keyword}, and {global_term} on {venue} style tasks. "
+                    f"Several experiments also touch on neighboring themes such as {neighbor_keyword} and {cross_term}, making label boundaries partially overlapping rather than perfectly clean. "
                     f"Results highlight transfer, uncertainty, and practical deployment tradeoffs in scientific workflows."
                 )
 
