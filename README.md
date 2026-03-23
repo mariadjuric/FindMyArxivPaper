@@ -1,41 +1,107 @@
 # FMAP: FindMyArxivPaper
 
-**FMAP: FindMyArxivPaper** is a research-style project for exploring scientific papers with embeddings, classification, retrieval, and a generated interactive web atlas.
+**FMAP: FindMyArxivPaper** is a local paper-atlas project for astrophysics and arXiv exploration.
+
+It combines:
+- **real arXiv ingestion**
+- **text classification** over astro-ph categories
+- **semantic embeddings** for similarity and retrieval
+- a **generated interactive HTML atlas** for browsing papers as a map
 
 The project name is **FMAP: FindMyArxivPaper**.
 
-It now supports two main modes:
-- **synthetic demo mode** for quick testing
-- **real arXiv mode** focused on astro-ph papers, with a generated interactive HTML visualization site
-
 ---
 
-## What FMAP does now
+## What FMAP does
 
 FMAP can:
 - ingest paper metadata from CSV
-- fetch recent papers from the **arXiv API**
+- fetch real papers from the **arXiv export API**
 - focus on **astro-ph** categories by default
+- fetch either a **recent slice** or a **historical year range**
 - build embeddings from **title + abstract**
-- train a text classifier over categories
-- evaluate retrieval and classification
-- generate plots
-- generate a **static interactive HTML site** with a coloured paper map
+- train a classifier to predict astro-ph categories
+- evaluate both classification and retrieval quality
+- generate plots, including **year distribution**
+- generate a **static interactive HTML site** with a dense paper map
 
-That makes it closer to a real paper-atlas project rather than just a toy CSV classifier.
+This makes it much closer to a real paper-atlas / portfolio project than a toy classifier demo.
+
+---
+
+## Current modeling setup
+
+FMAP uses the data in **two different ways**.
+
+### 1. Supervised classifier
+
+This is the model used to predict the paper category.
+
+- **Input text:** `title + abstract`
+- **Vectorization:** TF-IDF with unigram + bigram features
+- **Classifier:** `LinearSVC`
+
+Why this choice:
+- fast
+- strong baseline
+- easy to explain
+- works well when categories have distinctive terminology
+
+This is what produces:
+- accuracy
+- macro F1
+- confusion matrix
+
+### 2. Embeddings for similarity and mapping
+
+This is separate from the classifier.
+
+- **Embedding model:** `sentence-transformers/all-MiniLM-L6-v2`
+- **Input text:** `title + abstract`
+
+Used for:
+- semantic search
+- retrieval evaluation
+- nearest-neighbor recommendations
+- 2D map projection for the interactive site
+
+So the split is:
+- **classifier** = TF-IDF + LinearSVC
+- **map / retrieval / recommendations** = sentence embeddings
+
+---
+
+## How train/test splitting works
+
+FMAP does a normal supervised split before training the classifier:
+
+- **75% training**
+- **25% test**
+
+This comes from `TEST_SIZE = 0.25` in `config.py`.
+
+It also tries to **stratify by category**, so category balance is preserved when possible.
+
+Examples:
+- 5,000 papers → 3,750 train / 1,250 test
+- 8,580 papers → 6,435 train / 2,145 test
+- 10,000 papers → 7,500 train / 2,500 test
+
+Important:
+- the **classifier** is trained only on the training split
+- the **map** is built from **all loaded papers**, not just the test set
+
+So if you want a denser map, the main lever is to **load more papers overall**.
 
 ---
 
 ## Real arXiv support
 
-FMAP can fetch real arXiv metadata directly from the export API.
+FMAP fetches real metadata directly from the arXiv export API.
 
-The fetcher is deliberately cautious:
-- batched requests
-- retry/backoff on rate limits and timeouts
-- cached fallback to `data/raw/arxiv_astro_ph_papers.csv` if a previous fetch already succeeded
+### Default astro-ph focus
 
-Default arXiv focus:
+By default it targets these categories:
 - `astro-ph.GA`
 - `astro-ph.SR`
 - `astro-ph.HE`
@@ -49,59 +115,135 @@ For each paper, FMAP stores fields such as:
 - category
 - authors
 - published date
+- updated date
 - arXiv URL
 
 Fetched data is written to:
 - `data/raw/arxiv_astro_ph_papers.csv`
 
+### Current fetch behavior
+
+The fetcher is deliberately cautious:
+- batched requests
+- retry / backoff on timeouts and rate limits
+- deduplication by arXiv URL
+- cached fallback if a previous CSV already exists
+- filtering to retained `astro-ph.*` records only
+
+### Recent-tail vs historical range
+
+A plain query like:
+
+```bash
+python main.py --source arxiv --max-results 5000
+```
+
+will usually behave like a **recent-tail fetch**, because the export API is sorted by newest submissions.
+
+That means you may mostly see the newest years unless you explicitly fetch by year range.
+
+To expand historical coverage, FMAP now supports:
+- `--from-year`
+- `--to-year`
+
+Example:
+
+```bash
+python main.py --source arxiv --max-results 10000 --from-year 2020 --to-year 2026
+```
+
+That makes FMAP fetch **year-by-year** across the range, merge the results, dedupe them, and stop when either:
+- the requested count is reached, or
+- the maximum available results in that range have been collected
+
+---
+
+## Progress reporting during fetch
+
+When fetching from arXiv, FMAP now prints progress information such as:
+- target astro-ph papers requested
+- current year window being fetched
+- raw rows fetched per batch
+- astro-ph rows kept
+- non-astro rows skipped
+- duplicates skipped
+- retained running total
+- final message when only the maximum available rows can be returned
+
+So output like this:
+
+```text
+Requested 15000 astro-ph papers, but only 8580 were available from arXiv for this query range. Using the maximum available.
+```
+
+means:
+- FMAP asked for 15,000 retained astro-ph papers
+- but the chosen query / year range / API results only yielded 8,580 unique retained rows
+- so it saved the maximum available set instead of silently stopping short
+
 ---
 
 ## Interactive web atlas
 
-FMAP now generates a static website at:
+FMAP generates a static website at:
 - `outputs/site/index.html`
 
-The site includes:
-- a dark themed atlas-style layout
-- a **coloured astro-ph category map**
-- interactive point selection
-- search over title / abstract / author
-- matched papers highlighted while non-matches are dimmed
-- a details panel with category, date, abstract, authors, and arXiv link
-- recommended nearby papers with approximate `% match` scores
+The site currently includes:
+- dark atlas-style layout
+- black background with a cooler cyan / mint / violet accent palette
+- category-colored points
+- search over title / abstract / author / category
+- category filter chips
+- result list tied to current filters
+- click-to-lock paper details
+- hover previews
+- hover-time vector-neighborhood highlighting
+- recommended nearby papers with approximate match percentages
+- zoom and pan controls
 
-The map is built from a 2D PCA projection of sentence-transformer embeddings over `title + abstract`.
-
-This is a lightweight local/static visualization, so you can open the generated HTML directly in a browser.
+It is a local/static visualization, so you can open the generated HTML directly in a browser.
 
 ---
 
-## Modeling approach
+## Why the map now uses UMAP
 
-FMAP uses the data in two different ways.
+Earlier versions used **PCA** for the 2D projection.
 
-### 1. Embeddings for map + retrieval
-Embedding model:
-- `sentence-transformers/all-MiniLM-L6-v2`
+That worked, but PCA often makes a paper map feel:
+- too flat
+- too spread out
+- not locally structured enough
 
-Input text:
-- `title + abstract`
+FMAP now uses **UMAP** instead.
 
-Used for:
-- semantic search
-- retrieval evaluation
-- 2D paper map projection
-- interactive site visualization
+### What UMAP is doing here
 
-### 2. Classifier for category prediction
-Classifier method:
-- **TF-IDF vectorization** with unigram + bigram features
-- **LinearSVC**
+UMAP takes the high-dimensional embedding vectors and projects them into 2D while trying to preserve **local neighborhood structure** better than PCA.
 
-Input text:
-- `title + abstract`
+That matters because this site is supposed to feel like an atlas:
+- nearby points should often feel semantically related
+- clusters should be tighter and more readable
+- the map should look denser and more natural
 
-This is the current supervised baseline. It is fast, strong, and easy to explain.
+### Current UMAP settings
+
+From `config.py`:
+- `UMAP_N_NEIGHBORS = 12`
+- `UMAP_MIN_DIST = 0.08`
+- `UMAP_RANDOM_STATE = 42`
+
+Rough intuition:
+- **lower `min_dist`** → tighter, denser clusters
+- **lower `n_neighbors`** → more local structure
+- **higher `n_neighbors`** → smoother, more global structure
+
+So if you want an even denser atlas later, the easiest knob is often:
+- lower `UMAP_MIN_DIST` a bit further, e.g. `0.03`
+
+### Important note
+
+UMAP is used for the **2D visualization only**.
+It is **not** the classifier.
 
 ---
 
@@ -112,6 +254,29 @@ For demo/testing, FMAP still includes:
 - `data/raw/papers_perfect.csv` — intentionally overly separable synthetic dataset
 
 Use these when you want to test the pipeline without hitting arXiv.
+
+---
+
+## Plots and outputs
+
+After running the pipeline, FMAP writes outputs such as:
+
+- `outputs/models/` — trained classifier
+- `outputs/metrics/` — evaluation metrics
+- `outputs/figures/label_distribution.png` — category counts
+- `outputs/figures/year_distribution.png` — published year counts
+- `outputs/figures/embedding_projection.png` — 2D UMAP projection plot
+- `outputs/figures/confusion_matrix.png` — classifier confusion matrix
+- `outputs/site/` — interactive HTML atlas
+
+### Year distribution plot
+
+The published-year plot is especially useful when checking whether your dataset is:
+- only a recent slice
+- or genuinely spread across older years
+
+That plot is written to:
+- `outputs/figures/year_distribution.png`
 
 ---
 
@@ -171,13 +336,11 @@ python main.py --source synthetic
 python main.py --source perfect
 ```
 
-### 4. Fetch real arXiv physics papers and build the site
+### 4. Fetch a recent astro-ph slice
 
 ```bash
-python main.py --source arxiv --max-results 500
+python main.py --source arxiv --max-results 5000
 ```
-
-If arXiv is slow or rate-limits you, FMAP will retry and fall back to the cached CSV if one already exists.
 
 ### 5. Fetch a historical year range
 
@@ -185,15 +348,19 @@ If arXiv is slow or rate-limits you, FMAP will retry and fall back to the cached
 python main.py --source arxiv --max-results 10000 --from-year 2020 --to-year 2026
 ```
 
-This fetches year-by-year so FMAP can cover a broader historical range instead of only the recent tail.
-
 ### 6. Fetch custom arXiv categories
 
 ```bash
 python main.py --source arxiv --max-results 800 --categories "astro-ph.GA,astro-ph.CO,astro-ph.HE,astro-ph.IM"
 ```
 
-### 7. Open the generated website
+### 7. Re-run from a cached CSV
+
+```bash
+python main.py --source csv --input data/raw/arxiv_astro_ph_papers.csv
+```
+
+### 8. Open the generated website
 
 After running the pipeline, open:
 
@@ -205,11 +372,17 @@ outputs/site/index.html
 
 ## Example use cases
 
-### Build a local physics paper atlas
-Fetch astrophysics papers and generate a browsable map:
+### Build a local historical astro-ph atlas
 
 ```bash
-python main.py --source arxiv --max-results 600
+python main.py --source arxiv --max-results 15000 --from-year 2020 --to-year 2026
+open outputs/site/index.html
+```
+
+### Build a denser atlas from more recent papers
+
+```bash
+python main.py --source arxiv --max-results 10000
 open outputs/site/index.html
 ```
 
@@ -226,13 +399,18 @@ python demo.py --query "galaxy evolution and stellar populations" --input data/r
 ### `arxiv_data.py`
 Handles:
 - arXiv API queries
-- physics/astro category selection
-- parsing Atom XML into a structured CSV
+- astro-ph category selection
+- year-range queries
+- progress reporting
+- filtering retained astro-ph rows
+- deduplication
+- parsing Atom XML into structured rows
 
 ### `site_builder.py`
 Handles:
-- 2D projection normalization
+- 2D UMAP projection for the site map
 - point/color payload generation
+- recommendation payloads
 - writing the static HTML atlas
 
 ### `data.py`
@@ -256,25 +434,15 @@ Orchestrates the full workflow:
 
 ---
 
-## Outputs
-
-After running the pipeline, you get:
-
-- `outputs/models/` — trained classifier
-- `outputs/metrics/` — evaluation metrics
-- `outputs/figures/` — plots and confusion matrix
-- `outputs/site/` — interactive HTML visualization site
-
----
-
 ## Why this is useful
 
-This version of FMAP is much closer to a serious portfolio project because it combines:
+FMAP is a strong portfolio-style project because it combines:
 - real data ingestion
 - NLP embeddings
 - text classification
 - retrieval
 - interactive visualization
 - reproducible outputs
+- historical range analysis through year plots and year-window fetching
 
-It is now a much clearer "physics paper atlas" style project while still staying lightweight and hackable.
+It is now much closer to a real **astrophysics paper atlas** than a simple CSV classification demo, while still staying lightweight and hackable.
