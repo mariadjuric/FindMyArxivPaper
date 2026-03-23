@@ -331,8 +331,9 @@ def _html_template() -> str:
   <div class=\"layout\">
     <aside class=\"panel\">
       <div class=\"panel-inner\">
-        <h1 class=\"brand\"><span class=\"mark\">FMAP</span> Astro Atlas</h1>
+        <h1 class=\"brand\"><span class=\"mark\">FMAP</span></h1>
         <div class=\"subtle\">Astro-ph only. Search the map, filter by category, hover for previews, click for details, and explore nearby papers through embedding similarity.</div>
+        <div class=\"subtle\" style=\"margin-top:10px;\">by mariadjuric · <a href=\"https://github.com/mariadjuric/FindMyArxivPaper\" target=\"_blank\" rel=\"noreferrer\">GitHub repo</a></div>
 
         <div class=\"stats\">
           <div class=\"stat\"><div class=\"label\">Papers</div><div class=\"value\" id=\"paperCount\">0</div></div>
@@ -408,6 +409,7 @@ def _html_template() -> str:
 
     let selected = null;
     let hovered = null;
+    let hoverNeighbors = [];
     let filtered = points.slice();
     let focusMatches = false;
     let activeCategories = new Set(Object.keys(payload.colors));
@@ -482,17 +484,36 @@ def _html_template() -> str:
 
     function draw() {
       drawField();
+
+      if (hovered && hoverNeighbors.length) {
+        const origin = pointXY(hovered);
+        hoverNeighbors.forEach((neighbor, index) => {
+          const target = pointXY(neighbor);
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(125, 211, 252, ${Math.max(0.12, 0.34 - index * 0.035)})`;
+          ctx.lineWidth = Math.max(0.8, 1.8 - index * 0.12);
+          ctx.moveTo(origin.x, origin.y);
+          ctx.lineTo(target.x, target.y);
+          ctx.stroke();
+        });
+      }
+
       for (const p of points) {
         const active = filtered.includes(p);
         const xy = pointXY(p);
-        const radius = active ? clamp(2.0 * zoom, 2.2, 5.8) : clamp(1.1 * zoom, 0.8, 2.2);
+        const isNeighbor = hoverNeighbors.includes(p);
+        const radius = isNeighbor
+          ? clamp(2.8 * zoom, 3.2, 7.2)
+          : active
+            ? clamp(2.0 * zoom, 2.2, 5.8)
+            : clamp(1.1 * zoom, 0.8, 2.2);
         ctx.beginPath();
-        ctx.fillStyle = active ? p.color : 'rgba(100, 116, 139, 0.14)';
+        ctx.fillStyle = isNeighbor ? '#d8f3ff' : active ? p.color : 'rgba(100, 116, 139, 0.14)';
         ctx.arc(xy.x, xy.y, radius, 0, Math.PI * 2);
         ctx.fill();
         if (active && radius > 3.5) {
           ctx.beginPath();
-          ctx.fillStyle = 'rgba(255,255,255,0.12)';
+          ctx.fillStyle = isNeighbor ? 'rgba(125, 211, 252, 0.22)' : 'rgba(255,255,255,0.12)';
           ctx.arc(xy.x, xy.y, radius + 0.9, 0, Math.PI * 2);
           ctx.fill();
         }
@@ -540,9 +561,11 @@ def _html_template() -> str:
 
     function renderHover(p, x, y) {
       if (!p) {
+        hoverNeighbors = [];
         hoverCard.style.display = 'none';
         return;
       }
+      hoverNeighbors = (p.recommendations || []).map(rec => byId.get(rec.id)).filter(Boolean).slice(0, 6);
       hoverCard.style.display = 'block';
       hoverCard.style.left = Math.min(x + 18, canvas.clientWidth - 320) + 'px';
       hoverCard.style.top = Math.min(y + 18, canvas.clientHeight - 170) + 'px';
@@ -550,6 +573,7 @@ def _html_template() -> str:
         <div class=\"pill\"><span class=\"swatch\" style=\"background:${p.color}\"></span>${p.category}</div>
         <div class=\"title-sm\">${p.title}</div>
         <div class=\"meta\">${p.published ? p.published.slice(0,10) : 'Unknown date'}${p.authors ? ' · ' + p.authors : ''}</div>
+        <div class=\"meta\">Vector neighborhood: ${hoverNeighbors.length} related papers highlighted</div>
       `;
     }
 
@@ -689,6 +713,7 @@ def _html_template() -> str:
       }
       if (!inside) {
         hovered = null;
+        hoverNeighbors = [];
         renderHover(null);
         draw();
         return;
@@ -696,6 +721,7 @@ def _html_template() -> str:
       const mx = event.clientX - rect.left;
       const my = event.clientY - rect.top;
       hovered = nearestPoint(mx, my);
+      if (!hovered) hoverNeighbors = [];
       renderHover(hovered, mx, my);
       draw();
     });
