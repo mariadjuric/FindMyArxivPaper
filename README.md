@@ -12,11 +12,14 @@ The project name is **FMAP: FindMyArxivPaper**.
 
 ---
 
-## Preview
-
-Static preview of the current atlas snapshot:
-
-![FMAP atlas preview](docs/images/atlas-preview.png)
+<div align="center">
+  <div style="background:#0d1117; border:1px solid #30363d; border-radius:16px; padding:18px; display:inline-block; max-width:1100px;">
+    <img src="docs/images/atlas-preview.png" alt="FMAP atlas preview" style="display:block; width:100%; max-width:1024px; border-radius:12px;" />
+    <p style="margin:14px 8px 4px; color:#c9d1d9; font-size:14px; line-height:1.6; text-align:left;">
+      Static preview of the current FMAP atlas snapshot: a dense 2D UMAP projection of astro-ph papers embedded from titles and abstracts, coloured by category and prepared for interactive exploration in the generated HTML atlas.
+    </p>
+  </div>
+</div>
 
 Tracked site snapshot in the repo:
 - [HTML entry point](docs/site/index.html)
