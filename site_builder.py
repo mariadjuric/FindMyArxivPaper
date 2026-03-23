@@ -200,7 +200,7 @@ def _html_template() -> str:
         <canvas id=\"atlasBase\" class=\"atlas-canvas\"></canvas>
         <canvas id=\"atlasOverlay\" class=\"atlas-canvas\"></canvas>
         <div class=\"hover-card\" id=\"hoverCard\"></div>
-        <div class=\"hint\">Drag to pan · wheel to zoom · shift-click a category chip to isolate it · click any point for full details. Performance mode is enabled for larger maps.</div>
+        <div class=\"hint\">Drag to pan · wheel to zoom · shift-click a category chip to isolate it · click any point for full details. Hover previews stay lightweight; best matches appear in the right panel after selection.</div>
       </div>
     </main>
     <aside class=\"panel\"><div class=\"panel-inner\"><div id=\"details\" class=\"detail-card\"><div class=\"detail-title\">Select a paper</div><div class=\"muted\">Use the map or result list. Hover gives a quick preview; click locks the paper and loads related recommendations.</div></div><div class=\"section-title\">Related papers</div><div id=\"recs\" class=\"scroll-block\"></div></div></aside>
@@ -311,33 +311,20 @@ def _html_template() -> str:
 
     function drawBase() {
       drawField(baseCtx);
-      const neighborSet = new Set(hoverNeighbors.map(p => p.id));
       const filteredSet = new Set(filtered.map(p => p.id));
       for (const p of points) {
         const pos = pointPositions[p.id];
         if (!pos) continue;
         const active = filteredSet.has(p.id);
-        const isNeighbor = neighborSet.has(p.id);
-        const radius = isNeighbor ? clamp(1.75 * zoom, 2.0, 4.2) : active ? clamp(0.95 * zoom, 1.05, 2.3) : clamp(0.42 * zoom, 0.33, 0.75);
+        const radius = active ? clamp(0.95 * zoom, 1.05, 2.3) : clamp(0.42 * zoom, 0.33, 0.75);
         baseCtx.beginPath();
-        baseCtx.fillStyle = isNeighbor ? '#d8f3ff' : active ? p.color : 'rgba(100, 116, 139, 0.10)';
+        baseCtx.fillStyle = active ? p.color : 'rgba(100, 116, 139, 0.10)';
         baseCtx.arc(pos.x, pos.y, radius, 0, Math.PI * 2); baseCtx.fill();
       }
     }
 
     function drawOverlay() {
       overlayCtx.clearRect(0, 0, canvasWidth(), canvasHeight());
-      if (hovered && hoverNeighbors.length) {
-        const origin = pointPositions[hovered.id];
-        hoverNeighbors.forEach((neighbor, index) => {
-          const target = pointPositions[neighbor.id];
-          if (!origin || !target) return;
-          overlayCtx.beginPath();
-          overlayCtx.strokeStyle = `rgba(125, 211, 252, ${Math.max(0.18, 0.42 - index * 0.04)})`;
-          overlayCtx.lineWidth = Math.max(1.8, 3.4 - index * 0.2);
-          overlayCtx.moveTo(origin.x, origin.y); overlayCtx.lineTo(target.x, target.y); overlayCtx.stroke();
-        });
-      }
       if (hovered) {
         const pos = pointPositions[hovered.id];
         if (pos) { overlayCtx.beginPath(); overlayCtx.strokeStyle = 'rgba(125, 211, 252, 0.95)'; overlayCtx.lineWidth = 2.2; overlayCtx.arc(pos.x, pos.y, clamp(8 * zoom, 7, 14), 0, Math.PI * 2); overlayCtx.stroke(); }
@@ -378,11 +365,11 @@ def _html_template() -> str:
 
     function renderHover(p, x, y) {
       if (!p) { hoverNeighbors = []; hoverCard.style.display = 'none'; return; }
-      hoverNeighbors = (p.recommendations || []).map(rec => byId.get(rec.id)).filter(Boolean).slice(0, 6);
+      hoverNeighbors = [];
       hoverCard.style.display = 'block';
       hoverCard.style.left = Math.min(x + 18, canvasWidth() - 320) + 'px';
-      hoverCard.style.top = Math.min(y + 18, canvasHeight() - 170) + 'px';
-      hoverCard.innerHTML = `<div class=\"pill\"><span class=\"swatch\" style=\"background:${p.color}\"></span>${p.category}</div><div class=\"title-sm\">${p.title}</div><div class=\"meta\">${p.published ? p.published.slice(0,10) : 'Unknown date'}${p.authors ? ' · ' + p.authors : ''}</div><div class=\"meta\">Vector neighborhood: ${hoverNeighbors.length} related papers highlighted</div>`;
+      hoverCard.style.top = Math.min(y + 18, canvasHeight() - 150) + 'px';
+      hoverCard.innerHTML = `<div class=\"pill\"><span class=\"swatch\" style=\"background:${p.color}\"></span>${p.category}</div><div class=\"title-sm\">${p.title}</div><div class=\"meta\">${p.published ? p.published.slice(0,10) : 'Unknown date'}${p.authors ? ' · ' + p.authors : ''}</div><div class=\"meta\">Click to load related papers in the right panel.</div>`;
     }
 
     function showDetails(p) {
