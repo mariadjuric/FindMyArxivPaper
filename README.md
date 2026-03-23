@@ -1,46 +1,95 @@
 # SciPaper
 
-**SciPaper** is a research-style NLP project for exploring scientific literature with modern representation learning, retrieval, clustering, and lightweight summarization.
+**SciPaper** is a compact research-style NLP project for scientific paper classification, semantic retrieval, and embedding visualization.
 
-If you want a cleaner product name later, good alternatives are:
-- **LitScope**
-- **PaperScope**
-- **ArxivAtlas**
-- **LitGraph**
+This repository is intentionally built as a clean portfolio-style ML pipeline:
+- load paper metadata from CSV
+- preprocess text
+- build dense embeddings for retrieval and plots
+- train a stronger supervised text classifier
+- evaluate with accuracy, macro F1, confusion matrix, and retrieval precision@k
+- save figures and model artifacts
 
-For now, `SciPaper` is a clear repo name and easy to understand.
+There is no product-name ambiguity here: the project name is **SciPaper**.
 
 ---
 
-## What this project does
+## What the project is doing
 
-SciPaper builds an end-to-end pipeline over scientific paper metadata and abstracts.
+SciPaper works on paper metadata with at least these columns:
+- `title`
+- `abstract`
+- `category`
 
-Given a collection of papers, it can:
-- load and clean data
-- create train/dev/test splits
-- encode abstracts into dense embeddings
-- train a lightweight paper-domain classifier baseline
-- build semantic search over embeddings
-- cluster papers into topics
-- evaluate retrieval and classification quality
-- generate plots for exploration and reporting
+The pipeline uses the data in two different ways:
 
-This repo is designed to look like a small ML research project rather than a one-off demo.
+### 1. Retrieval and visualization path
+For semantic search and 2D embedding plots, the project builds sentence-transformer embeddings from:
+- `title + abstract`
+
+Model used:
+- `sentence-transformers/all-MiniLM-L6-v2`
+
+Those embeddings are used for:
+- semantic search
+- retrieval evaluation
+- PCA/t-SNE style visual exploration
+
+### 2. Supervised classification path
+For category prediction, the project uses a stronger classic text baseline over:
+- `title + abstract`
+
+Classifier method:
+- **TF-IDF vectorization** with unigram + bigram features
+- **LinearSVC** classifier
+
+So the current classifier is **not** embedding -> logistic regression anymore.
+It is now a more competitive text classification baseline that usually behaves better on small and medium tabular text datasets.
+
+---
+
+## Synthetic datasets included
+
+The repo now includes two synthetic CSV datasets in `data/raw/`:
+
+### `papers.csv`
+The main synthetic dataset.
+
+- about **1000 papers**
+- balanced across multiple scientific categories
+- intentionally larger than the original toy sample
+- designed to be useful for testing the pipeline without being completely trivial
+- includes some shared language across classes so it is less unrealistically clean
+
+### `papers_perfect.csv`
+A second synthetic dataset for debugging/demo purposes.
+
+- also about **1000 papers**
+- intentionally **too separable**
+- category wording is highly distinctive
+- useful when you want a near-perfect confusion matrix or to verify that the pipeline works end to end
+
+In short:
+- use `papers.csv` for a more believable demo
+- use `papers_perfect.csv` when you want a stress-free synthetic sanity check
+
+By default, the pipeline reads:
+- `data/raw/papers.csv`
+
+If you want to try the perfect synthetic set, replace `papers.csv` with `papers_perfect.csv` or adjust the configured input path.
 
 ---
 
 ## Why this is a good portfolio project
 
 This project demonstrates:
-- **NLP representation learning** with transformer embeddings
-- **information retrieval** with semantic similarity search
-- **classification** for a reproducible supervised baseline
-- **unsupervised learning** through clustering and visualization
-- **evaluation discipline** through explicit metrics and plots
-- **research engineering** through modular code, configs, scripts, and outputs
+- **NLP representation learning** with sentence-transformer embeddings
+- **text classification** with a strong linear baseline
+- **semantic retrieval** over scientific abstracts
+- **evaluation discipline** with saved metrics and plots
+- **research engineering** through modular code and reproducible outputs
 
-For ML research applications, that combination is much stronger than a generic chatbot demo.
+That makes it a much stronger repo than a one-off notebook or a generic chatbot demo.
 
 ---
 
@@ -63,6 +112,8 @@ SciPaper/
 ├── .gitignore
 ├── data/
 │   ├── raw/
+│   │   ├── papers.csv
+│   │   └── papers_perfect.csv
 │   └── processed/
 ├── outputs/
 │   ├── figures/
@@ -76,81 +127,46 @@ SciPaper/
 
 ## Pipeline overview
 
-### 1. Data loading
-`data.py` loads a CSV containing paper metadata. At minimum, the CSV should contain:
-- `title`
-- `abstract`
+### 1. Data loading and preprocessing
+`data.py` loads the CSV, validates required columns, cleans missing text, and creates:
+- `combined_text = title + ". " + abstract`
 
-Optional columns:
-- `category`
-- `year`
-- `authors`
-- `paper_id`
-
-A small synthetic sample dataset is included so the pipeline runs immediately.
-
----
+That combined text field is used by both the embedding pipeline and the classifier.
 
 ### 2. Embedding model
-`models.py` wraps a sentence-transformer encoder. It converts each paper abstract into a dense vector.
+`models.py` wraps a sentence-transformer encoder.
 
-Why use embeddings?
-- Papers with similar meaning should be close in vector space.
-- That makes semantic search and clustering possible.
-- It is a standard building block in modern NLP systems.
+Embeddings are used for:
+- semantic search
+- retrieval scoring
+- embedding projection plots
 
-Default model:
+Default embedding model:
 - `sentence-transformers/all-MiniLM-L6-v2`
 
-This is lightweight, fast, and good for a public starter repo.
+### 3. Supervised classifier
+`train.py` fits the classifier on `combined_text`.
 
----
+Current baseline:
+- `TfidfVectorizer(ngram_range=(1, 2), max_features=8000)`
+- `LinearSVC`
 
-### 3. Supervised baseline
-`train.py` trains a simple classifier on top of embeddings to predict paper category.
+This is a strong and very common baseline for document classification.
+It is fast, simple, and often surprisingly competitive.
 
-This is useful because it shows:
-- a reproducible training pipeline
-- a supervised benchmark
-- evaluation beyond just retrieval
-
-The baseline is intentionally simple:
-- abstract -> embedding -> logistic regression classifier
-
-That keeps the project fast and understandable while still demonstrating ML workflow.
-
----
-
-### 4. Semantic retrieval
-`search.py` computes nearest neighbors in embedding space.
-
-Given a query string or paper abstract, the system:
-1. embeds the query
-2. compares it to all paper embeddings
-3. returns the most similar papers
-
-This forms the core of the literature explorer.
-
----
-
-### 5. Clustering and visualization
-`plots.py` reduces embeddings with PCA or t-SNE and plots 2D projections.
-
-This helps answer questions like:
-- Do papers naturally cluster by topic?
-- Are some categories overlapping?
-- Does the embedding space capture meaningful structure?
-
----
-
-### 6. Evaluation
+### 4. Evaluation
 `evaluate.py` computes:
-- classification accuracy
+- accuracy
 - macro F1
 - confusion matrix
+- classification report
 - retrieval precision@k
 
-This is important because a good portfolio project should not stop at “it runs.” It should show how performance is measured.
+### 5. Visualization
+`plots.py` generates:
+- label distribution plots
+- 2D embedding projection plots
+- confusion matrix heatmap
 
 ---
 
@@ -171,14 +187,15 @@ python main.py
 ```
 
 This will:
-- create/load a sample dataset
-- encode abstracts
-- train a classifier
+- load `data/raw/papers.csv`
+- preprocess title + abstract text
+- build embeddings
+- train the TF-IDF + LinearSVC classifier
 - evaluate metrics
 - save figures and outputs
 - print example semantic search results
 
-### 3. Run the lightweight demo search
+### 3. Run the demo search
 
 ```bash
 python demo.py --query "graph neural networks for molecules" --top_k 5
@@ -196,22 +213,27 @@ Paper A,"This paper studies transformers for vision.",cs.CV,2024,1
 Paper B,"We present a model for scientific retrieval.",cs.CL,2023,2
 ```
 
-Place your real dataset at:
+Default input path:
 
 ```text
 data/raw/papers.csv
 ```
 
-If no real data is found, the repo falls back to a built-in sample dataset.
-
 ---
 
 ## Main files explained
 
+### `data.py`
+Handles:
+- synthetic dataset generation
+- CSV loading
+- preprocessing
+- train/test splitting
+
 ### `models.py`
-Contains model wrappers:
-- `PaperEmbedder`: sentence-transformer embedding model
-- `PaperClassifier`: logistic regression baseline over embeddings
+Contains:
+- `PaperEmbedder` for sentence-transformer embeddings
+- `PaperClassifier` for TF-IDF + LinearSVC classification
 
 ### `train.py`
 Handles:
@@ -225,64 +247,37 @@ Handles:
 - retrieval evaluation
 
 ### `main.py`
-The orchestration entry point. It runs the whole pipeline in the right order:
+Runs the whole workflow:
 1. load data
-2. clean and split
+2. preprocess text
 3. build embeddings
 4. train classifier
-5. evaluate
+5. evaluate results
 6. generate plots
 7. run example retrieval queries
 
 ### `plots.py`
-Creates:
-- label distribution plots
-- 2D embedding visualizations
-- confusion matrix heatmap
+Creates the key visual outputs for inspection and reporting.
 
 ---
 
 ## Outputs
 
-After running `python main.py`, you should see artifacts in:
+After running `python main.py`, the main artifacts are written to:
 
-- `outputs/models/` — trained classifier and label encoder
-- `outputs/metrics/` — JSON metrics files
-- `outputs/figures/` — plots for README, portfolio, or reports
-
----
-
-## Suggested next upgrades
-
-If you want to turn this into a stronger research repo, the next steps are:
-
-1. **Replace the sample data with arXiv metadata**
-2. **Add a cross-encoder reranker** for better retrieval quality
-3. **Add clustering with HDBSCAN or BERTopic**
-4. **Add keyword extraction and paper summaries**
-5. **Build a Streamlit front-end** for portfolio demos
-6. **Compare multiple embedding models** and report results
-7. **Add experiment tracking** with Weights & Biases or MLflow
-
----
-
-## How to describe this on your portfolio
-
-You can describe SciPaper like this:
-
-> Built an end-to-end NLP system for scientific literature exploration using transformer embeddings, semantic retrieval, classification, and clustering. Designed modular training/evaluation pipelines, generated visual analyses of embedding structure, and created a reproducible codebase for experimenting with scientific document understanding.
-
-That reads much better than “made an NLP app.”
+- `outputs/models/` — trained classifier
+- `outputs/metrics/` — JSON metrics
+- `outputs/figures/` — plots and confusion matrix
 
 ---
 
 ## Notes on scope
 
-This repo is intentionally a strong baseline, not a huge framework.
+SciPaper is intentionally a strong baseline repo, not a huge framework.
 
-The idea is:
+The goal is:
 - easy to run
 - easy to understand
-- easy to expand into a more serious research project
+- easy to extend with better data or richer models
 
-That makes it ideal for a public GitHub repo and portfolio piece.
+That makes it a solid public GitHub or portfolio project.

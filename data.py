@@ -36,7 +36,9 @@ CATEGORY_BLUEPRINTS = {
             "citation context",
             "evidence ranking",
         ],
+        "shared_keywords": ["benchmark", "embedding model", "generalization"],
         "venues": ["ACL", "EMNLP", "NAACL"],
+        "domain": "language understanding",
     },
     "cs.CV": {
         "title_prefixes": [
@@ -54,7 +56,9 @@ CATEGORY_BLUEPRINTS = {
             "object detection",
             "visual backbone",
         ],
+        "shared_keywords": ["benchmark", "feature extractor", "robustness"],
         "venues": ["CVPR", "ICCV", "MICCAI"],
+        "domain": "scientific imaging",
     },
     "cs.LG": {
         "title_prefixes": [
@@ -72,7 +76,9 @@ CATEGORY_BLUEPRINTS = {
             "uncertainty calibration",
             "benchmark suite",
         ],
+        "shared_keywords": ["benchmark", "embedding model", "robustness"],
         "venues": ["ICML", "NeurIPS", "ICLR"],
+        "domain": "machine learning methodology",
     },
     "physics.comp-ph": {
         "title_prefixes": [
@@ -90,7 +96,9 @@ CATEGORY_BLUEPRINTS = {
             "solver convergence",
             "numerical stability",
         ],
+        "shared_keywords": ["benchmark", "simulation study", "generalization"],
         "venues": ["PhysRevE", "JCP", "SciPost"],
+        "domain": "computational physics",
     },
     "physics.data-an": {
         "title_prefixes": [
@@ -108,7 +116,9 @@ CATEGORY_BLUEPRINTS = {
             "instrument drift",
             "posterior intervals",
         ],
+        "shared_keywords": ["benchmark", "uncertainty", "robustness"],
         "venues": ["JINST", "PhysRevD", "NIMA"],
+        "domain": "experimental physics analysis",
     },
     "stat.ML": {
         "title_prefixes": [
@@ -126,12 +136,14 @@ CATEGORY_BLUEPRINTS = {
             "credible intervals",
             "sampling efficiency",
         ],
+        "shared_keywords": ["benchmark", "uncertainty", "generalization"],
         "venues": ["AISTATS", "JRSS-B", "JASA"],
+        "domain": "statistical machine learning",
     },
 }
 
 
-def make_sample_dataset(samples_per_class: int = 60) -> pd.DataFrame:
+def make_sample_dataset(samples_per_class: int = 167, perfect: bool = False) -> pd.DataFrame:
     records = []
     paper_id = 1
     base_year = 2020
@@ -139,22 +151,34 @@ def make_sample_dataset(samples_per_class: int = 60) -> pd.DataFrame:
     for category_index, (category, blueprint) in enumerate(CATEGORY_BLUEPRINTS.items()):
         prefixes = blueprint["title_prefixes"]
         keywords = blueprint["keywords"]
+        shared_keywords = blueprint["shared_keywords"]
         venues = blueprint["venues"]
+        domain = blueprint["domain"]
 
         for i in range(samples_per_class):
             prefix = prefixes[i % len(prefixes)]
             keyword_a = keywords[i % len(keywords)]
             keyword_b = keywords[(i + 2) % len(keywords)]
+            shared_keyword = shared_keywords[i % len(shared_keywords)]
             venue = venues[i % len(venues)]
             year = base_year + ((i + category_index) % 6)
             study_id = i + 1
 
-            title = f"{prefix} for {keyword_a.title()} Study {study_id}"
-            abstract = (
-                f"We present a {category} benchmark focused on {keyword_a} and {keyword_b}. "
-                f"The study evaluates reproducible baselines, ablations, and error analysis on {venue} style tasks. "
-                f"Results emphasize category-specific signals such as {keyword_a}, {keyword_b}, and deployment constraints typical for {category} workflows."
-            )
+            if perfect:
+                title = f"{prefix} for {keyword_a.title()} Study {study_id}"
+                abstract = (
+                    f"We present a {category} benchmark focused on {keyword_a} and {keyword_b}. "
+                    f"The study evaluates reproducible baselines, ablations, and error analysis on {venue} style tasks. "
+                    f"Results emphasize category-specific signals such as {keyword_a}, {keyword_b}, and deployment constraints typical for {category} workflows."
+                )
+            else:
+                title = f"{prefix} for {domain.title()} Study {study_id}"
+                abstract = (
+                    f"We study {keyword_a} for {domain} with comparisons against strong baselines. "
+                    f"The paper discusses {keyword_b}, {shared_keyword}, and evaluation on {venue} style tasks. "
+                    f"Results highlight transfer, uncertainty, and practical deployment tradeoffs in scientific workflows."
+                )
+
             records.append(
                 {
                     ID_COLUMN: paper_id,
