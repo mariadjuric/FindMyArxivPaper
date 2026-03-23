@@ -6,7 +6,7 @@ The project name is **FMAP: FindMyArxivPaper**.
 
 It now supports two main modes:
 - **synthetic demo mode** for quick testing
-- **real arXiv mode** focused on physics and astrophysics papers, with a generated HTML visualization site
+- **real arXiv mode** focused on astro-ph papers, with a generated interactive HTML visualization site
 
 ---
 
@@ -15,7 +15,7 @@ It now supports two main modes:
 FMAP can:
 - ingest paper metadata from CSV
 - fetch recent papers from the **arXiv API**
-- focus on **physics / astrophysics** categories by default
+- focus on **astro-ph** categories by default
 - build embeddings from **title + abstract**
 - train a text classifier over categories
 - evaluate retrieval and classification
@@ -33,7 +33,7 @@ FMAP can fetch real arXiv metadata directly from the export API.
 The fetcher is deliberately cautious:
 - batched requests
 - retry/backoff on rate limits and timeouts
-- cached fallback to `data/raw/arxiv_physics_papers.csv` if a previous fetch already succeeded
+- cached fallback to `data/raw/arxiv_astro_ph_papers.csv` if a previous fetch already succeeded
 
 Default arXiv focus:
 - `astro-ph.GA`
@@ -42,8 +42,6 @@ Default arXiv focus:
 - `astro-ph.CO`
 - `astro-ph.EP`
 - `astro-ph.IM`
-- `physics.space-ph`
-- `gr-qc`
 
 For each paper, FMAP stores fields such as:
 - title
@@ -54,7 +52,7 @@ For each paper, FMAP stores fields such as:
 - arXiv URL
 
 Fetched data is written to:
-- `data/raw/arxiv_physics_papers.csv`
+- `data/raw/arxiv_astro_ph_papers.csv`
 
 ---
 
@@ -65,10 +63,12 @@ FMAP now generates a static website at:
 
 The site includes:
 - a dark themed atlas-style layout
-- a **coloured category map**
+- a **coloured astro-ph category map**
 - interactive point selection
 - search over title / abstract / author
+- matched papers highlighted while non-matches are dimmed
 - a details panel with category, date, abstract, authors, and arXiv link
+- recommended nearby papers with approximate `% match` scores
 
 The map is built from a 2D PCA projection of sentence-transformer embeddings over `title + abstract`.
 
@@ -136,7 +136,7 @@ FindMyArxivPaper/
 │   ├── raw/
 │   │   ├── papers.csv
 │   │   ├── papers_perfect.csv
-│   │   └── arxiv_physics_papers.csv
+│   │   └── arxiv_astro_ph_papers.csv
 │   └── processed/
 └── outputs/
     ├── figures/
@@ -182,7 +182,7 @@ If arXiv is slow or rate-limits you, FMAP will retry and fall back to the cached
 ### 5. Fetch custom arXiv categories
 
 ```bash
-python main.py --source arxiv --max-results 800 --categories "astro-ph.GA,astro-ph.CO,astro-ph.HE,gr-qc"
+python main.py --source arxiv --max-results 800 --categories "astro-ph.GA,astro-ph.CO,astro-ph.HE,astro-ph.IM"
 ```
 
 ### 6. Open the generated website
@@ -208,7 +208,7 @@ open outputs/site/index.html
 ### Run semantic search on a chosen dataset
 
 ```bash
-python demo.py --query "galaxy evolution and stellar populations" --input data/raw/arxiv_physics_papers.csv
+python demo.py --query "galaxy evolution and stellar populations" --input data/raw/arxiv_astro_ph_papers.csv
 ```
 
 ---

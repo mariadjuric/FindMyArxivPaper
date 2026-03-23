@@ -11,7 +11,7 @@ MODELS_DIR = OUTPUT_DIR / "models"
 SITE_DIR = OUTPUT_DIR / "site"
 
 DATA_PATH = RAW_DIR / "papers.csv"
-ARXIV_DATA_PATH = RAW_DIR / "arxiv_physics_papers.csv"
+ARXIV_DATA_PATH = RAW_DIR / "arxiv_astro_ph_papers.csv"
 PERFECT_DATA_PATH = RAW_DIR / "papers_perfect.csv"
 EMBEDDINGS_PATH = PROCESSED_DIR / "embeddings.npy"
 PROCESSED_CSV_PATH = PROCESSED_DIR / "papers_processed.csv"
@@ -40,8 +40,6 @@ DEFAULT_ARXIV_CATEGORIES = [
     "astro-ph.CO",
     "astro-ph.EP",
     "astro-ph.IM",
-    "physics.space-ph",
-    "gr-qc",
 ]
 
 CATEGORY_COLORS = {
@@ -51,8 +49,6 @@ CATEGORY_COLORS = {
     "astro-ph.CO": "#ef4444",
     "astro-ph.EP": "#a855f7",
     "astro-ph.IM": "#a16207",
-    "physics.space-ph": "#06b6d4",
-    "gr-qc": "#f43f5e",
 }
 
 
