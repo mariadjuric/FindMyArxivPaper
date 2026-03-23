@@ -42,13 +42,15 @@ DEFAULT_ARXIV_CATEGORIES = [
     "astro-ph.IM",
 ]
 
+ASTRO_ONLY_PREFIX = "astro-ph."
+
 CATEGORY_COLORS = {
-    "astro-ph.GA": "#3b82f6",
-    "astro-ph.SR": "#f97316",
-    "astro-ph.HE": "#22c55e",
-    "astro-ph.CO": "#ef4444",
-    "astro-ph.EP": "#a855f7",
-    "astro-ph.IM": "#a16207",
+    "astro-ph.GA": "#5ab3ff",
+    "astro-ph.SR": "#ff8a3d",
+    "astro-ph.HE": "#3ddc97",
+    "astro-ph.CO": "#ff5d73",
+    "astro-ph.EP": "#b57cff",
+    "astro-ph.IM": "#f4b942",
 }
 
 

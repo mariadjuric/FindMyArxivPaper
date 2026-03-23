@@ -31,6 +31,8 @@ def build_site(df: pd.DataFrame, embeddings: np.ndarray, site_dir: Path = SITE_D
     x_span = max(x_max - x_min, 1e-9)
     y_span = max(y_max - y_min, 1e-9)
 
+    label_counts = df[LABEL_COLUMN].value_counts().to_dict() if len(df) else {}
+
     points = []
     for i, row in df.reset_index(drop=True).iterrows():
         label = str(row.get(LABEL_COLUMN, "unknown"))
@@ -38,15 +40,18 @@ def build_site(df: pd.DataFrame, embeddings: np.ndarray, site_dir: Path = SITE_D
         recs = []
         if len(df) > 1:
             sims[i] = -1.0
-            for idx in np.argsort(-sims)[:5]:
+            for idx in np.argsort(-sims)[:8]:
                 if sims[idx] <= -1:
                     continue
                 other = df.iloc[idx]
                 recs.append(
                     {
+                        "id": int(idx),
                         "title": str(other.get(TITLE_COLUMN, "")),
                         "category": str(other.get(LABEL_COLUMN, "unknown")),
                         "url": str(other.get(URL_COLUMN, "")),
+                        "authors": str(other.get(AUTHORS_COLUMN, "")),
+                        "published": str(other.get(PUBLISHED_COLUMN, "")),
                         "match": round(float(max(0.0, min(1.0, (sims[idx] + 1) / 2))) * 100, 1),
                     }
                 )
@@ -69,6 +74,11 @@ def build_site(df: pd.DataFrame, embeddings: np.ndarray, site_dir: Path = SITE_D
     payload = {
         "points": points,
         "colors": {label: CATEGORY_COLORS.get(label, "#94a3b8") for label in sorted(df[LABEL_COLUMN].unique())},
+        "counts": {label: int(count) for label, count in sorted(label_counts.items())},
+        "stats": {
+            "papers": int(len(df)),
+            "categories": int(df[LABEL_COLUMN].nunique()) if len(df) else 0,
+        },
         "title": "FMAP: FindMyArxivPaper Astro Atlas",
     }
 
@@ -85,130 +95,422 @@ def _html_template() -> str:
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
   <title>FMAP: FindMyArxivPaper Astro Atlas</title>
   <style>
-    :root { color-scheme: dark; }
+    :root {
+      color-scheme: dark;
+      --bg: #020409;
+      --panel: rgba(10, 15, 28, 0.92);
+      --panel-2: rgba(16, 24, 40, 0.98);
+      --border: rgba(123, 146, 179, 0.18);
+      --text: #ecf3ff;
+      --muted: #8fa4c7;
+      --accent: #7dd3fc;
+      --accent-2: #6ee7b7;
+      --accent-3: #c084fc;
+      --shadow: 0 20px 70px rgba(0, 0, 0, 0.38);
+    }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #09111f; color: #f8fafc; }
-    .layout { display: grid; grid-template-columns: 360px 1fr 360px; min-height: 100vh; }
-    .panel { padding: 22px; background: rgba(15,23,42,.96); border-right: 1px solid rgba(148,163,184,.14); overflow: auto; }
-    .panel.right { border-right: none; border-left: 1px solid rgba(148,163,184,.14); }
-    .stage { position: relative; padding: 14px; }
-    canvas { width: 100%; height: calc(100vh - 28px); display: block; border-radius: 24px; background: radial-gradient(circle at top, #111827, #050816 70%); }
-    h1 { margin: 0 0 10px; font-size: 40px; line-height: 1; }
-    h1 span { display: block; background: linear-gradient(90deg,#fde047,#fb7185,#a78bfa); -webkit-background-clip: text; color: transparent; }
-    h2 { margin: 0 0 10px; font-size: 22px; }
-    .muted { color: #94a3b8; font-size: 14px; line-height: 1.45; }
-    input { width: 100%; margin-top: 12px; padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(148,163,184,.18); background: #111827; color: #fff; }
-    .toolbar { display: flex; gap: 8px; margin-top: 10px; }
-    button { border: 0; background: #1d4ed8; color: white; padding: 10px 12px; border-radius: 12px; cursor: pointer; }
-    button.secondary { background: #334155; }
-    .legend { margin-top: 18px; display: grid; gap: 8px; }
-    .legend-item { display: flex; align-items: center; gap: 10px; font-size: 14px; }
-    .swatch { width: 12px; height: 12px; border-radius: 999px; display: inline-block; }
-    .card { margin-top: 18px; background: rgba(30,41,59,.72); border: 1px solid rgba(148,163,184,.14); border-radius: 18px; padding: 16px; }
-    .meta { color: #cbd5e1; font-size: 14px; margin-bottom: 10px; }
-    a { color: #93c5fd; }
-    .results, .recs { margin-top: 12px; display: grid; gap: 10px; }
-    .result-item, .rec-item { background: rgba(15,23,42,.55); border: 1px solid rgba(148,163,184,.12); border-radius: 14px; padding: 12px; cursor: pointer; }
-    .result-item:hover, .rec-item:hover { border-color: rgba(96,165,250,.65); }
-    .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; background: rgba(148,163,184,.16); margin-bottom: 6px; }
-    .match { color: #fde68a; font-weight: 600; }
-    .hint { position: absolute; right: 28px; bottom: 28px; background: rgba(15,23,42,.9); color: #e2e8f0; padding: 10px 14px; border-radius: 14px; font-size: 13px; }
-    @media (max-width: 1200px) { .layout { grid-template-columns: 1fr; } .panel.right { border-left: none; border-top: 1px solid rgba(148,163,184,.14); } .panel { border-right: none; border-bottom: 1px solid rgba(148,163,184,.14); } canvas { height: 60vh; } }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    body {
+      background:
+        radial-gradient(circle at 18% 12%, rgba(125, 211, 252, 0.08), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(192, 132, 252, 0.07), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(110, 231, 183, 0.06), transparent 30%),
+        #020409;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr) 390px;
+      min-height: 100vh;
+      gap: 16px;
+      padding: 16px;
+    }
+    .panel, .stage-shell {
+      min-height: calc(100vh - 32px);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+    .panel {
+      display: flex;
+      flex-direction: column;
+    }
+    .panel-inner {
+      padding: 24px;
+      overflow: auto;
+      height: 100%;
+    }
+    .brand {
+      font-size: 48px;
+      line-height: 0.95;
+      font-weight: 800;
+      margin: 0 0 14px;
+      letter-spacing: -0.04em;
+    }
+    .brand .mark {
+      display: block;
+      background: linear-gradient(120deg, #7dd3fc 0%, #6ee7b7 52%, #c084fc 100%);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .subtle { color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0;
+    }
+    .stat {
+      background: rgba(18, 28, 48, 0.82);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .stat .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .stat .value { margin-top: 6px; font-size: 22px; font-weight: 700; }
+    .controls { display: grid; gap: 10px; margin-top: 14px; }
+    input {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(128, 154, 192, 0.18);
+      background: rgba(13, 21, 38, 0.96);
+      color: var(--text);
+      padding: 14px 16px;
+      font-size: 15px;
+      outline: none;
+    }
+    input:focus { border-color: rgba(125, 211, 252, 0.55); box-shadow: 0 0 0 4px rgba(125, 211, 252, 0.08); }
+    .toolbar, .stage-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 11px 14px;
+      background: linear-gradient(135deg, #102c46 0%, #18405e 100%);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button.secondary { background: rgba(54, 69, 96, 0.9); }
+    button.active { outline: 2px solid rgba(125, 211, 252, 0.55); }
+    .section-title {
+      margin: 22px 0 10px;
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .chips, .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip, .legend-item {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(17, 25, 42, 0.88);
+      color: var(--text);
+      padding: 8px 12px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .chip.active, .legend-item.active { border-color: rgba(125, 211, 252, 0.45); background: rgba(22, 37, 64, 0.96); }
+    .swatch { width: 10px; height: 10px; border-radius: 999px; display: inline-block; }
+    .scroll-block { margin-top: 12px; display: grid; gap: 10px; }
+    .result-item, .rec-item {
+      background: rgba(16, 24, 40, 0.84);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+    .result-item:hover, .rec-item:hover { transform: translateY(-1px); border-color: rgba(125, 211, 252, 0.45); background: rgba(20, 32, 52, 0.96); }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(125, 211, 252, 0.08);
+      color: #d9f4ff;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .title-sm { font-weight: 700; line-height: 1.35; }
+    .meta { color: #c5d4ea; font-size: 13px; margin-top: 8px; line-height: 1.5; }
+    .muted { color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .stage-shell {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      background: rgba(8, 11, 22, 0.92);
+      position: relative;
+    }
+    .stage-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .canvas-wrap { position: relative; padding: 12px; min-height: 0; }
+    canvas {
+      width: 100%;
+      height: calc(100vh - 84px);
+      min-height: 640px;
+      display: block;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(31, 41, 80, 0.22), transparent 45%),
+        radial-gradient(circle at 50% 100%, rgba(18, 31, 51, 0.18), transparent 50%),
+        #030611;
+      border: 1px solid rgba(127, 146, 183, 0.08);
+    }
+    .hint, .hover-card {
+      position: absolute;
+      background: rgba(9, 14, 27, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+    .hint {
+      left: 24px;
+      bottom: 24px;
+      padding: 11px 14px;
+      color: #d7e3f7;
+      font-size: 13px;
+      max-width: 340px;
+    }
+    .hover-card {
+      display: none;
+      pointer-events: none;
+      z-index: 20;
+      padding: 12px;
+      max-width: 320px;
+      font-size: 13px;
+    }
+    .detail-card {
+      background: rgba(16, 24, 40, 0.84);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+    .detail-title { font-size: 22px; line-height: 1.2; font-weight: 800; margin: 0 0 10px; }
+    .abstract {
+      max-height: 320px;
+      overflow: auto;
+      padding-right: 4px;
+      line-height: 1.55;
+    }
+    a { color: #8bddff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    @media (max-width: 1380px) {
+      .layout { grid-template-columns: 320px minmax(0, 1fr) 360px; }
+    }
+    @media (max-width: 1180px) {
+      .layout { grid-template-columns: 1fr; }
+      .panel, .stage-shell { min-height: auto; }
+      canvas { height: 64vh; min-height: 480px; }
+    }
   </style>
 </head>
 <body>
   <div class=\"layout\">
     <aside class=\"panel\">
-      <h1><span>FMAP</span> Astro Finder</h1>
-      <div class=\"muted\">Astro-ph only for now. Search papers, highlight matching points on the atlas, then inspect a paper to get similar recommendations with approximate match percentages.</div>
-      <input id=\"search\" placeholder=\"Search titles, abstracts, authors, categories\" />
-      <div class=\"toolbar\">
-        <button id=\"clearBtn\" class=\"secondary\">Clear search</button>
-        <button id=\"focusBtn\">Focus matches</button>
-      </div>
-      <div id=\"legend\" class=\"legend\"></div>
-      <div class=\"card\">
-        <h2>Search results</h2>
-        <div class=\"muted\" id=\"resultSummary\">Type to highlight matching astro-ph papers.</div>
-        <div id=\"results\" class=\"results\"></div>
+      <div class=\"panel-inner\">
+        <h1 class=\"brand\"><span class=\"mark\">FMAP</span> Astro Atlas</h1>
+        <div class=\"subtle\">Astro-ph only. Search the map, filter by category, hover for previews, click for details, and explore nearby papers through embedding similarity.</div>
+
+        <div class=\"stats\">
+          <div class=\"stat\"><div class=\"label\">Papers</div><div class=\"value\" id=\"paperCount\">0</div></div>
+          <div class=\"stat\"><div class=\"label\">Categories</div><div class=\"value\" id=\"categoryCount\">0</div></div>
+        </div>
+
+        <div class=\"controls\">
+          <input id=\"search\" placeholder=\"Search titles, abstracts, authors, categories\" />
+          <div class=\"toolbar\">
+            <button id=\"clearBtn\" class=\"secondary\">Clear</button>
+            <button id=\"focusBtn\">Focus matches</button>
+            <button id=\"resetViewBtn\" class=\"secondary\">Reset view</button>
+          </div>
+        </div>
+
+        <div class=\"section-title\">Category filter</div>
+        <div id=\"legend\" class=\"legend\"></div>
+
+        <div class=\"section-title\">Result list</div>
+        <div class=\"muted\" id=\"resultSummary\">Loading papers…</div>
+        <div id=\"results\" class=\"scroll-block\"></div>
       </div>
     </aside>
-    <main class=\"stage\">
-      <canvas id=\"atlas\"></canvas>
-      <div class=\"hint\">Search dims non-matches. Click a point or result card to inspect and get related papers.</div>
-    </main>
-    <aside class=\"panel right\">
-      <div class=\"card\" id=\"details\">
-        <h2>Select a paper</h2>
-        <div class=\"meta\">Click any highlighted point or a result card.</div>
-        <p class=\"muted\">This view uses a 2D PCA projection of embedding vectors from title + abstract, so nearby points are semantically closer but not exact topic clusters.</p>
+
+    <main class=\"stage-shell\">
+      <div class=\"stage-head\">
+        <div>Interactive 2D projection of title+abstract embeddings</div>
+        <div class=\"stage-toolbar\">
+          <button id=\"zoomInBtn\">Zoom in</button>
+          <button id=\"zoomOutBtn\" class=\"secondary\">Zoom out</button>
+        </div>
       </div>
-      <div class=\"card\">
-        <h2>Recommended papers</h2>
-        <div class=\"muted\">Similar papers for the currently selected one.</div>
-        <div id=\"recs\" class=\"recs\"></div>
+      <div class=\"canvas-wrap\">
+        <canvas id=\"atlas\"></canvas>
+        <div class=\"hover-card\" id=\"hoverCard\"></div>
+        <div class=\"hint\">Drag to pan · wheel to zoom · shift-click a category chip to isolate it · click any point for full details</div>
+      </div>
+    </main>
+
+    <aside class=\"panel\">
+      <div class=\"panel-inner\">
+        <div id=\"details\" class=\"detail-card\">
+          <div class=\"detail-title\">Select a paper</div>
+          <div class=\"muted\">Use the map or result list. Hover gives a quick preview; click locks the paper and loads related recommendations.</div>
+        </div>
+        <div class=\"section-title\">Related papers</div>
+        <div id=\"recs\" class=\"scroll-block\"></div>
       </div>
     </aside>
   </div>
+
   <script src=\"data.js\"></script>
   <script>
-    const payload = window.FMAP_DATA;
-    const points = payload.points;
+    const payload = window.FMAP_DATA || { points: [], colors: {}, counts: {}, stats: { papers: 0, categories: 0 } };
+    const points = payload.points || [];
+    const byId = new Map(points.map(p => [p.id, p]));
     const canvas = document.getElementById('atlas');
     const ctx = canvas.getContext('2d');
     const searchInput = document.getElementById('search');
     const clearBtn = document.getElementById('clearBtn');
     const focusBtn = document.getElementById('focusBtn');
+    const resetViewBtn = document.getElementById('resetViewBtn');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
     const details = document.getElementById('details');
     const legend = document.getElementById('legend');
     const resultsEl = document.getElementById('results');
     const recsEl = document.getElementById('recs');
     const resultSummary = document.getElementById('resultSummary');
+    const hoverCard = document.getElementById('hoverCard');
+    const paperCount = document.getElementById('paperCount');
+    const categoryCount = document.getElementById('categoryCount');
 
     let selected = null;
+    let hovered = null;
     let filtered = points.slice();
     let focusMatches = false;
+    let activeCategories = new Set(Object.keys(payload.colors));
+    let panX = 0;
+    let panY = 0;
+    let zoom = 1;
+    let dragging = false;
+    let lastPointer = null;
+
+    paperCount.textContent = String(payload.stats?.papers || points.length || 0);
+    categoryCount.textContent = String(payload.stats?.categories || Object.keys(payload.colors).length || 0);
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
 
     function resize() {
-      canvas.width = canvas.clientWidth * devicePixelRatio;
-      canvas.height = canvas.clientHeight * devicePixelRatio;
-      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+      const ratio = window.devicePixelRatio || 1;
+      canvas.width = canvas.clientWidth * ratio;
+      canvas.height = canvas.clientHeight * ratio;
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
       draw();
     }
 
-    function pointXY(p) {
-      const pad = 30;
-      const w = canvas.clientWidth - pad * 2;
-      const h = canvas.clientHeight - pad * 2;
-      let x = pad + p.x * w;
-      let y = pad + (1 - p.y) * h;
-      if (focusMatches && filtered.length && filtered.includes(p)) {
-        const cx = canvas.clientWidth / 2;
-        const cy = canvas.clientHeight / 2;
-        x = cx + (x - cx) * 0.72;
-        y = cy + (y - cy) * 0.72;
+    function transformPoint(baseX, baseY, isMatch) {
+      const cx = canvas.clientWidth / 2;
+      const cy = canvas.clientHeight / 2;
+      let x = baseX;
+      let y = baseY;
+      if (focusMatches && isMatch) {
+        x = cx + (x - cx) * 0.7;
+        y = cy + (y - cy) * 0.7;
       }
+      x = cx + (x - cx) * zoom + panX;
+      y = cy + (y - cy) * zoom + panY;
       return { x, y };
     }
 
-    function draw() {
+    function pointXY(p) {
+      const pad = 42;
+      const w = Math.max(1, canvas.clientWidth - pad * 2);
+      const h = Math.max(1, canvas.clientHeight - pad * 2);
+      const baseX = pad + p.x * w;
+      const baseY = pad + (1 - p.y) * h;
+      return transformPoint(baseX, baseY, filtered.includes(p));
+    }
+
+    function visiblePoints() {
+      return filtered;
+    }
+
+    function drawField() {
       ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-      ctx.fillStyle = '#050816';
+      ctx.fillStyle = '#030611';
       ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+
+      const grad = ctx.createRadialGradient(canvas.clientWidth * 0.5, canvas.clientHeight * 0.45, 40, canvas.clientWidth * 0.5, canvas.clientHeight * 0.45, canvas.clientWidth * 0.7);
+      grad.addColorStop(0, 'rgba(125, 211, 252, 0.05)');
+      grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+
+      ctx.strokeStyle = 'rgba(128, 154, 192, 0.05)';
+      ctx.lineWidth = 1;
+      for (let i = 1; i < 6; i++) {
+        const x = (canvas.clientWidth / 6) * i;
+        const y = (canvas.clientHeight / 6) * i;
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.clientHeight); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.clientWidth, y); ctx.stroke();
+      }
+    }
+
+    function draw() {
+      drawField();
       for (const p of points) {
-        const { x, y } = pointXY(p);
         const active = filtered.includes(p);
+        const xy = pointXY(p);
+        const radius = active ? clamp(2.0 * zoom, 2.2, 5.8) : clamp(1.1 * zoom, 0.8, 2.2);
         ctx.beginPath();
-        ctx.fillStyle = active ? p.color : 'rgba(71,85,105,0.12)';
-        ctx.arc(x, y, active ? 2.4 : 1.2, 0, Math.PI * 2);
+        ctx.fillStyle = active ? p.color : 'rgba(100, 116, 139, 0.14)';
+        ctx.arc(xy.x, xy.y, radius, 0, Math.PI * 2);
         ctx.fill();
+        if (active && radius > 3.5) {
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(255,255,255,0.12)';
+          ctx.arc(xy.x, xy.y, radius + 0.9, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      if (hovered) {
+        const { x, y } = pointXY(hovered);
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(125, 211, 252, 0.95)';
+        ctx.lineWidth = 2.2;
+        ctx.arc(x, y, clamp(8 * zoom, 7, 14), 0, Math.PI * 2);
+        ctx.stroke();
       }
       if (selected) {
         const { x, y } = pointXY(selected);
         ctx.beginPath();
         ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 2.5;
-        ctx.arc(x, y, 8, 0, Math.PI * 2);
+        ctx.lineWidth = 2.6;
+        ctx.arc(x, y, clamp(10 * zoom, 9, 16), 0, Math.PI * 2);
         ctx.stroke();
       }
     }
@@ -216,21 +518,49 @@ def _html_template() -> str:
     function updateLegend() {
       legend.innerHTML = '';
       Object.entries(payload.colors).forEach(([label, color]) => {
-        const row = document.createElement('div');
-        row.className = 'legend-item';
-        row.innerHTML = `<span class=\"swatch\" style=\"background:${color}\"></span><span>${label}</span>`;
-        legend.appendChild(row);
+        const count = payload.counts?.[label] || 0;
+        const item = document.createElement('button');
+        item.className = 'legend-item' + (activeCategories.has(label) ? ' active' : '');
+        item.innerHTML = `<span class=\"swatch\" style=\"background:${color}\"></span><span>${label}</span><span class=\"muted\">${count}</span>`;
+        item.addEventListener('click', (event) => {
+          if (event.shiftKey) {
+            activeCategories = new Set([label]);
+          } else if (activeCategories.has(label)) {
+            activeCategories.delete(label);
+            if (!activeCategories.size) activeCategories = new Set(Object.keys(payload.colors));
+          } else {
+            activeCategories.add(label);
+          }
+          updateLegend();
+          updateFilter();
+        });
+        legend.appendChild(item);
       });
+    }
+
+    function renderHover(p, x, y) {
+      if (!p) {
+        hoverCard.style.display = 'none';
+        return;
+      }
+      hoverCard.style.display = 'block';
+      hoverCard.style.left = Math.min(x + 18, canvas.clientWidth - 320) + 'px';
+      hoverCard.style.top = Math.min(y + 18, canvas.clientHeight - 170) + 'px';
+      hoverCard.innerHTML = `
+        <div class=\"pill\"><span class=\"swatch\" style=\"background:${p.color}\"></span>${p.category}</div>
+        <div class=\"title-sm\">${p.title}</div>
+        <div class=\"meta\">${p.published ? p.published.slice(0,10) : 'Unknown date'}${p.authors ? ' · ' + p.authors : ''}</div>
+      `;
     }
 
     function showDetails(p) {
       selected = p;
       details.innerHTML = `
-        <h2>${p.title}</h2>
-        <div class=\"meta\">${p.category} · ${p.published ? p.published.slice(0,10) : 'unknown date'}</div>
-        <p>${p.abstract}</p>
-        <p><strong>Authors:</strong> ${p.authors || 'Unknown'}</p>
-        <p><a href=\"${p.url}\" target=\"_blank\" rel=\"noreferrer\">Open on arXiv</a></p>
+        <div class=\"detail-title\">${p.title}</div>
+        <div class=\"pill\"><span class=\"swatch\" style=\"background:${p.color}\"></span>${p.category}</div>
+        <div class=\"meta\">${p.published ? p.published.slice(0,10) : 'Unknown date'}${p.authors ? ' · ' + p.authors : ''}</div>
+        <div class=\"abstract\">${p.abstract || 'No abstract available.'}</div>
+        <div class=\"meta\" style=\"margin-top:12px;\">${p.url ? `<a href=\"${p.url}\" target=\"_blank\" rel=\"noreferrer\">Open on arXiv</a>` : 'No URL available'}</div>
       `;
       renderRecommendations(p);
       draw();
@@ -238,19 +568,22 @@ def _html_template() -> str:
 
     function renderRecommendations(p) {
       recsEl.innerHTML = '';
-      if (!p.recommendations || !p.recommendations.length) {
-        recsEl.innerHTML = '<div class=\"muted\">No recommendations available.</div>';
+      const recs = p?.recommendations || [];
+      if (!recs.length) {
+        recsEl.innerHTML = '<div class=\"muted\">No related papers available yet.</div>';
         return;
       }
-      p.recommendations.forEach(rec => {
+      recs.forEach(rec => {
+        const linked = byId.get(rec.id);
         const item = document.createElement('div');
         item.className = 'rec-item';
         item.innerHTML = `
           <div class=\"pill\">${rec.category}</div>
-          <div><strong>${rec.title}</strong></div>
-          <div class=\"match\">${rec.match}% match</div>
-          ${rec.url ? `<div><a href=\"${rec.url}\" target=\"_blank\" rel=\"noreferrer\">Open on arXiv</a></div>` : ''}
+          <div class=\"title-sm\">${rec.title}</div>
+          <div class=\"meta\">${rec.authors || 'Unknown authors'}</div>
+          <div class=\"meta\">${rec.published ? rec.published.slice(0,10) : 'Unknown date'} · <strong>${rec.match}% match</strong></div>
         `;
+        item.addEventListener('click', () => linked && showDetails(linked));
         recsEl.appendChild(item);
       });
     }
@@ -258,7 +591,7 @@ def _html_template() -> str:
     function nearestPoint(mx, my) {
       let best = null;
       let bestDist = Infinity;
-      for (const p of filtered) {
+      for (const p of visiblePoints()) {
         const { x, y } = pointXY(p);
         const d = Math.hypot(mx - x, my - y);
         if (d < bestDist) { bestDist = d; best = p; }
@@ -267,62 +600,124 @@ def _html_template() -> str:
     }
 
     function scoreMatch(p, q) {
+      if (!q) return true;
+      const terms = q.split(/\\s+/).filter(Boolean);
       const hay = [p.title, p.abstract, p.authors, p.category].join(' ').toLowerCase();
-      return hay.includes(q) ? 1 : 0;
-    }
-
-    function renderResults() {
-      resultsEl.innerHTML = '';
-      const q = searchInput.value.trim().toLowerCase();
-      if (!q) {
-        resultSummary.textContent = `Showing all ${points.length} astro-ph papers.`;
-        return;
-      }
-      resultSummary.textContent = `${filtered.length} matching papers highlighted.`;
-      filtered.slice(0, 25).forEach(p => {
-        const item = document.createElement('div');
-        item.className = 'result-item';
-        item.innerHTML = `
-          <div class=\"pill\">${p.category}</div>
-          <div><strong>${p.title}</strong></div>
-          <div class=\"muted\">${p.authors || 'Unknown authors'}</div>
-        `;
-        item.addEventListener('click', () => showDetails(p));
-        resultsEl.appendChild(item);
-      });
+      return terms.every(term => hay.includes(term));
     }
 
     function updateFilter() {
       const q = searchInput.value.trim().toLowerCase();
-      filtered = !q ? points.slice() : points.filter(p => scoreMatch(p, q));
-      if (selected && !filtered.includes(selected) && q) {
+      filtered = points.filter(p => activeCategories.has(p.category) && scoreMatch(p, q));
+      if (selected && !filtered.includes(selected)) {
         selected = filtered[0] || null;
       }
+      resultSummary.textContent = q || activeCategories.size !== Object.keys(payload.colors).length
+        ? `${filtered.length} papers match the current filters.`
+        : `Showing all ${points.length} astro-ph papers.`;
       renderResults();
+      if (selected) showDetails(selected); else { recsEl.innerHTML = ''; draw(); }
+    }
+
+    function renderResults() {
+      resultsEl.innerHTML = '';
+      filtered.slice(0, 40).forEach(p => {
+        const item = document.createElement('div');
+        item.className = 'result-item';
+        item.innerHTML = `
+          <div class=\"pill\"><span class=\"swatch\" style=\"background:${p.color}\"></span>${p.category}</div>
+          <div class=\"title-sm\">${p.title}</div>
+          <div class=\"meta\">${p.authors || 'Unknown authors'}</div>
+        `;
+        item.addEventListener('mouseenter', () => { hovered = p; draw(); });
+        item.addEventListener('mouseleave', () => { hovered = null; draw(); });
+        item.addEventListener('click', () => showDetails(p));
+        resultsEl.appendChild(item);
+      });
+      if (!filtered.length) {
+        resultsEl.innerHTML = '<div class=\"muted\">No papers match this search/filter combo.</div>';
+      }
+    }
+
+    function resetView() {
+      panX = 0;
+      panY = 0;
+      zoom = 1;
       draw();
-      if (selected) showDetails(selected);
     }
 
     searchInput.addEventListener('input', updateFilter);
     clearBtn.addEventListener('click', () => {
       searchInput.value = '';
-      filtered = points.slice();
-      selected = points[0] || null;
-      renderResults();
-      if (selected) showDetails(selected); else draw();
+      activeCategories = new Set(Object.keys(payload.colors));
+      updateLegend();
+      updateFilter();
     });
-    focusBtn.addEventListener('click', () => { focusMatches = !focusMatches; focusBtn.textContent = focusMatches ? 'Unfocus matches' : 'Focus matches'; draw(); });
+    focusBtn.addEventListener('click', () => {
+      focusMatches = !focusMatches;
+      focusBtn.classList.toggle('active', focusMatches);
+      draw();
+    });
+    resetViewBtn.addEventListener('click', resetView);
+    zoomInBtn.addEventListener('click', () => { zoom = clamp(zoom * 1.18, 0.7, 6); draw(); });
+    zoomOutBtn.addEventListener('click', () => { zoom = clamp(zoom / 1.18, 0.7, 6); draw(); });
+
+    canvas.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      const factor = event.deltaY > 0 ? 0.92 : 1.09;
+      zoom = clamp(zoom * factor, 0.7, 6);
+      draw();
+    }, { passive: false });
+
+    canvas.addEventListener('mousedown', (event) => {
+      dragging = true;
+      lastPointer = { x: event.clientX, y: event.clientY };
+    });
+    window.addEventListener('mouseup', () => {
+      dragging = false;
+      lastPointer = null;
+    });
+    window.addEventListener('mousemove', (event) => {
+      const rect = canvas.getBoundingClientRect();
+      const inside = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+      if (dragging && lastPointer) {
+        panX += event.clientX - lastPointer.x;
+        panY += event.clientY - lastPointer.y;
+        lastPointer = { x: event.clientX, y: event.clientY };
+        draw();
+        return;
+      }
+      if (!inside) {
+        hovered = null;
+        renderHover(null);
+        draw();
+        return;
+      }
+      const mx = event.clientX - rect.left;
+      const my = event.clientY - rect.top;
+      hovered = nearestPoint(mx, my);
+      renderHover(hovered, mx, my);
+      draw();
+    });
     canvas.addEventListener('click', (event) => {
       const rect = canvas.getBoundingClientRect();
-      const p = nearestPoint(event.clientX - rect.left, event.clientY - rect.top);
+      const mx = event.clientX - rect.left;
+      const my = event.clientY - rect.top;
+      const p = nearestPoint(mx, my);
       if (p) showDetails(p);
     });
 
     updateLegend();
     window.addEventListener('resize', resize);
     resize();
+    filtered = points.slice();
     renderResults();
-    if (points.length) showDetails(points[0]);
+    if (points.length) {
+      selected = points[0];
+      showDetails(selected);
+    } else {
+      draw();
+    }
   </script>
 </body>
 </html>

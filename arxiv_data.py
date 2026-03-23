@@ -13,6 +13,7 @@ import pandas as pd
 
 from config import (
     ARXIV_DATA_PATH,
+    ASTRO_ONLY_PREFIX,
     AUTHORS_COLUMN,
     DEFAULT_ARXIV_CATEGORIES,
     ID_COLUMN,
@@ -76,12 +77,19 @@ def fetch_arxiv_dataset(
 
     if records:
         df = pd.DataFrame(records)
+        if LABEL_COLUMN in df.columns:
+            df = df[df[LABEL_COLUMN].astype(str).str.startswith(ASTRO_ONLY_PREFIX)].reset_index(drop=True)
+            df[ID_COLUMN] = range(1, len(df) + 1)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(output_path, index=False)
         return df
 
     if allow_cached_fallback and output_path.exists():
-        return pd.read_csv(output_path)
+        cached = pd.read_csv(output_path)
+        if LABEL_COLUMN in cached.columns:
+            cached = cached[cached[LABEL_COLUMN].astype(str).str.startswith(ASTRO_ONLY_PREFIX)].reset_index(drop=True)
+            cached[ID_COLUMN] = range(1, len(cached) + 1)
+        return cached
 
     if partial_failure is not None:
         raise ArxivFetchError(
@@ -145,7 +153,11 @@ def _parse_feed(xml_text: str, offset: int = 0) -> list[dict]:
             for author in entry.findall("atom:author", ATOM_NS)
         ]
         categories_for_entry = [cat.attrib.get("term", "") for cat in entry.findall("atom:category", ATOM_NS)]
-        primary = categories_for_entry[0] if categories_for_entry else "unknown"
+        primary = entry.find("arxiv:primary_category", ATOM_NS)
+        primary = primary.attrib.get("term", "") if primary is not None else ""
+        if not primary:
+            astro_categories = [cat for cat in categories_for_entry if cat.startswith(ASTRO_ONLY_PREFIX)]
+            primary = astro_categories[0] if astro_categories else (categories_for_entry[0] if categories_for_entry else "unknown")
 
         records.append(
             {
