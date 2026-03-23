@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import argparse
 
-from config import EMBEDDER_NAME
+from config import EMBEDDER_NAME, MODEL_TEXT_COLUMN
 from data import load_dataset
 from models import PaperEmbedder
 from search import semantic_search
@@ -19,7 +19,7 @@ def main() -> None:
     args = parse_args()
     df = load_dataset()
     embedder = PaperEmbedder(EMBEDDER_NAME)
-    embeddings = embedder.encode(df["abstract"].tolist())
+    embeddings = embedder.encode(df[MODEL_TEXT_COLUMN].tolist())
     results = semantic_search(args.query, df, embeddings, embedder, top_k=args.top_k)
 
     print(f"Query: {args.query}\n")

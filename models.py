@@ -1,12 +1,14 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Iterable
 
 import numpy as np
 from sentence_transformers import SentenceTransformer
-from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder
+from sklearn.svm import LinearSVC
 
 
 class PaperEmbedder:
@@ -27,22 +29,35 @@ class PaperEmbedder:
 
 @dataclass
 class PaperClassifier:
-    classifier: LogisticRegression | None = None
+    classifier: Pipeline | None = None
     label_encoder: LabelEncoder | None = None
+    vectorizer_max_features: int = 8000
+    vectorizer_ngram_range: tuple[int, int] = (1, 2)
+    classifier_c: float = 1.0
+    text_field_name: str = field(default="title + abstract")
 
-    def fit(self, X: np.ndarray, y: list[str]) -> None:
+    def fit(self, texts: list[str], y: list[str]) -> None:
         self.label_encoder = LabelEncoder()
         y_encoded = self.label_encoder.fit_transform(y)
-        self.classifier = LogisticRegression(max_iter=2000)
-        self.classifier.fit(X, y_encoded)
+        self.classifier = Pipeline(
+            steps=[
+                (
+                    "tfidf",
+                    TfidfVectorizer(
+                        ngram_range=self.vectorizer_ngram_range,
+                        max_features=self.vectorizer_max_features,
+                        strip_accents="unicode",
+                        lowercase=True,
+                        sublinear_tf=True,
+                    ),
+                ),
+                ("clf", LinearSVC(C=self.classifier_c)),
+            ]
+        )
+        self.classifier.fit(texts, y_encoded)
 
-    def predict(self, X: np.ndarray) -> list[str]:
+    def predict(self, texts: list[str]) -> list[str]:
         if self.classifier is None or self.label_encoder is None:
             raise RuntimeError("Classifier has not been fit.")
-        preds = self.classifier.predict(X)
+        preds = self.classifier.predict(texts)
         return self.label_encoder.inverse_transform(preds).tolist()
-
-    def predict_proba(self, X: np.ndarray) -> np.ndarray:
-        if self.classifier is None:
-            raise RuntimeError("Classifier has not been fit.")
-        return self.classifier.predict_proba(X)

@@ -16,6 +16,7 @@ PROCESSED_CSV_PATH = PROCESSED_DIR / "papers_processed.csv"
 TEXT_COLUMN = "abstract"
 LABEL_COLUMN = "category"
 TITLE_COLUMN = "title"
+MODEL_TEXT_COLUMN = "combined_text"
 ID_COLUMN = "paper_id"
 YEAR_COLUMN = "year"
 

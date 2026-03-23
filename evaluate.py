@@ -6,13 +6,13 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 
-from config import LABEL_COLUMN, METRICS_DIR, TEXT_COLUMN, TOP_K
+from config import LABEL_COLUMN, METRICS_DIR, MODEL_TEXT_COLUMN, TOP_K
 from utils import save_json
 
 
-def evaluate_classification(model, test_df: pd.DataFrame, test_embeddings: np.ndarray) -> dict:
+def evaluate_classification(model, test_df: pd.DataFrame) -> dict:
     y_true = test_df[LABEL_COLUMN].tolist()
-    y_pred = model.predict(test_embeddings)
+    y_pred = model.predict(test_df[MODEL_TEXT_COLUMN].tolist())
 
     metrics = {
         "accuracy": float(accuracy_score(y_true, y_pred)),
@@ -20,6 +20,8 @@ def evaluate_classification(model, test_df: pd.DataFrame, test_embeddings: np.nd
         "report": classification_report(y_true, y_pred, output_dict=True, zero_division=0),
         "labels": sorted(set(y_true) | set(y_pred)),
         "confusion_matrix": confusion_matrix(y_true, y_pred, labels=sorted(set(y_true) | set(y_pred))).tolist(),
+        "model_text_column": MODEL_TEXT_COLUMN,
+        "classifier": "tfidf + linear_svc",
     }
     save_json(metrics, METRICS_DIR / "classification_metrics.json")
     return metrics
@@ -46,7 +48,7 @@ def evaluate_retrieval(df: pd.DataFrame, embeddings: np.ndarray, top_k: int = TO
     metrics = {
         f"precision_at_{top_k}": float(np.mean(precisions)) if precisions else 0.0,
         "num_queries": len(df),
-        "text_column": TEXT_COLUMN,
+        "text_column": MODEL_TEXT_COLUMN,
     }
     save_json(metrics, METRICS_DIR / "retrieval_metrics.json")
     return metrics

@@ -1,8 +1,6 @@
 from __future__ import annotations
 
-import numpy as np
-
-from config import EMBEDDER_NAME, TOP_K, ensure_directories
+from config import EMBEDDER_NAME, MODEL_TEXT_COLUMN, TOP_K, ensure_directories
 from data import load_dataset, make_splits
 from evaluate import evaluate_classification, evaluate_retrieval
 from models import PaperEmbedder
@@ -25,18 +23,16 @@ def main() -> None:
 
     print_section("Building embeddings")
     embedder = PaperEmbedder(EMBEDDER_NAME)
-    all_embeddings = embedder.encode(df["abstract"].tolist())
-    train_embeddings = embedder.encode(train_df["abstract"].tolist())
-    test_embeddings = embedder.encode(test_df["abstract"].tolist())
+    all_embeddings = embedder.encode(df[MODEL_TEXT_COLUMN].tolist())
     print(f"Embedding shape: {all_embeddings.shape}")
 
     print_section("Training classifier")
-    classifier = train_classifier(train_df, train_embeddings)
+    classifier = train_classifier(train_df)
     save_classifier(classifier)
     print("Saved classifier to outputs/models/")
 
     print_section("Evaluating classifier")
-    clf_metrics = evaluate_classification(classifier, test_df, test_embeddings)
+    clf_metrics = evaluate_classification(classifier, test_df)
     print(f"Accuracy: {clf_metrics['accuracy']:.3f}")
     print(f"Macro F1: {clf_metrics['macro_f1']:.3f}")
 
