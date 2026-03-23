@@ -8,7 +8,7 @@ from config import ARXIV_DATA_PATH, DATA_PATH, EMBEDDER_NAME, PERFECT_DATA_PATH,
 from data import load_dataset, make_splits
 from evaluate import evaluate_classification, evaluate_retrieval
 from models import PaperEmbedder
-from plots import plot_confusion_matrix, plot_embedding_projection, plot_label_distribution
+from plots import plot_confusion_matrix, plot_embedding_projection, plot_label_distribution, plot_year_distribution
 from search import semantic_search
 from site_builder import build_site
 from train import save_classifier, train_classifier
@@ -82,6 +82,7 @@ def main() -> None:
 
     print_section("Generating plots")
     plot_label_distribution(df)
+    plot_year_distribution(df)
     plot_embedding_projection(df, all_embeddings)
     plot_confusion_matrix(clf_metrics["labels"], clf_metrics["confusion_matrix"])
     print("Saved plots to outputs/figures/")

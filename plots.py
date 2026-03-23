@@ -6,7 +6,7 @@ import pandas as pd
 import seaborn as sns
 from umap import UMAP
 
-from config import FIGURES_DIR, LABEL_COLUMN, TITLE_COLUMN, UMAP_MIN_DIST, UMAP_N_NEIGHBORS, UMAP_RANDOM_STATE
+from config import FIGURES_DIR, LABEL_COLUMN, PUBLISHED_COLUMN, TITLE_COLUMN, UMAP_MIN_DIST, UMAP_N_NEIGHBORS, UMAP_RANDOM_STATE
 
 sns.set_theme(style="whitegrid")
 
@@ -21,6 +21,24 @@ def plot_label_distribution(df: pd.DataFrame) -> None:
     plt.xticks(rotation=30)
     plt.tight_layout()
     plt.savefig(FIGURES_DIR / "label_distribution.png", dpi=200)
+    plt.close()
+
+
+def plot_year_distribution(df: pd.DataFrame) -> None:
+    if PUBLISHED_COLUMN not in df.columns:
+        return
+    years = pd.to_datetime(df[PUBLISHED_COLUMN], errors="coerce").dt.year.dropna().astype(int)
+    if years.empty:
+        return
+    counts = years.value_counts().sort_index()
+    plt.figure(figsize=(10, 4))
+    sns.barplot(x=counts.index.astype(str), y=counts.values, color="#7dd3fc")
+    plt.title("Paper Count by Published Year")
+    plt.xlabel("Published year")
+    plt.ylabel("Count")
+    plt.xticks(rotation=30)
+    plt.tight_layout()
+    plt.savefig(FIGURES_DIR / "year_distribution.png", dpi=200)
     plt.close()
 
 
