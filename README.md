@@ -30,6 +30,11 @@ That makes it closer to a real paper-atlas project rather than just a toy CSV cl
 
 SciPaper can fetch real arXiv metadata directly from the export API.
 
+The fetcher is deliberately cautious:
+- batched requests
+- retry/backoff on rate limits and timeouts
+- cached fallback to `data/raw/arxiv_physics_papers.csv` if a previous fetch already succeeded
+
 Default arXiv focus:
 - `astro-ph.GA`
 - `astro-ph.SR`
@@ -171,6 +176,8 @@ python main.py --source perfect
 ```bash
 python main.py --source arxiv --max-results 500
 ```
+
+If arXiv is slow or rate-limits you, SciPaper will retry and fall back to the cached CSV if one already exists.
 
 ### 5. Fetch custom arXiv categories
 

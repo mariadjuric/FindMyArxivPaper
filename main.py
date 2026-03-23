@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from arxiv_data import fetch_arxiv_dataset
+from arxiv_data import ArxivFetchError, fetch_arxiv_dataset
 from config import ARXIV_DATA_PATH, DATA_PATH, EMBEDDER_NAME, PERFECT_DATA_PATH, TOP_K, ensure_directories
 from data import load_dataset, make_splits
 from evaluate import evaluate_classification, evaluate_retrieval
@@ -35,8 +35,14 @@ def resolve_dataset(args: argparse.Namespace) -> Path:
     if args.source == "arxiv":
         categories = [c.strip() for c in args.categories.split(",") if c.strip()]
         print_section("Fetching arXiv data")
-        fetch_arxiv_dataset(categories=categories or None, max_results=args.max_results, output_path=ARXIV_DATA_PATH)
-        print(f"Saved arXiv dataset to {ARXIV_DATA_PATH}")
+        try:
+            df = fetch_arxiv_dataset(categories=categories or None, max_results=args.max_results, output_path=ARXIV_DATA_PATH)
+        except ArxivFetchError as exc:
+            raise RuntimeError(
+                "arXiv fetch failed. If the API is slow or rate-limiting you, rerun later or reuse a cached "
+                f"dataset at {ARXIV_DATA_PATH}. Details: {exc}"
+            ) from exc
+        print(f"Using arXiv dataset with {len(df)} rows at {ARXIV_DATA_PATH}")
         return ARXIV_DATA_PATH
     return DATA_PATH
 
