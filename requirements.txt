@@ -6,3 +6,4 @@ seaborn>=0.13
 sentence-transformers>=3.0
 torch>=2.2
 joblib>=1.4
+umap-learn>=0.5

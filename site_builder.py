@@ -5,7 +5,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from sklearn.decomposition import PCA
+from umap import UMAP
 
 from config import (
     AUTHORS_COLUMN,
@@ -15,13 +15,16 @@ from config import (
     SITE_DIR,
     TEXT_COLUMN,
     TITLE_COLUMN,
+    UMAP_MIN_DIST,
+    UMAP_N_NEIGHBORS,
+    UMAP_RANDOM_STATE,
     URL_COLUMN,
 )
 
 
 def build_site(df: pd.DataFrame, embeddings: np.ndarray, site_dir: Path = SITE_DIR) -> Path:
     site_dir.mkdir(parents=True, exist_ok=True)
-    projection = PCA(n_components=2).fit_transform(embeddings) if len(df) > 1 else np.zeros((len(df), 2))
+    projection = _project_embeddings(embeddings)
     similarities = embeddings @ embeddings.T if len(df) > 0 else np.zeros((0, 0))
 
     xs = projection[:, 0] if len(df) else np.array([0.0])
@@ -78,6 +81,9 @@ def build_site(df: pd.DataFrame, embeddings: np.ndarray, site_dir: Path = SITE_D
         "stats": {
             "papers": int(len(df)),
             "categories": int(df[LABEL_COLUMN].nunique()) if len(df) else 0,
+            "projection": "UMAP",
+            "umap_neighbors": int(min(UMAP_N_NEIGHBORS, max(2, len(df) - 1))) if len(df) > 1 else 0,
+            "umap_min_dist": float(UMAP_MIN_DIST),
         },
         "title": "FMAP: FindMyArxivPaper Astro Atlas",
     }
@@ -85,6 +91,20 @@ def build_site(df: pd.DataFrame, embeddings: np.ndarray, site_dir: Path = SITE_D
     (site_dir / "data.js").write_text("window.FMAP_DATA = " + json.dumps(payload) + ";\n", encoding="utf-8")
     (site_dir / "index.html").write_text(_html_template(), encoding="utf-8")
     return site_dir / "index.html"
+
+
+def _project_embeddings(embeddings: np.ndarray) -> np.ndarray:
+    if len(embeddings) <= 1:
+        return np.zeros((len(embeddings), 2))
+    n_neighbors = min(UMAP_N_NEIGHBORS, max(2, len(embeddings) - 1))
+    reducer = UMAP(
+        n_components=2,
+        n_neighbors=n_neighbors,
+        min_dist=UMAP_MIN_DIST,
+        metric="cosine",
+        random_state=UMAP_RANDOM_STATE,
+    )
+    return reducer.fit_transform(embeddings)
 
 
 def _html_template() -> str:
@@ -133,15 +153,8 @@ def _html_template() -> str:
       backdrop-filter: blur(10px);
       overflow: hidden;
     }
-    .panel {
-      display: flex;
-      flex-direction: column;
-    }
-    .panel-inner {
-      padding: 24px;
-      overflow: auto;
-      height: 100%;
-    }
+    .panel { display: flex; flex-direction: column; }
+    .panel-inner { padding: 24px; overflow: auto; height: 100%; }
     .brand {
       font-size: 48px;
       line-height: 0.95;
@@ -291,7 +304,7 @@ def _html_template() -> str:
       padding: 11px 14px;
       color: #d7e3f7;
       font-size: 13px;
-      max-width: 340px;
+      max-width: 360px;
     }
     .hover-card {
       display: none;
@@ -340,6 +353,8 @@ def _html_template() -> str:
           <div class=\"stat\"><div class=\"label\">Categories</div><div class=\"value\" id=\"categoryCount\">0</div></div>
         </div>
 
+        <div class=\"subtle\" id=\"projectionSummary\">Projection: loading…</div>
+
         <div class=\"controls\">
           <input id=\"search\" placeholder=\"Search titles, abstracts, authors, categories\" />
           <div class=\"toolbar\">
@@ -360,7 +375,7 @@ def _html_template() -> str:
 
     <main class=\"stage-shell\">
       <div class=\"stage-head\">
-        <div>Interactive 2D projection of title+abstract embeddings</div>
+        <div>Interactive 2D UMAP projection of title+abstract embeddings</div>
         <div class=\"stage-toolbar\">
           <button id=\"zoomInBtn\">Zoom in</button>
           <button id=\"zoomOutBtn\" class=\"secondary\">Zoom out</button>
@@ -369,7 +384,7 @@ def _html_template() -> str:
       <div class=\"canvas-wrap\">
         <canvas id=\"atlas\"></canvas>
         <div class=\"hover-card\" id=\"hoverCard\"></div>
-        <div class=\"hint\">Drag to pan · wheel to zoom · shift-click a category chip to isolate it · click any point for full details</div>
+        <div class=\"hint\">Drag to pan · wheel to zoom · shift-click a category chip to isolate it · click any point for full details. UMAP is tuned for a denser local structure than PCA.</div>
       </div>
     </main>
 
@@ -406,6 +421,7 @@ def _html_template() -> str:
     const hoverCard = document.getElementById('hoverCard');
     const paperCount = document.getElementById('paperCount');
     const categoryCount = document.getElementById('categoryCount');
+    const projectionSummary = document.getElementById('projectionSummary');
 
     let selected = null;
     let hovered = null;
@@ -421,10 +437,11 @@ def _html_template() -> str:
 
     paperCount.textContent = String(payload.stats?.papers || points.length || 0);
     categoryCount.textContent = String(payload.stats?.categories || Object.keys(payload.colors).length || 0);
+    projectionSummary.textContent = payload.stats?.projection
+      ? `Projection: ${payload.stats.projection} · neighbors ${payload.stats.umap_neighbors} · min_dist ${payload.stats.umap_min_dist}`
+      : 'Projection metadata unavailable';
 
-    function clamp(value, min, max) {
-      return Math.max(min, Math.min(max, value));
-    }
+    function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
 
     function resize() {
       const ratio = window.devicePixelRatio || 1;
@@ -440,8 +457,8 @@ def _html_template() -> str:
       let x = baseX;
       let y = baseY;
       if (focusMatches && isMatch) {
-        x = cx + (x - cx) * 0.7;
-        y = cy + (y - cy) * 0.7;
+        x = cx + (x - cx) * 0.82;
+        y = cy + (y - cy) * 0.82;
       }
       x = cx + (x - cx) * zoom + panX;
       y = cy + (y - cy) * zoom + panY;
@@ -449,7 +466,7 @@ def _html_template() -> str:
     }
 
     function pointXY(p) {
-      const pad = 42;
+      const pad = 28;
       const w = Math.max(1, canvas.clientWidth - pad * 2);
       const h = Math.max(1, canvas.clientHeight - pad * 2);
       const baseX = pad + p.x * w;
@@ -457,21 +474,17 @@ def _html_template() -> str:
       return transformPoint(baseX, baseY, filtered.includes(p));
     }
 
-    function visiblePoints() {
-      return filtered;
-    }
+    function visiblePoints() { return filtered; }
 
     function drawField() {
       ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
       ctx.fillStyle = '#030611';
       ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-
       const grad = ctx.createRadialGradient(canvas.clientWidth * 0.5, canvas.clientHeight * 0.45, 40, canvas.clientWidth * 0.5, canvas.clientHeight * 0.45, canvas.clientWidth * 0.7);
       grad.addColorStop(0, 'rgba(125, 211, 252, 0.05)');
       grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-
       ctx.strokeStyle = 'rgba(128, 154, 192, 0.05)';
       ctx.lineWidth = 1;
       for (let i = 1; i < 6; i++) {
@@ -484,7 +497,6 @@ def _html_template() -> str:
 
     function draw() {
       drawField();
-
       if (hovered && hoverNeighbors.length) {
         const origin = pointXY(hovered);
         hoverNeighbors.forEach((neighbor, index) => {
@@ -497,24 +509,19 @@ def _html_template() -> str:
           ctx.stroke();
         });
       }
-
       for (const p of points) {
         const active = filtered.includes(p);
         const xy = pointXY(p);
         const isNeighbor = hoverNeighbors.includes(p);
-        const radius = isNeighbor
-          ? clamp(1.9 * zoom, 2.2, 4.8)
-          : active
-            ? clamp(1.2 * zoom, 1.4, 3.1)
-            : clamp(0.72 * zoom, 0.55, 1.35);
+        const radius = isNeighbor ? clamp(1.9 * zoom, 2.2, 4.8) : active ? clamp(1.2 * zoom, 1.35, 3.0) : clamp(0.68 * zoom, 0.48, 1.2);
         ctx.beginPath();
         ctx.fillStyle = isNeighbor ? '#d8f3ff' : active ? p.color : 'rgba(100, 116, 139, 0.14)';
         ctx.arc(xy.x, xy.y, radius, 0, Math.PI * 2);
         ctx.fill();
-        if (active && radius > 2.1) {
+        if (active && radius > 2.0) {
           ctx.beginPath();
           ctx.fillStyle = isNeighbor ? 'rgba(125, 211, 252, 0.24)' : 'rgba(255,255,255,0.1)';
-          ctx.arc(xy.x, xy.y, radius + 0.55, 0, Math.PI * 2);
+          ctx.arc(xy.x, xy.y, radius + 0.5, 0, Math.PI * 2);
           ctx.fill();
         }
       }
@@ -663,12 +670,7 @@ def _html_template() -> str:
       }
     }
 
-    function resetView() {
-      panX = 0;
-      panY = 0;
-      zoom = 1;
-      draw();
-    }
+    function resetView() { panX = 0; panY = 0; zoom = 1; draw(); }
 
     searchInput.addEventListener('input', updateFilter);
     clearBtn.addEventListener('click', () => {
@@ -697,10 +699,7 @@ def _html_template() -> str:
       dragging = true;
       lastPointer = { x: event.clientX, y: event.clientY };
     });
-    window.addEventListener('mouseup', () => {
-      dragging = false;
-      lastPointer = null;
-    });
+    window.addEventListener('mouseup', () => { dragging = false; lastPointer = null; });
     window.addEventListener('mousemove', (event) => {
       const rect = canvas.getBoundingClientRect();
       const inside = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;

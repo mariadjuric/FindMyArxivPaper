@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from sklearn.decomposition import PCA
+from umap import UMAP
 
-from config import FIGURES_DIR, LABEL_COLUMN, TITLE_COLUMN
+from config import FIGURES_DIR, LABEL_COLUMN, TITLE_COLUMN, UMAP_MIN_DIST, UMAP_N_NEIGHBORS, UMAP_RANDOM_STATE
 
 sns.set_theme(style="whitegrid")
 
@@ -27,15 +27,21 @@ def plot_label_distribution(df: pd.DataFrame) -> None:
 def plot_embedding_projection(df: pd.DataFrame, embeddings: np.ndarray) -> None:
     if len(df) < 2:
         return
-    reducer = PCA(n_components=2)
+    reducer = UMAP(
+        n_components=2,
+        n_neighbors=min(UMAP_N_NEIGHBORS, max(2, len(df) - 1)),
+        min_dist=UMAP_MIN_DIST,
+        metric="cosine",
+        random_state=UMAP_RANDOM_STATE,
+    )
     projection = reducer.fit_transform(embeddings)
     plot_df = pd.DataFrame({"x": projection[:, 0], "y": projection[:, 1], LABEL_COLUMN: df[LABEL_COLUMN].values, TITLE_COLUMN: df[TITLE_COLUMN].values})
 
     plt.figure(figsize=(10, 8))
-    sns.scatterplot(data=plot_df, x="x", y="y", hue=LABEL_COLUMN, s=18, palette="tab10", alpha=0.8, linewidth=0)
-    plt.title("2D PCA Projection of Paper Embeddings")
+    sns.scatterplot(data=plot_df, x="x", y="y", hue=LABEL_COLUMN, s=10, palette="tab10", alpha=0.72, linewidth=0)
+    plt.title(f"2D UMAP Projection of Paper Embeddings (n_neighbors={min(UMAP_N_NEIGHBORS, max(2, len(df) - 1))}, min_dist={UMAP_MIN_DIST})")
     plt.tight_layout()
-    plt.savefig(FIGURES_DIR / "embedding_projection.png", dpi=200)
+    plt.savefig(FIGURES_DIR / "embedding_projection.png", dpi=220)
     plt.close()
 
 
