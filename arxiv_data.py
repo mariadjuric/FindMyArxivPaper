@@ -58,9 +58,15 @@ def fetch_arxiv_dataset(
     target_count = int(max_results)
     partial_failure: Exception | None = None
     exhausted = False
+    batch_number = 0
+    total_raw_seen = 0
+    total_duplicates_skipped = 0
+
+    print(f"Target astro-ph papers: {target_count}")
 
     while len(records) < target_count and not exhausted:
         current_batch = min(batch_size, max(1, target_count - len(records)))
+        batch_number += 1
         try:
             batch_records = _fetch_batch(
                 search_query,
@@ -73,15 +79,25 @@ def fetch_arxiv_dataset(
             break
 
         if not batch_records:
+            print(f"Batch {batch_number}: arXiv returned 0 rows at start={start}. No more results available.")
             exhausted = True
             break
 
         start += current_batch
+        total_raw_seen += len(batch_records)
 
-        filtered_batch = _filter_and_dedupe_records(batch_records, seen_urls)
+        filtered_batch, skipped_non_astro, skipped_duplicates = _filter_and_dedupe_records(batch_records, seen_urls)
+        total_duplicates_skipped += skipped_duplicates
         records.extend(filtered_batch)
 
+        print(
+            f"Batch {batch_number}: fetched {len(batch_records)} raw | kept {len(filtered_batch)} astro-ph | "
+            f"non-astro skipped {skipped_non_astro} | duplicates skipped {skipped_duplicates} | "
+            f"total kept {len(records)}/{target_count}"
+        )
+
         if len(batch_records) < current_batch:
+            print(f"Batch {batch_number}: arXiv returned fewer rows than requested ({len(batch_records)} < {current_batch}).")
             exhausted = True
             break
         if len(records) < target_count and not exhausted:
@@ -91,6 +107,18 @@ def fetch_arxiv_dataset(
         df = _finalize_dataframe(pd.DataFrame(records), limit=target_count)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(output_path, index=False)
+        if len(df) < target_count:
+            print(
+                f"Requested {target_count} astro-ph papers, but only {len(df)} were available from arXiv for this query. "
+                "Using the maximum available."
+            )
+        else:
+            print(
+                f"Completed arXiv fetch with {len(df)} astro-ph papers retained "
+                f"from {total_raw_seen} raw results across {batch_number} batches."
+            )
+        if total_duplicates_skipped:
+            print(f"Total duplicates skipped: {total_duplicates_skipped}")
         return df
 
     if allow_cached_fallback and output_path.exists():
@@ -108,19 +136,23 @@ def fetch_arxiv_dataset(
     )
 
 
-def _filter_and_dedupe_records(records: list[dict], seen_urls: set[str]) -> list[dict]:
+def _filter_and_dedupe_records(records: list[dict], seen_urls: set[str]) -> tuple[list[dict], int, int]:
     kept: list[dict] = []
+    skipped_non_astro = 0
+    skipped_duplicates = 0
     for record in records:
         label = str(record.get(LABEL_COLUMN, ""))
         url = str(record.get(URL_COLUMN, "")).strip()
         if not label.startswith(ASTRO_ONLY_PREFIX):
+            skipped_non_astro += 1
             continue
         dedupe_key = url or f"{record.get(TITLE_COLUMN, '')}::{record.get(PUBLISHED_COLUMN, '')}"
         if dedupe_key in seen_urls:
+            skipped_duplicates += 1
             continue
         seen_urls.add(dedupe_key)
         kept.append(record)
-    return kept
+    return kept, skipped_non_astro, skipped_duplicates
 
 
 def _finalize_dataframe(df: pd.DataFrame, limit: int | None = None) -> pd.DataFrame:
