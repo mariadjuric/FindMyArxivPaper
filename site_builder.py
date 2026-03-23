@@ -51,7 +51,7 @@ def build_site(df: pd.DataFrame, embeddings: np.ndarray, site_dir: Path = SITE_D
     payload = {
         "points": points,
         "colors": {label: CATEGORY_COLORS.get(label, "#94a3b8") for label in sorted(df[LABEL_COLUMN].unique())},
-        "title": "SciPaper Physics Atlas",
+        "title": "FMAP: FindMyArxivPaper Physics Atlas",
     }
 
     (site_dir / "data.js").write_text("window.SCIPAPER_DATA = " + json.dumps(payload) + ";\n", encoding="utf-8")
@@ -205,8 +205,5 @@ def _html_template() -> str:
     if (points.length) { hovered = points[0]; showDetails(points[0]); draw(); }
   </script>
 </body>
-</html>
-"""
-y>
 </html>
 """
