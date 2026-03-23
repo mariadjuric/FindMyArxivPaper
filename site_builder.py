@@ -65,7 +65,7 @@ def _html_template() -> str:
 <head>
   <meta charset=\"UTF-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
-  <title>SciPaper Physics Atlas</title>
+  <title>FMAP: FindMyArxivPaper Physics Atlas</title>
   <style>
     :root { color-scheme: dark; }
     body { margin:0; font-family: Inter, system-ui, sans-serif; background:#0b1020; color:#f8fafc; }
@@ -91,7 +91,7 @@ def _html_template() -> str:
 <body>
   <div class=\"layout\">
     <aside class=\"sidebar\">
-      <h1><span>SciPaper</span> Physics Atlas</h1>
+      <h1><span>FMAP</span> FindMyArxivPaper</h1>
       <div class=\"muted\">Interactive map of arXiv physics and astrophysics papers generated from embeddings of title + abstract.</div>
       <input id=\"search\" placeholder=\"Search by title, abstract, or author\" />
       <div id=\"legend\" class=\"legend\"></div>
@@ -205,5 +205,8 @@ def _html_template() -> str:
     if (points.length) { hovered = points[0]; showDetails(points[0]); draw(); }
   </script>
 </body>
+</html>
+"""
+y>
 </html>
 """

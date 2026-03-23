@@ -16,7 +16,7 @@ from utils import print_section
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run the SciPaper pipeline.")
+    parser = argparse.ArgumentParser(description="Run the FMAP: FindMyArxivPaper pipeline.")
     parser.add_argument("--source", choices=["synthetic", "perfect", "arxiv", "csv"], default="synthetic")
     parser.add_argument("--input", type=str, default=None, help="Path to input CSV when --source csv is used")
     parser.add_argument("--max-results", type=int, default=500, help="Max arXiv results when --source arxiv")

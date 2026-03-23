@@ -1,8 +1,8 @@
-# SciPaper
+# FMAP: FindMyArxivPaper
 
-**SciPaper** is a research-style project for exploring scientific papers with embeddings, classification, retrieval, and a generated interactive web atlas.
+**FMAP: FindMyArxivPaper** is a research-style project for exploring scientific papers with embeddings, classification, retrieval, and a generated interactive web atlas.
 
-The project name stays **SciPaper**.
+The project name is **FMAP: FindMyArxivPaper**.
 
 It now supports two main modes:
 - **synthetic demo mode** for quick testing
@@ -10,9 +10,9 @@ It now supports two main modes:
 
 ---
 
-## What SciPaper does now
+## What FMAP does now
 
-SciPaper can:
+FMAP can:
 - ingest paper metadata from CSV
 - fetch recent papers from the **arXiv API**
 - focus on **physics / astrophysics** categories by default
@@ -28,7 +28,7 @@ That makes it closer to a real paper-atlas project rather than just a toy CSV cl
 
 ## Real arXiv support
 
-SciPaper can fetch real arXiv metadata directly from the export API.
+FMAP can fetch real arXiv metadata directly from the export API.
 
 The fetcher is deliberately cautious:
 - batched requests
@@ -45,7 +45,7 @@ Default arXiv focus:
 - `physics.space-ph`
 - `gr-qc`
 
-For each paper, SciPaper stores fields such as:
+For each paper, FMAP stores fields such as:
 - title
 - abstract
 - category
@@ -60,7 +60,7 @@ Fetched data is written to:
 
 ## Interactive web atlas
 
-SciPaper now generates a static website at:
+FMAP now generates a static website at:
 - `outputs/site/index.html`
 
 The site includes:
@@ -78,7 +78,7 @@ This is a lightweight local/static visualization, so you can open the generated 
 
 ## Modeling approach
 
-SciPaper uses the data in two different ways.
+FMAP uses the data in two different ways.
 
 ### 1. Embeddings for map + retrieval
 Embedding model:
@@ -107,7 +107,7 @@ This is the current supervised baseline. It is fast, strong, and easy to explain
 
 ## Synthetic datasets
 
-For demo/testing, SciPaper still includes:
+For demo/testing, FMAP still includes:
 - `data/raw/papers.csv` — larger synthetic dataset
 - `data/raw/papers_perfect.csv` — intentionally overly separable synthetic dataset
 
@@ -118,7 +118,7 @@ Use these when you want to test the pipeline without hitting arXiv.
 ## Project structure
 
 ```text
-SciPaper/
+FindMyArxivPaper/
 ├── README.md
 ├── requirements.txt
 ├── main.py
@@ -177,7 +177,7 @@ python main.py --source perfect
 python main.py --source arxiv --max-results 500
 ```
 
-If arXiv is slow or rate-limits you, SciPaper will retry and fall back to the cached CSV if one already exists.
+If arXiv is slow or rate-limits you, FMAP will retry and fall back to the cached CSV if one already exists.
 
 ### 5. Fetch custom arXiv categories
 
@@ -261,7 +261,7 @@ After running the pipeline, you get:
 
 ## Why this is useful
 
-This version of SciPaper is much closer to a serious portfolio project because it combines:
+This version of FMAP is much closer to a serious portfolio project because it combines:
 - real data ingestion
 - NLP embeddings
 - text classification

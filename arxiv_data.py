@@ -96,7 +96,7 @@ def fetch_arxiv_dataset(
 
 def _fetch_batch(search_query: str, start: int, max_results: int, timeout_seconds: int) -> list[dict]:
     url = f"{ARXIV_API_URL}?search_query={quote(search_query)}&start={int(start)}&max_results={int(max_results)}&sortBy=submittedDate&sortOrder=descending"
-    request = Request(url, headers={"User-Agent": "SciPaper/1.0 (physics atlas builder; respectful batched fetch)"})
+    request = Request(url, headers={"User-Agent": "FMAP/1.0 (FindMyArxivPaper physics atlas builder; respectful batched fetch)"})
 
     last_error: Exception | None = None
     for attempt in range(4):
