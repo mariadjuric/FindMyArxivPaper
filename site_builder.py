@@ -490,8 +490,8 @@ def _html_template() -> str:
         hoverNeighbors.forEach((neighbor, index) => {
           const target = pointXY(neighbor);
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(125, 211, 252, ${Math.max(0.12, 0.34 - index * 0.035)})`;
-          ctx.lineWidth = Math.max(0.8, 1.8 - index * 0.12);
+          ctx.strokeStyle = `rgba(125, 211, 252, ${Math.max(0.18, 0.42 - index * 0.04)})`;
+          ctx.lineWidth = Math.max(1.8, 3.4 - index * 0.2);
           ctx.moveTo(origin.x, origin.y);
           ctx.lineTo(target.x, target.y);
           ctx.stroke();
@@ -503,18 +503,18 @@ def _html_template() -> str:
         const xy = pointXY(p);
         const isNeighbor = hoverNeighbors.includes(p);
         const radius = isNeighbor
-          ? clamp(2.8 * zoom, 3.2, 7.2)
+          ? clamp(1.9 * zoom, 2.2, 4.8)
           : active
-            ? clamp(2.0 * zoom, 2.2, 5.8)
-            : clamp(1.1 * zoom, 0.8, 2.2);
+            ? clamp(1.2 * zoom, 1.4, 3.1)
+            : clamp(0.72 * zoom, 0.55, 1.35);
         ctx.beginPath();
         ctx.fillStyle = isNeighbor ? '#d8f3ff' : active ? p.color : 'rgba(100, 116, 139, 0.14)';
         ctx.arc(xy.x, xy.y, radius, 0, Math.PI * 2);
         ctx.fill();
-        if (active && radius > 3.5) {
+        if (active && radius > 2.1) {
           ctx.beginPath();
-          ctx.fillStyle = isNeighbor ? 'rgba(125, 211, 252, 0.22)' : 'rgba(255,255,255,0.12)';
-          ctx.arc(xy.x, xy.y, radius + 0.9, 0, Math.PI * 2);
+          ctx.fillStyle = isNeighbor ? 'rgba(125, 211, 252, 0.24)' : 'rgba(255,255,255,0.1)';
+          ctx.arc(xy.x, xy.y, radius + 0.55, 0, Math.PI * 2);
           ctx.fill();
         }
       }
