@@ -53,12 +53,14 @@ def fetch_arxiv_dataset(
     categories = categories or list(DEFAULT_ARXIV_CATEGORIES)
     search_query = build_category_query(categories)
     records: list[dict] = []
+    seen_urls: set[str] = set()
     start = 0
-    total_needed = int(max_results)
+    target_count = int(max_results)
     partial_failure: Exception | None = None
+    exhausted = False
 
-    while start < total_needed:
-        current_batch = min(batch_size, total_needed - start)
+    while len(records) < target_count and not exhausted:
+        current_batch = min(batch_size, max(1, target_count - len(records)))
         try:
             batch_records = _fetch_batch(
                 search_query,
@@ -70,26 +72,30 @@ def fetch_arxiv_dataset(
             partial_failure = exc
             break
 
-        records.extend(batch_records)
+        if not batch_records:
+            exhausted = True
+            break
+
         start += current_batch
-        if start < total_needed:
+
+        filtered_batch = _filter_and_dedupe_records(batch_records, seen_urls)
+        records.extend(filtered_batch)
+
+        if len(batch_records) < current_batch:
+            exhausted = True
+            break
+        if len(records) < target_count and not exhausted:
             time.sleep(3)
 
     if records:
-        df = pd.DataFrame(records)
-        if LABEL_COLUMN in df.columns:
-            df = df[df[LABEL_COLUMN].astype(str).str.startswith(ASTRO_ONLY_PREFIX)].reset_index(drop=True)
-            df[ID_COLUMN] = range(1, len(df) + 1)
+        df = _finalize_dataframe(pd.DataFrame(records), limit=target_count)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(output_path, index=False)
         return df
 
     if allow_cached_fallback and output_path.exists():
         cached = pd.read_csv(output_path)
-        if LABEL_COLUMN in cached.columns:
-            cached = cached[cached[LABEL_COLUMN].astype(str).str.startswith(ASTRO_ONLY_PREFIX)].reset_index(drop=True)
-            cached[ID_COLUMN] = range(1, len(cached) + 1)
-        return cached
+        return _finalize_dataframe(cached, limit=target_count)
 
     if partial_failure is not None:
         raise ArxivFetchError(
@@ -100,6 +106,36 @@ def fetch_arxiv_dataset(
     raise ArxivFetchError(
         f"No arXiv records were fetched and no cached dataset was available at {output_path}."
     )
+
+
+def _filter_and_dedupe_records(records: list[dict], seen_urls: set[str]) -> list[dict]:
+    kept: list[dict] = []
+    for record in records:
+        label = str(record.get(LABEL_COLUMN, ""))
+        url = str(record.get(URL_COLUMN, "")).strip()
+        if not label.startswith(ASTRO_ONLY_PREFIX):
+            continue
+        dedupe_key = url or f"{record.get(TITLE_COLUMN, '')}::{record.get(PUBLISHED_COLUMN, '')}"
+        if dedupe_key in seen_urls:
+            continue
+        seen_urls.add(dedupe_key)
+        kept.append(record)
+    return kept
+
+
+def _finalize_dataframe(df: pd.DataFrame, limit: int | None = None) -> pd.DataFrame:
+    if df.empty:
+        return df
+    df = df.copy()
+    if LABEL_COLUMN in df.columns:
+        df = df[df[LABEL_COLUMN].astype(str).str.startswith(ASTRO_ONLY_PREFIX)].reset_index(drop=True)
+    if URL_COLUMN in df.columns:
+        df = df.drop_duplicates(subset=[URL_COLUMN], keep="first")
+    if limit is not None:
+        df = df.head(limit)
+    df = df.reset_index(drop=True)
+    df[ID_COLUMN] = range(1, len(df) + 1)
+    return df
 
 
 def _fetch_batch(search_query: str, start: int, max_results: int, timeout_seconds: int) -> list[dict]:
