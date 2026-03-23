@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from config import LABEL_COLUMN, MODEL_TEXT_COLUMN, TEXT_COLUMN, TITLE_COLUMN
+from config import AUTHORS_COLUMN, LABEL_COLUMN, MODEL_TEXT_COLUMN, PUBLISHED_COLUMN, TEXT_COLUMN, TITLE_COLUMN, URL_COLUMN
 
 
 def semantic_search(query: str, df: pd.DataFrame, embeddings: np.ndarray, embedder, top_k: int = 5) -> list[dict]:
@@ -20,6 +20,9 @@ def semantic_search(query: str, df: pd.DataFrame, embeddings: np.ndarray, embedd
                 "category": row[LABEL_COLUMN],
                 "abstract": row[TEXT_COLUMN],
                 "combined_text": row[MODEL_TEXT_COLUMN],
+                "authors": row.get(AUTHORS_COLUMN, ""),
+                "published": row.get(PUBLISHED_COLUMN, ""),
+                "url": row.get(URL_COLUMN, ""),
                 "score": float(scores[idx]),
             }
         )

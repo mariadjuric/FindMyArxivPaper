@@ -6,4 +6,5 @@ __pycache__/
 outputs/models/*.joblib
 outputs/metrics/*.json
 outputs/figures/*.png
+outputs/site/
 *.csv

@@ -7,167 +7,70 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from config import (
+    AUTHORS_COLUMN,
     DATA_PATH,
     ID_COLUMN,
     LABEL_COLUMN,
     MODEL_TEXT_COLUMN,
+    PRIMARY_CATEGORY_COLUMN,
     PROCESSED_CSV_PATH,
+    PUBLISHED_COLUMN,
     RANDOM_STATE,
     TEST_SIZE,
     TEXT_COLUMN,
     TITLE_COLUMN,
+    UPDATED_COLUMN,
+    URL_COLUMN,
 )
 
 
 CATEGORY_BLUEPRINTS = {
     "cs.CL": {
-        "title_prefixes": [
-            "Transformer Retrieval",
-            "Long-Context Language Models",
-            "Citation-Aware Summarization",
-            "Scientific Claim Verification",
-            "Terminology Grounding",
-        ],
-        "keywords": [
-            "tokenization",
-            "document retrieval",
-            "question answering",
-            "summarization",
-            "citation context",
-            "evidence ranking",
-        ],
+        "title_prefixes": ["Transformer Retrieval", "Long-Context Language Models", "Citation-Aware Summarization", "Scientific Claim Verification", "Terminology Grounding"],
+        "keywords": ["tokenization", "document retrieval", "question answering", "summarization", "citation context", "evidence ranking"],
         "shared_keywords": ["benchmark", "embedding model", "generalization"],
         "venues": ["ACL", "EMNLP", "NAACL"],
         "domain": "language understanding",
     },
     "cs.CV": {
-        "title_prefixes": [
-            "Microscopy Vision Transformers",
-            "Cell Segmentation",
-            "Remote Sensing Detection",
-            "Radiology Image Classification",
-            "Scientific Figure Parsing",
-        ],
-        "keywords": [
-            "image segmentation",
-            "lesion detection",
-            "microscopy",
-            "satellite imagery",
-            "object detection",
-            "visual backbone",
-        ],
+        "title_prefixes": ["Microscopy Vision Transformers", "Cell Segmentation", "Remote Sensing Detection", "Radiology Image Classification", "Scientific Figure Parsing"],
+        "keywords": ["image segmentation", "lesion detection", "microscopy", "satellite imagery", "object detection", "visual backbone"],
         "shared_keywords": ["benchmark", "feature extractor", "robustness"],
         "venues": ["CVPR", "ICCV", "MICCAI"],
         "domain": "scientific imaging",
     },
     "cs.LG": {
-        "title_prefixes": [
-            "Meta-Learning Optimizers",
-            "Neural Operator Benchmarks",
-            "Active Learning Loops",
-            "Federated Scientific Models",
-            "Probabilistic Representation Learning",
-        ],
-        "keywords": [
-            "generalization",
-            "hyperparameter search",
-            "optimization",
-            "representation learning",
-            "uncertainty calibration",
-            "benchmark suite",
-        ],
+        "title_prefixes": ["Meta-Learning Optimizers", "Neural Operator Benchmarks", "Active Learning Loops", "Federated Scientific Models", "Probabilistic Representation Learning"],
+        "keywords": ["generalization", "hyperparameter search", "optimization", "representation learning", "uncertainty calibration", "benchmark suite"],
         "shared_keywords": ["benchmark", "embedding model", "robustness"],
         "venues": ["ICML", "NeurIPS", "ICLR"],
         "domain": "machine learning methodology",
     },
     "physics.comp-ph": {
-        "title_prefixes": [
-            "Lattice Simulation Surrogates",
-            "Turbulence Solvers",
-            "Plasma Dynamics Emulators",
-            "Quantum Monte Carlo Acceleration",
-            "Inverse Problems in Physics",
-        ],
-        "keywords": [
-            "partial differential equations",
-            "simulation grid",
-            "boundary conditions",
-            "Hamiltonian system",
-            "solver convergence",
-            "numerical stability",
-        ],
+        "title_prefixes": ["Lattice Simulation Surrogates", "Turbulence Solvers", "Plasma Dynamics Emulators", "Quantum Monte Carlo Acceleration", "Inverse Problems in Physics"],
+        "keywords": ["partial differential equations", "simulation grid", "boundary conditions", "Hamiltonian system", "solver convergence", "numerical stability"],
         "shared_keywords": ["benchmark", "simulation study", "generalization"],
         "venues": ["PhysRevE", "JCP", "SciPost"],
         "domain": "computational physics",
     },
     "physics.data-an": {
-        "title_prefixes": [
-            "Detector Calibration Pipelines",
-            "High-Energy Event Reconstruction",
-            "Bayesian Measurement Uncertainty",
-            "Sensor Drift Analysis",
-            "Experimental Signal Denoising",
-        ],
-        "keywords": [
-            "detector response",
-            "measurement noise",
-            "calibration curve",
-            "event reconstruction",
-            "instrument drift",
-            "posterior intervals",
-        ],
+        "title_prefixes": ["Detector Calibration Pipelines", "High-Energy Event Reconstruction", "Bayesian Measurement Uncertainty", "Sensor Drift Analysis", "Experimental Signal Denoising"],
+        "keywords": ["detector response", "measurement noise", "calibration curve", "event reconstruction", "instrument drift", "posterior intervals"],
         "shared_keywords": ["benchmark", "uncertainty", "robustness"],
         "venues": ["JINST", "PhysRevD", "NIMA"],
         "domain": "experimental physics analysis",
     },
     "stat.ML": {
-        "title_prefixes": [
-            "Bayesian Hierarchical Models",
-            "Causal Estimation under Shift",
-            "Conformal Prediction for Science",
-            "Experimental Design with Priors",
-            "Robust Uncertainty Quantification",
-        ],
-        "keywords": [
-            "posterior predictive checks",
-            "coverage guarantees",
-            "covariate shift",
-            "causal effect",
-            "credible intervals",
-            "sampling efficiency",
-        ],
+        "title_prefixes": ["Bayesian Hierarchical Models", "Causal Estimation under Shift", "Conformal Prediction for Science", "Experimental Design with Priors", "Robust Uncertainty Quantification"],
+        "keywords": ["posterior predictive checks", "coverage guarantees", "covariate shift", "causal effect", "credible intervals", "sampling efficiency"],
         "shared_keywords": ["benchmark", "uncertainty", "generalization"],
         "venues": ["AISTATS", "JRSS-B", "JASA"],
         "domain": "statistical machine learning",
     },
 }
 
-GLOBAL_SHARED_TERMS = [
-    "benchmark",
-    "dataset",
-    "generalization",
-    "embedding model",
-    "evaluation",
-    "transfer learning",
-    "uncertainty",
-    "robustness",
-    "ablation",
-    "scientific workflow",
-]
-
-CROSS_CATEGORY_TERMS = [
-    "document retrieval",
-    "representation learning",
-    "image segmentation",
-    "question answering",
-    "optimization",
-    "calibration curve",
-    "simulation grid",
-    "causal effect",
-    "event reconstruction",
-    "posterior intervals",
-]
-
+GLOBAL_SHARED_TERMS = ["benchmark", "dataset", "generalization", "embedding model", "evaluation", "transfer learning", "uncertainty", "robustness", "ablation", "scientific workflow"]
+CROSS_CATEGORY_TERMS = ["document retrieval", "representation learning", "image segmentation", "question answering", "optimization", "calibration curve", "simulation grid", "causal effect", "event reconstruction", "posterior intervals"]
 NEIGHBOR_MAP = {
     "cs.CL": ["cs.LG", "stat.ML"],
     "cs.CV": ["cs.LG", "physics.data-an"],
@@ -214,7 +117,6 @@ def make_sample_dataset(samples_per_class: int = 167, perfect: bool = False) -> 
                 neighbor_keyword = neighbor_blueprint["keywords"][(i + 1) % len(neighbor_blueprint["keywords"])]
                 global_term = GLOBAL_SHARED_TERMS[(i + category_index) % len(GLOBAL_SHARED_TERMS)]
                 cross_term = CROSS_CATEGORY_TERMS[(i * 2 + category_index) % len(CROSS_CATEGORY_TERMS)]
-
                 title_style = i % 4
                 if title_style == 0:
                     title = f"{prefix} for {domain.title()} Study {study_id}"
@@ -238,6 +140,11 @@ def make_sample_dataset(samples_per_class: int = 167, perfect: bool = False) -> 
                     TITLE_COLUMN: title,
                     TEXT_COLUMN: abstract,
                     LABEL_COLUMN: category,
+                    PRIMARY_CATEGORY_COLUMN: category,
+                    AUTHORS_COLUMN: "Synthetic Author et al.",
+                    PUBLISHED_COLUMN: f"{year}-01-01T00:00:00Z",
+                    UPDATED_COLUMN: f"{year}-01-01T00:00:00Z",
+                    URL_COLUMN: "",
                     "year": year,
                 }
             )
@@ -263,12 +170,25 @@ def preprocess_dataset(df: pd.DataFrame) -> pd.DataFrame:
         if col not in df.columns:
             raise ValueError(f"Missing required column: {col}")
 
-    if ID_COLUMN not in df.columns:
-        df[ID_COLUMN] = range(1, len(df) + 1)
+    optional_defaults = {
+        ID_COLUMN: range(1, len(df) + 1),
+        AUTHORS_COLUMN: "",
+        PRIMARY_CATEGORY_COLUMN: df[LABEL_COLUMN] if LABEL_COLUMN in df.columns else "unknown",
+        PUBLISHED_COLUMN: "",
+        UPDATED_COLUMN: "",
+        URL_COLUMN: "",
+    }
+    for col, default in optional_defaults.items():
+        if col not in df.columns:
+            df[col] = default
 
     df[TITLE_COLUMN] = df[TITLE_COLUMN].fillna("").astype(str).str.strip()
     df[TEXT_COLUMN] = df[TEXT_COLUMN].fillna("").astype(str).str.strip()
     df[LABEL_COLUMN] = df[LABEL_COLUMN].fillna("unknown").astype(str).str.strip()
+    df[AUTHORS_COLUMN] = df[AUTHORS_COLUMN].fillna("").astype(str).str.strip()
+    df[PUBLISHED_COLUMN] = df[PUBLISHED_COLUMN].fillna("").astype(str).str.strip()
+    df[UPDATED_COLUMN] = df[UPDATED_COLUMN].fillna("").astype(str).str.strip()
+    df[URL_COLUMN] = df[URL_COLUMN].fillna("").astype(str).str.strip()
     df = df[df[TITLE_COLUMN] != ""]
     df = df[df[TEXT_COLUMN] != ""]
     df[MODEL_TEXT_COLUMN] = (df[TITLE_COLUMN] + ". " + df[TEXT_COLUMN]).str.strip()
@@ -282,10 +202,5 @@ def make_splits(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     label_counts = df[LABEL_COLUMN].value_counts()
     can_stratify = df[LABEL_COLUMN].nunique() > 1 and (label_counts >= 2).all()
     stratify = df[LABEL_COLUMN] if can_stratify else None
-    train_df, test_df = train_test_split(
-        df,
-        test_size=TEST_SIZE,
-        random_state=RANDOM_STATE,
-        stratify=stratify,
-    )
+    train_df, test_df = train_test_split(df, test_size=TEST_SIZE, random_state=RANDOM_STATE, stratify=stratify)
     return train_df.reset_index(drop=True), test_df.reset_index(drop=True)

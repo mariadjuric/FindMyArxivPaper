@@ -13,8 +13,8 @@ sns.set_theme(style="whitegrid")
 
 def plot_label_distribution(df: pd.DataFrame) -> None:
     counts = df[LABEL_COLUMN].value_counts().sort_values(ascending=False)
-    plt.figure(figsize=(8, 4))
-    sns.barplot(x=counts.index, y=counts.values, palette="viridis")
+    plt.figure(figsize=(10, 4))
+    sns.barplot(x=counts.index, y=counts.values, hue=counts.index, dodge=False, palette="viridis", legend=False)
     plt.title("Paper Category Distribution")
     plt.xlabel("Category")
     plt.ylabel("Count")
@@ -29,15 +29,10 @@ def plot_embedding_projection(df: pd.DataFrame, embeddings: np.ndarray) -> None:
         return
     reducer = PCA(n_components=2)
     projection = reducer.fit_transform(embeddings)
-    plot_df = pd.DataFrame({
-        "x": projection[:, 0],
-        "y": projection[:, 1],
-        LABEL_COLUMN: df[LABEL_COLUMN].values,
-        TITLE_COLUMN: df[TITLE_COLUMN].values,
-    })
+    plot_df = pd.DataFrame({"x": projection[:, 0], "y": projection[:, 1], LABEL_COLUMN: df[LABEL_COLUMN].values, TITLE_COLUMN: df[TITLE_COLUMN].values})
 
-    plt.figure(figsize=(8, 6))
-    sns.scatterplot(data=plot_df, x="x", y="y", hue=LABEL_COLUMN, s=90, palette="tab10")
+    plt.figure(figsize=(10, 8))
+    sns.scatterplot(data=plot_df, x="x", y="y", hue=LABEL_COLUMN, s=18, palette="tab10", alpha=0.8, linewidth=0)
     plt.title("2D PCA Projection of Paper Embeddings")
     plt.tight_layout()
     plt.savefig(FIGURES_DIR / "embedding_projection.png", dpi=200)
@@ -45,7 +40,7 @@ def plot_embedding_projection(df: pd.DataFrame, embeddings: np.ndarray) -> None:
 
 
 def plot_confusion_matrix(labels: list[str], confusion: list[list[int]]) -> None:
-    plt.figure(figsize=(6, 5))
+    plt.figure(figsize=(8, 6))
     sns.heatmap(confusion, annot=True, fmt="d", cmap="Blues", xticklabels=labels, yticklabels=labels)
     plt.title("Classifier Confusion Matrix")
     plt.xlabel("Predicted")
