@@ -11,7 +11,7 @@ from models import PaperEmbedder
 from plots import plot_confusion_matrix, plot_embedding_projection, plot_label_distribution, plot_year_distribution
 from search import semantic_search
 from site_builder import build_site
-from train import save_classifier, train_classifier
+from train import save_classifier, save_deep_classifier, train_classifier, train_deep_classifier
 from utils import print_section
 
 
@@ -23,6 +23,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--categories", type=str, default="", help="Comma-separated arXiv categories for --source arxiv")
     parser.add_argument("--from-year", type=int, default=None, help="Earliest publication year to fetch for --source arxiv")
     parser.add_argument("--to-year", type=int, default=None, help="Latest publication year to fetch for --source arxiv")
+    parser.add_argument("--model-version", choices=["v1", "v2"], default="v1", help="Classifier version: v1 baseline or v2 transformer fine-tuning")
+    parser.add_argument("--transformer-model", type=str, default="allenai/scibert_scivocab_uncased", help="HF model name for --model-version v2")
+    parser.add_argument("--epochs", type=int, default=3, help="Epochs for --model-version v2")
+    parser.add_argument("--batch-size", type=int, default=8, help="Batch size for --model-version v2")
+    parser.add_argument("--max-length", type=int, default=256, help="Token truncation length for --model-version v2")
+    parser.add_argument("--learning-rate", type=float, default=2e-5, help="Learning rate for --model-version v2")
     parser.add_argument("--skip-site", action="store_true", help="Skip static site generation")
     return parser.parse_args()
 
@@ -75,14 +81,27 @@ def main() -> None:
     print(f"Embedding shape: {all_embeddings.shape}")
 
     print_section("Training classifier")
-    classifier = train_classifier(train_df)
-    save_classifier(classifier)
-    print("Saved classifier to outputs/models/")
+    if args.model_version == "v1":
+        classifier = train_classifier(train_df)
+        save_classifier(classifier)
+        print("Saved v1 classifier to outputs/models/")
+    else:
+        classifier = train_deep_classifier(
+            train_df,
+            transformer_model_name=args.transformer_model,
+            max_length=args.max_length,
+            batch_size=args.batch_size,
+            learning_rate=args.learning_rate,
+            epochs=args.epochs,
+        )
+        save_deep_classifier(classifier)
+        print("Saved v2 deep classifier to outputs/models/")
 
     print_section("Evaluating classifier")
     clf_metrics = evaluate_classification(classifier, test_df)
     print(f"Accuracy: {clf_metrics['accuracy']:.3f}")
     print(f"Macro F1: {clf_metrics['macro_f1']:.3f}")
+    print(f"Classifier: {clf_metrics['classifier']}")
 
     print_section("Evaluating retrieval")
     retrieval_metrics = evaluate_retrieval(df, all_embeddings, top_k=TOP_K)

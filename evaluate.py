@@ -21,7 +21,7 @@ def evaluate_classification(model, test_df: pd.DataFrame) -> dict:
         "labels": sorted(set(y_true) | set(y_pred)),
         "confusion_matrix": confusion_matrix(y_true, y_pred, labels=sorted(set(y_true) | set(y_pred))).tolist(),
         "model_text_column": MODEL_TEXT_COLUMN,
-        "classifier": "tfidf + linear_svc",
+        "classifier": getattr(model, "model_name", model.__class__.__name__),
     }
     save_json(metrics, METRICS_DIR / "classification_metrics.json")
     return metrics

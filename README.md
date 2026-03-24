@@ -49,7 +49,48 @@ This makes it much closer to a real paper-atlas / portfolio project than a toy c
 
 ---
 
-## Current modeling setup
+## Modeling roadmap: v1 and v2
+
+FMAP now has two classification tracks.
+
+### v1: classic baseline classifier
+
+This is the original simple classifier.
+
+- **Input text:** `title + abstract`
+- **Vectorization:** TF-IDF with unigram + bigram features
+- **Classifier:** `LinearSVC`
+
+Why keep it:
+- fast
+- strong baseline
+- easy to explain
+- easy to iterate on while changing datasets
+
+This is still the default model path.
+
+### v2: deep learning classifier
+
+This is the new PyTorch-based classifier.
+
+- **Framework:** PyTorch + Hugging Face Transformers
+- **Default backbone:** `allenai/scibert_scivocab_uncased`
+- **Training style:** full supervised fine-tuning for category classification
+- **Input text:** `title + abstract`
+
+Why this is useful:
+- much more expressive than TF-IDF
+- better suited to domain language and contextual phrasing
+- a more serious NLP model for real arXiv data
+- cleaner path toward future experiments such as larger encoders, class weighting, contrastive objectives, or retrieval-aware training
+
+In other words:
+- **v1** = lightweight baseline
+- **v2** = transformer fine-tuning path
+
+---
+
+## Current modeling split
 
 FMAP uses the data in **two different ways**.
 
@@ -57,15 +98,9 @@ FMAP uses the data in **two different ways**.
 
 This is the model used to predict the paper category.
 
-- **Input text:** `title + abstract`
-- **Vectorization:** TF-IDF with unigram + bigram features
-- **Classifier:** `LinearSVC`
-
-Why this choice:
-- fast
-- strong baseline
-- easy to explain
-- works well when categories have distinctive terminology
+You can now choose either:
+- **v1:** TF-IDF + `LinearSVC`
+- **v2:** transformer fine-tuning with PyTorch
 
 This is what produces:
 - accuracy
@@ -86,7 +121,7 @@ Used for:
 - 2D map projection for the interactive site
 
 So the split is:
-- **classifier** = TF-IDF + LinearSVC
+- **classifier** = v1 baseline or v2 transformer
 - **map / retrieval / recommendations** = sentence embeddings
 
 ---
@@ -155,7 +190,7 @@ The fetcher is deliberately cautious:
 A plain query like:
 
 ```bash
-python main.py --source arxiv --max-results 5000
+python3 main.py --source arxiv --max-results 5000
 ```
 
 will usually behave like a **recent-tail fetch**, because the export API is sorted by newest submissions.
@@ -169,7 +204,7 @@ To expand historical coverage, FMAP now supports:
 Example:
 
 ```bash
-python main.py --source arxiv --max-results 10000 --from-year 2020 --to-year 2026
+python3 main.py --source arxiv --max-results 10000 --from-year 2020 --to-year 2026
 ```
 
 That makes FMAP fetch **year-by-year** across the range, merge the results, dedupe them, and stop when either:
@@ -275,19 +310,30 @@ For demo/testing, FMAP still includes:
 
 Use these when you want to test the pipeline without hitting arXiv.
 
+A good v2 workflow is:
+1. run on `papers_perfect.csv`
+2. confirm the deep model trains and evaluates cleanly
+3. move on to real arXiv data
+
 ---
 
 ## Plots and outputs
 
 After running the pipeline, FMAP writes outputs such as:
 
-- `outputs/models/` — trained classifier
+- `outputs/models/` — trained classifier artifacts
 - `outputs/metrics/` — evaluation metrics
 - `outputs/figures/label_distribution.png` — category counts
 - `outputs/figures/year_distribution.png` — published year counts
 - `outputs/figures/embedding_projection.png` — 2D UMAP projection plot
 - `outputs/figures/confusion_matrix.png` — classifier confusion matrix
 - `outputs/site/` — interactive HTML atlas
+
+### Model artifacts
+
+Typical saved outputs now look like:
+- `outputs/models/paper_classifier.joblib` — v1 baseline model
+- `outputs/models/paper_classifier_v2/` — v2 transformer checkpoint, tokenizer, labels, and metadata
 
 ### Year distribution plot
 
@@ -339,48 +385,60 @@ FindMyArxivPaper/
 ### 1. Set up environment
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Run on synthetic data
+### 2. Run v1 on synthetic data
 
 ```bash
-python main.py --source synthetic
+python3 main.py --source synthetic --model-version v1
 ```
 
-### 3. Run on the perfect synthetic dataset
+### 3. Run v1 on the perfect synthetic dataset
 
 ```bash
-python main.py --source perfect
+python3 main.py --source perfect --model-version v1
 ```
 
-### 4. Fetch a recent astro-ph slice
+### 4. Run v2 deep learning on the perfect synthetic dataset
 
 ```bash
-python main.py --source arxiv --max-results 5000
+python3 main.py --source perfect --model-version v2 --epochs 3
 ```
 
-### 5. Fetch a historical year range
+### 5. Run v2 deep learning on a recent astro-ph slice
 
 ```bash
-python main.py --source arxiv --max-results 10000 --from-year 2020 --to-year 2026
+python3 main.py --source arxiv --model-version v2 --max-results 5000 --epochs 3
 ```
 
-### 6. Fetch custom arXiv categories
+### 6. Fetch a historical year range
 
 ```bash
-python main.py --source arxiv --max-results 800 --categories "astro-ph.GA,astro-ph.CO,astro-ph.HE,astro-ph.IM"
+python3 main.py --source arxiv --max-results 10000 --from-year 2020 --to-year 2026
 ```
 
-### 7. Re-run from a cached CSV
+### 7. Fetch custom arXiv categories
 
 ```bash
-python main.py --source csv --input data/raw/arxiv_astro_ph_papers.csv
+python3 main.py --source arxiv --max-results 800 --categories "astro-ph.GA,astro-ph.CO,astro-ph.HE,astro-ph.IM"
 ```
 
-### 8. Open the generated website
+### 8. Re-run from a cached CSV
+
+```bash
+python3 main.py --source csv --input data/raw/arxiv_astro_ph_papers.csv
+```
+
+### 9. Use a different transformer backbone for v2
+
+```bash
+python3 main.py --source perfect --model-version v2 --transformer-model distilbert-base-uncased --epochs 2
+```
+
+### 10. Open the generated website
 
 After running the pipeline, open:
 
@@ -395,21 +453,28 @@ outputs/site/index.html
 ### Build a local historical astro-ph atlas
 
 ```bash
-python main.py --source arxiv --max-results 15000 --from-year 2020 --to-year 2026
+python3 main.py --source arxiv --max-results 15000 --from-year 2020 --to-year 2026
 open outputs/site/index.html
 ```
 
 ### Build a denser atlas from more recent papers
 
 ```bash
-python main.py --source arxiv --max-results 10000
+python3 main.py --source arxiv --max-results 10000
 open outputs/site/index.html
+```
+
+### Compare v1 and v2 on the perfect dataset
+
+```bash
+python3 main.py --source perfect --model-version v1 --skip-site
+python3 main.py --source perfect --model-version v2 --epochs 3 --skip-site
 ```
 
 ### Run semantic search on a chosen dataset
 
 ```bash
-python demo.py --query "galaxy evolution and stellar populations" --input data/raw/arxiv_astro_ph_papers.csv
+python3 demo.py --query "galaxy evolution and stellar populations" --input data/raw/arxiv_astro_ph_papers.csv
 ```
 
 ---
@@ -425,6 +490,17 @@ Handles:
 - filtering retained astro-ph rows
 - deduplication
 - parsing Atom XML into structured rows
+
+### `models.py`
+Handles:
+- sentence-transformer embeddings for retrieval/map building
+- v1 baseline classifier definition
+- v2 transformer classifier wrapper
+
+### `train.py`
+Handles:
+- v1 baseline training and persistence
+- v2 PyTorch fine-tuning loop and persistence
 
 ### `site_builder.py`
 Handles:
@@ -447,10 +523,23 @@ Orchestrates the full workflow:
 2. optionally fetch arXiv data
 3. preprocess text
 4. build embeddings
-5. train classifier
+5. train v1 or v2 classifier
 6. evaluate metrics
 7. generate plots
 8. generate the interactive site
+
+---
+
+## What is new in v2
+
+The new deep-learning track adds:
+- PyTorch-based text classification
+- transformer fine-tuning with SciBERT by default
+- checkpoint-style saving for the deep model
+- CLI switches for versioned modeling experiments
+- a clean baseline-vs-deep split in the project story
+
+That makes FMAP feel less like a pure classical-ML demo and more like a real experimental NLP project.
 
 ---
 
@@ -459,7 +548,7 @@ Orchestrates the full workflow:
 FMAP is a strong portfolio-style project because it combines:
 - real data ingestion
 - NLP embeddings
-- text classification
+- baseline and deep text classification
 - retrieval
 - interactive visualization
 - reproducible outputs
