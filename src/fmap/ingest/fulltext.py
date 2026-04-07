@@ -58,33 +58,79 @@ def extract_text_from_pdf(pdf_path: Path) -> str:
     parts: list[str] = []
     for page in reader.pages:
         text = page.extract_text() or ""
-        text = re.sub(r"\s+", " ", text).strip()
+        text = text.replace("\r", "\n")
+        text = re.sub(r"[ \t]+", " ", text)
+        text = re.sub(r"\n{3,}", "\n\n", text)
+        text = text.strip()
         if text:
             parts.append(text)
     return "\n\n".join(parts)
+
+
+COMMON_SECTION_TITLES = [
+    "abstract",
+    "introduction",
+    "background",
+    "methods",
+    "method",
+    "data",
+    "results",
+    "discussion",
+    "conclusion",
+    "conclusions",
+    "appendix",
+    "references",
+]
+
+
+def _normalize_heading(title: str) -> str:
+    title = re.sub(r"\s+", " ", title).strip(" .:-")
+    return title
+
+
+def _looks_like_heading(line: str) -> bool:
+    candidate = _normalize_heading(line)
+    lower = candidate.lower()
+    if lower in COMMON_SECTION_TITLES:
+        return True
+    if re.fullmatch(r"(?:\d+(?:\.\d+)*)\s+[A-Z][A-Za-z0-9 ,:/()\-]{2,120}", candidate):
+        return True
+    if candidate.isupper() and 3 <= len(candidate) <= 120:
+        return True
+    return False
 
 
 def split_into_sections(text: str) -> list[dict]:
     if not text.strip():
         return []
 
-    heading_pattern = re.compile(
-        r"(?:^|\n)(?:\d+(?:\.\d+)*\s+)?([A-Z][A-Za-z0-9 ,:/()\-]{2,80})\n",
-        flags=re.MULTILINE,
-    )
-    matches = list(heading_pattern.finditer(text))
-    if not matches:
-        return [{"section_title": "full_text", "section_path": "full_text", "section_text": text.strip()}]
+    lines = [line.strip() for line in text.splitlines()]
+    lines = [line for line in lines if line]
+    if not lines:
+        return []
 
     sections: list[dict] = []
-    for idx, match in enumerate(matches):
-        start = match.end()
-        end = matches[idx + 1].start() if idx + 1 < len(matches) else len(text)
-        title = match.group(1).strip()
-        body = text[start:end].strip()
-        if len(body.split()) < 20:
+    current_title = "front_matter"
+    current_lines: list[str] = []
+
+    def flush() -> None:
+        nonlocal current_lines, current_title, sections
+        body = "\n".join(current_lines).strip()
+        if len(body.split()) >= 20:
+            sections.append({
+                "section_title": current_title,
+                "section_path": current_title,
+                "section_text": body,
+            })
+        current_lines = []
+
+    for line in lines:
+        if _looks_like_heading(line):
+            flush()
+            current_title = _normalize_heading(line)
             continue
-        sections.append({"section_title": title, "section_path": title, "section_text": body})
+        current_lines.append(line)
+    flush()
 
     if not sections:
         sections = [{"section_title": "full_text", "section_path": "full_text", "section_text": text.strip()}]
