@@ -13,5 +13,6 @@ outputs/site/
 *.csv
 !data/processed/benchmark_corpus_manifest.csv
 !data/processed/paper_chunks.csv
+!benchmarks/astrophysics_qa/corpus.seed.csv
 !benchmarks/astrophysics_qa/questions.seed.json
 !benchmarks/astrophysics_qa/questions.linked.json

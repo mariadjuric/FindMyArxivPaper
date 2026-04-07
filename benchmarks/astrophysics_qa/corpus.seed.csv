@@ -1,0 +1,26 @@
+cluster,paper_id,priority,notes
+galactic_dynamics,32,1,Distribution-function modelling for Milky Way nuclear star cluster
+galactic_dynamics,33,1,Galactic bar and spiral pattern speeds with Hyades tidal stream
+galactic_dynamics,224,1,Local dark matter velocity distribution
+galactic_dynamics,265,1,Bar properties via action conservation
+galactic_dynamics,364,1,Phase spirals across galactic disks
+galactic_dynamics,633,1,Kinematic diagnostics for non-axisymmetry in Milky Way nuclear stellar disc
+galactic_dynamics,1246,1,Milky Way-LMC interaction using halo star kinematics
+galactic_dynamics,1675,1,Central bar vs spiral arms in solar neighbourhood
+galactic_dynamics,3272,1,Disk warp from galaxy merger
+galactic_dynamics,3675,1,Hierarchical inference for dark matter halo shapes via stellar streams
+galactic_dynamics,3753,2,Bar-induced substructures in stellar halo
+galactic_dynamics,4153,2,Finite-extent dynamical models and phase-space consistency
+distribution_functions,32,1,Distribution-function modelling seed
+distribution_functions,1166,1,Selection effects and physical priors in Gaia-HST calibration
+distribution_functions,1484,1,Selection-aware black hole-galaxy coevolution
+distribution_functions,1801,1,Distribution functions for spheroids
+distribution_functions,1939,1,Relaxation and disk building
+distribution_functions,3049,1,Probabilistic inference in very large universes
+distribution_functions,3121,1,Galactic disc warps and observational effects
+distribution_functions,3301,1,Chemical evolution model in Bayesian framework
+distribution_functions,3675,1,Hierarchical Bayesian inference and halo shapes
+distribution_functions,4153,2,Phase-space consistency
+action_angle_methods,765,1,Planar planetary Hamiltonian expansion
+action_angle_methods,4174,1,Long-term integrations of Solar System
+action_angle_methods,4629,1,Tidal structures in globular clusters of extragalactic origin

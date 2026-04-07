@@ -1,17 +1,17 @@
 {
   "aggregate": {
-    "recall@1": 0.08,
-    "mrr@1": 0.08,
-    "ndcg@1": 0.08,
-    "recall@3": 0.12,
-    "mrr@3": 0.09333333333333332,
-    "ndcg@3": 0.04692787260227565,
-    "recall@5": 0.24,
-    "mrr@5": 0.11933333333333333,
-    "ndcg@5": 0.05833945458207911,
-    "recall@10": 0.4,
-    "mrr@10": 0.13849206349206347,
-    "ndcg@10": 0.1024108003594633,
+    "recall@1": 0.16,
+    "mrr@1": 0.16,
+    "ndcg@1": 0.16,
+    "recall@3": 0.28,
+    "mrr@3": 0.22,
+    "ndcg@3": 0.18368655287726918,
+    "recall@5": 0.32,
+    "mrr@5": 0.23,
+    "ndcg@5": 0.15553155788357295,
+    "recall@10": 0.56,
+    "mrr@10": 0.2564444444444444,
+    "ndcg@10": 0.2215262105128934,
     "num_questions": 25
   },
   "per_query": [
@@ -23,40 +23,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_d465ee1541_chunk_001"
+        "astrobench_eb380fd57f_chunk_000"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_d465ee1541_chunk_000"
+        "astrobench_eb380fd57f_chunk_000",
+        "astrobench_eb380fd57f_chunk_002",
+        "astrobench_c59a82f3b2_chunk_000"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_705f443da5_chunk_000"
+        "astrobench_eb380fd57f_chunk_000",
+        "astrobench_eb380fd57f_chunk_002",
+        "astrobench_c59a82f3b2_chunk_000",
+        "astrobench_c4e7b8fe70_chunk_001",
+        "astrobench_d82fccf1ca_chunk_000"
       ],
-      "recall@10": 1.0,
-      "mrr@10": 0.14285714285714285,
-      "ndcg@10": 0.11305340175787204,
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
       "top_10": [
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_705f443da5_chunk_000",
-        "astrobench_f39a1ece76_chunk_003",
-        "astrobench_c83c1593d9_chunk_001",
-        "astrobench_a92533502a_chunk_002",
-        "astrobench_705f443da5_chunk_001",
-        "astrobench_f39a1ece76_chunk_000"
+        "astrobench_eb380fd57f_chunk_000",
+        "astrobench_eb380fd57f_chunk_002",
+        "astrobench_c59a82f3b2_chunk_000",
+        "astrobench_c4e7b8fe70_chunk_001",
+        "astrobench_d82fccf1ca_chunk_000",
+        "astrobench_eb380fd57f_chunk_001",
+        "astrobench_c59a82f3b2_chunk_001",
+        "astrobench_c59a82f3b2_chunk_002",
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_15ca427d22_chunk_000"
       ]
     },
     {
@@ -67,40 +67,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_79edfd6850_chunk_000"
+        "astrobench_eb380fd57f_chunk_000"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_f39a1ece76_chunk_003",
-        "astrobench_d465ee1541_chunk_000"
+        "astrobench_eb380fd57f_chunk_000",
+        "astrobench_eb380fd57f_chunk_002",
+        "astrobench_eb380fd57f_chunk_001"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_f39a1ece76_chunk_003",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_f39a1ece76_chunk_002"
+        "astrobench_eb380fd57f_chunk_000",
+        "astrobench_eb380fd57f_chunk_002",
+        "astrobench_eb380fd57f_chunk_001",
+        "astrobench_d82fccf1ca_chunk_000",
+        "astrobench_c59a82f3b2_chunk_000"
       ],
-      "recall@10": 0.0,
-      "mrr@10": 0.0,
-      "ndcg@10": 0.0,
+      "recall@10": 1.0,
+      "mrr@10": 0.125,
+      "ndcg@10": 0.10699313236726378,
       "top_10": [
+        "astrobench_eb380fd57f_chunk_000",
+        "astrobench_eb380fd57f_chunk_002",
+        "astrobench_eb380fd57f_chunk_001",
+        "astrobench_d82fccf1ca_chunk_000",
+        "astrobench_c59a82f3b2_chunk_000",
+        "astrobench_c59a82f3b2_chunk_002",
+        "astrobench_c59a82f3b2_chunk_001",
         "astrobench_79edfd6850_chunk_000",
-        "astrobench_f39a1ece76_chunk_003",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_5a7e978abc_chunk_000",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_2dc9dfa095_chunk_000",
-        "astrobench_aa4f4c72ec_chunk_000"
+        "astrobench_a36c60393b_chunk_002",
+        "astrobench_15ca427d22_chunk_000"
       ]
     },
     {
@@ -111,40 +111,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_d465ee1541_chunk_001"
+        "astrobench_c4e7b8fe70_chunk_001"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_79edfd6850_chunk_001"
+        "astrobench_c4e7b8fe70_chunk_001",
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_a36c60393b_chunk_002"
       ],
-      "recall@5": 1.0,
-      "mrr@5": 0.2,
-      "ndcg@5": 0.13120507751234178,
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_c83c1593d9_chunk_001"
+        "astrobench_c4e7b8fe70_chunk_001",
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_a36c60393b_chunk_002",
+        "astrobench_d82fccf1ca_chunk_002",
+        "astrobench_c59a82f3b2_chunk_000"
       ],
-      "recall@10": 1.0,
-      "mrr@10": 0.2,
-      "ndcg@10": 0.23819820987960558,
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
       "top_10": [
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_c83c1593d9_chunk_001",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_c83c1593d9_chunk_002",
-        "astrobench_705f443da5_chunk_001",
-        "astrobench_f39a1ece76_chunk_002"
+        "astrobench_c4e7b8fe70_chunk_001",
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_a36c60393b_chunk_002",
+        "astrobench_d82fccf1ca_chunk_002",
+        "astrobench_c59a82f3b2_chunk_000",
+        "astrobench_d82fccf1ca_chunk_000",
+        "astrobench_eb380fd57f_chunk_002",
+        "astrobench_eb380fd57f_chunk_000",
+        "astrobench_15ca427d22_chunk_000",
+        "astrobench_c4e7b8fe70_chunk_000"
       ]
     },
     {
@@ -155,84 +155,84 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_d465ee1541_chunk_000"
+        "astrobench_b7b4f9944a_chunk_000"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_f39a1ece76_chunk_000"
+        "astrobench_b7b4f9944a_chunk_000",
+        "astrobench_15ca427d22_chunk_000",
+        "astrobench_eb380fd57f_chunk_000"
       ],
-      "recall@5": 0.0,
-      "mrr@5": 0.0,
-      "ndcg@5": 0.0,
+      "recall@5": 1.0,
+      "mrr@5": 0.25,
+      "ndcg@5": 0.14606834984270645,
       "top_5": [
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_d465ee1541_chunk_001"
+        "astrobench_b7b4f9944a_chunk_000",
+        "astrobench_15ca427d22_chunk_000",
+        "astrobench_eb380fd57f_chunk_000",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_d82fccf1ca_chunk_000"
       ],
-      "recall@10": 0.0,
-      "mrr@10": 0.0,
-      "ndcg@10": 0.0,
+      "recall@10": 1.0,
+      "mrr@10": 0.25,
+      "ndcg@10": 0.2530614822099702,
       "top_10": [
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_9412e325b6_chunk_001",
-        "astrobench_89946c0156_chunk_001",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_79edfd6850_chunk_000"
+        "astrobench_b7b4f9944a_chunk_000",
+        "astrobench_15ca427d22_chunk_000",
+        "astrobench_eb380fd57f_chunk_000",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_d82fccf1ca_chunk_000",
+        "astrobench_a36c60393b_chunk_002",
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_6b026e54cb_chunk_003",
+        "astrobench_c4e7b8fe70_chunk_001"
       ]
     },
     {
       "id": "astro_q005",
       "question": "What observational complications arise when inferring Galactic distribution functions from stellar surveys?",
       "gold_chunk_count": 5,
-      "recall@1": 0.0,
-      "mrr@1": 0.0,
-      "ndcg@1": 0.0,
+      "recall@1": 1.0,
+      "mrr@1": 1.0,
+      "ndcg@1": 1.0,
       "top_1": [
-        "astrobench_e1eb34802a_chunk_000"
+        "astrobench_f31aa696a1_chunk_001"
       ],
-      "recall@3": 0.0,
-      "mrr@3": 0.0,
-      "ndcg@3": 0.0,
+      "recall@3": 1.0,
+      "mrr@3": 1.0,
+      "ndcg@3": 0.7039180890341347,
       "top_3": [
-        "astrobench_e1eb34802a_chunk_000",
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_f39a1ece76_chunk_001"
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_f31aa696a1_chunk_002"
       ],
       "recall@5": 1.0,
-      "mrr@5": 0.2,
-      "ndcg@5": 0.13120507751234178,
+      "mrr@5": 1.0,
+      "ndcg@5": 0.639945385422766,
       "top_5": [
-        "astrobench_e1eb34802a_chunk_000",
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_705f443da5_chunk_001"
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_98f72fa560_chunk_000",
+        "astrobench_f31aa696a1_chunk_000"
       ],
       "recall@10": 1.0,
-      "mrr@10": 0.2,
-      "ndcg@10": 0.23330247263525344,
+      "mrr@10": 1.0,
+      "ndcg@10": 0.7379846712541229,
       "top_10": [
-        "astrobench_e1eb34802a_chunk_000",
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_705f443da5_chunk_001",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_5a0fea33d4_chunk_002",
-        "astrobench_705f443da5_chunk_000",
-        "astrobench_2e4e6e49b6_chunk_001"
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_98f72fa560_chunk_000",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_e6b347fbf5_chunk_000",
+        "astrobench_1e3dee4300_chunk_001",
+        "astrobench_cbff59e329_chunk_000",
+        "astrobench_e6b347fbf5_chunk_001",
+        "astrobench_705f443da5_chunk_001"
       ]
     },
     {
@@ -243,128 +243,128 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_d465ee1541_chunk_001"
+        "astrobench_c4e7b8fe70_chunk_002"
       ],
-      "recall@3": 1.0,
-      "mrr@3": 0.3333333333333333,
-      "ndcg@3": 0.23463936301137822,
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_705f443da5_chunk_000"
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_e6b347fbf5_chunk_000",
+        "astrobench_a877243f10_chunk_000"
       ],
-      "recall@5": 1.0,
-      "mrr@5": 0.3333333333333333,
-      "ndcg@5": 0.16958010263680806,
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_705f443da5_chunk_000",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_e1eb34802a_chunk_000"
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_e6b347fbf5_chunk_000",
+        "astrobench_a877243f10_chunk_000",
+        "astrobench_15ca427d22_chunk_000",
+        "astrobench_6b026e54cb_chunk_001"
       ],
       "recall@10": 1.0,
-      "mrr@10": 0.3333333333333333,
-      "ndcg@10": 0.2765732350040718,
+      "mrr@10": 0.1111111111111111,
+      "ndcg@10": 0.2001366809542687,
       "top_10": [
-        "astrobench_d465ee1541_chunk_001",
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_e6b347fbf5_chunk_000",
+        "astrobench_a877243f10_chunk_000",
+        "astrobench_15ca427d22_chunk_000",
+        "astrobench_6b026e54cb_chunk_001",
+        "astrobench_98f72fa560_chunk_000",
+        "astrobench_eb380fd57f_chunk_000",
         "astrobench_79edfd6850_chunk_001",
-        "astrobench_705f443da5_chunk_000",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_e1eb34802a_chunk_000",
-        "astrobench_2e4e6e49b6_chunk_001",
-        "astrobench_20f06ad4c1_chunk_001",
-        "astrobench_705f443da5_chunk_001",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_77bae5d126_chunk_001"
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_705f443da5_chunk_000"
       ]
     },
     {
       "id": "astro_q007",
       "question": "What is a distribution function in Galactic dynamics, and why is it useful?",
       "gold_chunk_count": 5,
-      "recall@1": 1.0,
-      "mrr@1": 1.0,
-      "ndcg@1": 1.0,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_705f443da5_chunk_000"
+        "astrobench_a877243f10_chunk_000"
       ],
       "recall@3": 1.0,
-      "mrr@3": 1.0,
-      "ndcg@3": 0.46927872602275644,
+      "mrr@3": 0.5,
+      "ndcg@3": 0.2960819109658652,
       "top_3": [
+        "astrobench_a877243f10_chunk_000",
         "astrobench_705f443da5_chunk_000",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_d465ee1541_chunk_001"
+        "astrobench_c4e7b8fe70_chunk_002"
       ],
       "recall@5": 1.0,
-      "mrr@5": 1.0,
-      "ndcg@5": 0.3391602052736161,
+      "mrr@5": 0.5,
+      "ndcg@5": 0.21398626473452756,
       "top_5": [
+        "astrobench_a877243f10_chunk_000",
         "astrobench_705f443da5_chunk_000",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_79edfd6850_chunk_000"
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_c4e7b8fe70_chunk_001",
+        "astrobench_e6b347fbf5_chunk_002"
       ],
       "recall@10": 1.0,
-      "mrr@10": 1.0,
-      "ndcg@10": 0.44615333764087994,
+      "mrr@10": 0.5,
+      "ndcg@10": 0.31608365985743925,
       "top_10": [
+        "astrobench_a877243f10_chunk_000",
         "astrobench_705f443da5_chunk_000",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_e1eb34802a_chunk_000",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_705f443da5_chunk_001",
-        "astrobench_89946c0156_chunk_000",
-        "astrobench_f39a1ece76_chunk_000"
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_c4e7b8fe70_chunk_001",
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_e6b347fbf5_chunk_001",
+        "astrobench_15ca427d22_chunk_000",
+        "astrobench_eb380fd57f_chunk_000",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_79edfd6850_chunk_001"
       ]
     },
     {
       "id": "astro_q008",
       "question": "How do action-angle coordinates simplify the analysis of Hamiltonian systems?",
       "gold_chunk_count": 5,
-      "recall@1": 0.0,
-      "mrr@1": 0.0,
-      "ndcg@1": 0.0,
+      "recall@1": 1.0,
+      "mrr@1": 1.0,
+      "ndcg@1": 1.0,
       "top_1": [
-        "astrobench_5a7e978abc_chunk_001"
+        "astrobench_25d49d337f_chunk_000"
       ],
-      "recall@3": 0.0,
-      "mrr@3": 0.0,
-      "ndcg@3": 0.0,
+      "recall@3": 1.0,
+      "mrr@3": 1.0,
+      "ndcg@3": 1.0,
       "top_3": [
-        "astrobench_5a7e978abc_chunk_001",
-        "astrobench_5a7e978abc_chunk_000",
-        "astrobench_f39a1ece76_chunk_003"
+        "astrobench_25d49d337f_chunk_000",
+        "astrobench_cc18f51e25_chunk_000",
+        "astrobench_25d49d337f_chunk_001"
       ],
-      "recall@5": 0.0,
-      "mrr@5": 0.0,
-      "ndcg@5": 0.0,
+      "recall@5": 1.0,
+      "mrr@5": 1.0,
+      "ndcg@5": 0.7227265726449519,
       "top_5": [
-        "astrobench_5a7e978abc_chunk_001",
-        "astrobench_5a7e978abc_chunk_000",
-        "astrobench_f39a1ece76_chunk_003",
-        "astrobench_77bae5d126_chunk_002",
-        "astrobench_2e4e6e49b6_chunk_000"
+        "astrobench_25d49d337f_chunk_000",
+        "astrobench_cc18f51e25_chunk_000",
+        "astrobench_25d49d337f_chunk_001",
+        "astrobench_c59a82f3b2_chunk_002",
+        "astrobench_3474c47fe1_chunk_001"
       ],
-      "recall@10": 0.0,
-      "mrr@10": 0.0,
-      "ndcg@10": 0.0,
+      "recall@10": 1.0,
+      "mrr@10": 1.0,
+      "ndcg@10": 0.8207658584763088,
       "top_10": [
-        "astrobench_5a7e978abc_chunk_001",
-        "astrobench_5a7e978abc_chunk_000",
-        "astrobench_f39a1ece76_chunk_003",
-        "astrobench_77bae5d126_chunk_002",
-        "astrobench_2e4e6e49b6_chunk_000",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_705f443da5_chunk_000",
-        "astrobench_607ea01ed4_chunk_001",
-        "astrobench_2dc9dfa095_chunk_000",
-        "astrobench_a92533502a_chunk_002"
+        "astrobench_25d49d337f_chunk_000",
+        "astrobench_cc18f51e25_chunk_000",
+        "astrobench_25d49d337f_chunk_001",
+        "astrobench_c59a82f3b2_chunk_002",
+        "astrobench_3474c47fe1_chunk_001",
+        "astrobench_c59a82f3b2_chunk_001",
+        "astrobench_c59a82f3b2_chunk_000",
+        "astrobench_cbff59e329_chunk_001",
+        "astrobench_eb380fd57f_chunk_001",
+        "astrobench_cc18f51e25_chunk_001"
       ]
     },
     {
@@ -375,40 +375,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_f39a1ece76_chunk_000"
+        "astrobench_1e3dee4300_chunk_000"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_79edfd6850_chunk_000"
+        "astrobench_1e3dee4300_chunk_000",
+        "astrobench_a877243f10_chunk_000",
+        "astrobench_c59a82f3b2_chunk_000"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_2e4e6e49b6_chunk_000"
+        "astrobench_1e3dee4300_chunk_000",
+        "astrobench_a877243f10_chunk_000",
+        "astrobench_c59a82f3b2_chunk_000",
+        "astrobench_1e3dee4300_chunk_002",
+        "astrobench_1e3dee4300_chunk_001"
       ],
       "recall@10": 0.0,
       "mrr@10": 0.0,
       "ndcg@10": 0.0,
       "top_10": [
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_2e4e6e49b6_chunk_000",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_3715816dc6_chunk_002",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_e79f7171c5_chunk_000"
+        "astrobench_1e3dee4300_chunk_000",
+        "astrobench_a877243f10_chunk_000",
+        "astrobench_c59a82f3b2_chunk_000",
+        "astrobench_1e3dee4300_chunk_002",
+        "astrobench_1e3dee4300_chunk_001",
+        "astrobench_15ca427d22_chunk_000",
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_d82fccf1ca_chunk_000",
+        "astrobench_a36c60393b_chunk_001",
+        "astrobench_e6b347fbf5_chunk_001"
       ]
     },
     {
@@ -419,84 +419,84 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_5a7e978abc_chunk_001"
+        "astrobench_c59a82f3b2_chunk_002"
       ],
-      "recall@3": 0.0,
-      "mrr@3": 0.0,
-      "ndcg@3": 0.0,
+      "recall@3": 1.0,
+      "mrr@3": 0.5,
+      "ndcg@3": 0.5307212739772434,
       "top_3": [
-        "astrobench_5a7e978abc_chunk_001",
-        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_c59a82f3b2_chunk_002",
+        "astrobench_25d49d337f_chunk_000",
+        "astrobench_25d49d337f_chunk_001"
+      ],
+      "recall@5": 1.0,
+      "mrr@5": 0.5,
+      "ndcg@5": 0.38356636737133565,
+      "top_5": [
+        "astrobench_c59a82f3b2_chunk_002",
+        "astrobench_25d49d337f_chunk_000",
+        "astrobench_25d49d337f_chunk_001",
+        "astrobench_cbff59e329_chunk_001",
         "astrobench_705f443da5_chunk_000"
       ],
-      "recall@5": 0.0,
-      "mrr@5": 0.0,
-      "ndcg@5": 0.0,
-      "top_5": [
-        "astrobench_5a7e978abc_chunk_001",
-        "astrobench_5a7e978abc_chunk_000",
-        "astrobench_705f443da5_chunk_000",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_3c4f4016f7_chunk_000"
-      ],
       "recall@10": 1.0,
-      "mrr@10": 0.1,
-      "ndcg@10": 0.09803928583135704,
+      "mrr@10": 0.5,
+      "ndcg@10": 0.38356636737133565,
       "top_10": [
-        "astrobench_5a7e978abc_chunk_001",
-        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_c59a82f3b2_chunk_002",
+        "astrobench_25d49d337f_chunk_000",
+        "astrobench_25d49d337f_chunk_001",
+        "astrobench_cbff59e329_chunk_001",
         "astrobench_705f443da5_chunk_000",
-        "astrobench_79edfd6850_chunk_000",
-        "astrobench_3c4f4016f7_chunk_000",
-        "astrobench_2e4e6e49b6_chunk_000",
-        "astrobench_7f15ee8dc6_chunk_001",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_3c4f4016f7_chunk_001",
-        "astrobench_0b92b2a07e_chunk_000"
+        "astrobench_c59a82f3b2_chunk_001",
+        "astrobench_1e3dee4300_chunk_000",
+        "astrobench_3474c47fe1_chunk_001",
+        "astrobench_a877243f10_chunk_000",
+        "astrobench_79edfd6850_chunk_000"
       ]
     },
     {
       "id": "astro_q011",
       "question": "Why might symplectic structure matter when building machine-learning models for Hamiltonian dynamics?",
       "gold_chunk_count": 5,
-      "recall@1": 0.0,
-      "mrr@1": 0.0,
-      "ndcg@1": 0.0,
+      "recall@1": 1.0,
+      "mrr@1": 1.0,
+      "ndcg@1": 1.0,
       "top_1": [
-        "astrobench_7f15ee8dc6_chunk_000"
+        "astrobench_25d49d337f_chunk_000"
       ],
-      "recall@3": 0.0,
-      "mrr@3": 0.0,
-      "ndcg@3": 0.0,
+      "recall@3": 1.0,
+      "mrr@3": 1.0,
+      "ndcg@3": 0.7653606369886217,
       "top_3": [
-        "astrobench_7f15ee8dc6_chunk_000",
-        "astrobench_3c4f4016f7_chunk_000",
-        "astrobench_7f15ee8dc6_chunk_001"
+        "astrobench_25d49d337f_chunk_000",
+        "astrobench_cc18f51e25_chunk_000",
+        "astrobench_3474c47fe1_chunk_001"
       ],
-      "recall@5": 0.0,
-      "mrr@5": 0.0,
-      "ndcg@5": 0.0,
+      "recall@5": 1.0,
+      "mrr@5": 1.0,
+      "ndcg@5": 0.5531464700081437,
       "top_5": [
-        "astrobench_7f15ee8dc6_chunk_000",
-        "astrobench_3c4f4016f7_chunk_000",
-        "astrobench_7f15ee8dc6_chunk_001",
-        "astrobench_2e4e6e49b6_chunk_001",
-        "astrobench_705f443da5_chunk_000"
+        "astrobench_25d49d337f_chunk_000",
+        "astrobench_cc18f51e25_chunk_000",
+        "astrobench_3474c47fe1_chunk_001",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_a877243f10_chunk_001"
       ],
       "recall@10": 1.0,
-      "mrr@10": 0.125,
-      "ndcg@10": 0.2090905274901754,
+      "mrr@10": 1.0,
+      "ndcg@10": 0.7682972668889274,
       "top_10": [
-        "astrobench_7f15ee8dc6_chunk_000",
-        "astrobench_3c4f4016f7_chunk_000",
-        "astrobench_7f15ee8dc6_chunk_001",
-        "astrobench_2e4e6e49b6_chunk_001",
+        "astrobench_25d49d337f_chunk_000",
+        "astrobench_cc18f51e25_chunk_000",
+        "astrobench_3474c47fe1_chunk_001",
         "astrobench_705f443da5_chunk_000",
-        "astrobench_fdc3cc4d1d_chunk_002",
-        "astrobench_2e4e6e49b6_chunk_002",
-        "astrobench_0b92b2a07e_chunk_000",
-        "astrobench_0b92b2a07e_chunk_001",
-        "astrobench_77bae5d126_chunk_002"
+        "astrobench_a877243f10_chunk_001",
+        "astrobench_a36c60393b_chunk_001",
+        "astrobench_25d49d337f_chunk_001",
+        "astrobench_3644e67b5c_chunk_001",
+        "astrobench_cc18f51e25_chunk_001",
+        "astrobench_eb380fd57f_chunk_001"
       ]
     },
     {
@@ -507,128 +507,128 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_5a7e978abc_chunk_001"
+        "astrobench_c59a82f3b2_chunk_002"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_5a7e978abc_chunk_001",
-        "astrobench_f39a1ece76_chunk_003",
-        "astrobench_5a7e978abc_chunk_000"
+        "astrobench_c59a82f3b2_chunk_002",
+        "astrobench_c59a82f3b2_chunk_001",
+        "astrobench_cbff59e329_chunk_001"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_5a7e978abc_chunk_001",
-        "astrobench_f39a1ece76_chunk_003",
-        "astrobench_5a7e978abc_chunk_000",
-        "astrobench_4ab087d14c_chunk_000",
-        "astrobench_0b92b2a07e_chunk_002"
+        "astrobench_c59a82f3b2_chunk_002",
+        "astrobench_c59a82f3b2_chunk_001",
+        "astrobench_cbff59e329_chunk_001",
+        "astrobench_3474c47fe1_chunk_001",
+        "astrobench_1e3dee4300_chunk_002"
       ],
-      "recall@10": 0.0,
-      "mrr@10": 0.0,
-      "ndcg@10": 0.0,
+      "recall@10": 1.0,
+      "mrr@10": 0.1,
+      "ndcg@10": 0.09803928583135704,
       "top_10": [
-        "astrobench_5a7e978abc_chunk_001",
-        "astrobench_f39a1ece76_chunk_003",
-        "astrobench_5a7e978abc_chunk_000",
-        "astrobench_4ab087d14c_chunk_000",
-        "astrobench_0b92b2a07e_chunk_002",
-        "astrobench_2e4e6e49b6_chunk_000",
-        "astrobench_2dc9dfa095_chunk_001",
-        "astrobench_7cecc39f1f_chunk_002",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_77bae5d126_chunk_000"
+        "astrobench_c59a82f3b2_chunk_002",
+        "astrobench_c59a82f3b2_chunk_001",
+        "astrobench_cbff59e329_chunk_001",
+        "astrobench_3474c47fe1_chunk_001",
+        "astrobench_1e3dee4300_chunk_002",
+        "astrobench_1e3dee4300_chunk_000",
+        "astrobench_d82fccf1ca_chunk_001",
+        "astrobench_a36c60393b_chunk_001",
+        "astrobench_a877243f10_chunk_000",
+        "astrobench_25d49d337f_chunk_001"
       ]
     },
     {
       "id": "astro_q013",
       "question": "How can survey selection effects bias inferences about Galactic structure?",
       "gold_chunk_count": 5,
-      "recall@1": 0.0,
-      "mrr@1": 0.0,
-      "ndcg@1": 0.0,
+      "recall@1": 1.0,
+      "mrr@1": 1.0,
+      "ndcg@1": 1.0,
       "top_1": [
-        "astrobench_f39a1ece76_chunk_000"
+        "astrobench_f31aa696a1_chunk_002"
       ],
-      "recall@3": 0.0,
-      "mrr@3": 0.0,
-      "ndcg@3": 0.0,
+      "recall@3": 1.0,
+      "mrr@3": 1.0,
+      "ndcg@3": 0.7653606369886217,
       "top_3": [
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_f39a1ece76_chunk_001"
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_98f72fa560_chunk_000"
       ],
-      "recall@5": 0.0,
-      "mrr@5": 0.0,
-      "ndcg@5": 0.0,
+      "recall@5": 1.0,
+      "mrr@5": 1.0,
+      "ndcg@5": 0.6992148198508501,
       "top_5": [
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_e1eb34802a_chunk_000"
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_98f72fa560_chunk_000",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_1e3dee4300_chunk_001"
       ],
       "recall@10": 1.0,
-      "mrr@10": 0.1111111111111111,
-      "ndcg@10": 0.10209739512291163,
+      "mrr@10": 1.0,
+      "ndcg@10": 0.6992148198508501,
       "top_10": [
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_98f72fa560_chunk_000",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_1e3dee4300_chunk_001",
+        "astrobench_ef28bece42_chunk_000",
+        "astrobench_ef28bece42_chunk_001",
+        "astrobench_0deff610d0_chunk_002",
         "astrobench_79edfd6850_chunk_001",
-        "astrobench_e1eb34802a_chunk_000",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_705f443da5_chunk_001",
-        "astrobench_d465ee1541_chunk_001"
+        "astrobench_3644e67b5c_chunk_000"
       ]
     },
     {
       "id": "astro_q014",
       "question": "Why is uncertainty quantification important when fitting Galactic dynamical models?",
       "gold_chunk_count": 5,
-      "recall@1": 1.0,
-      "mrr@1": 1.0,
-      "ndcg@1": 1.0,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_705f443da5_chunk_001"
+        "astrobench_e6b347fbf5_chunk_002"
       ],
       "recall@3": 1.0,
-      "mrr@3": 1.0,
-      "ndcg@3": 0.46927872602275644,
+      "mrr@3": 0.5,
+      "ndcg@3": 0.5307212739772434,
       "top_3": [
-        "astrobench_705f443da5_chunk_001",
-        "astrobench_2e4e6e49b6_chunk_000",
-        "astrobench_e1eb34802a_chunk_000"
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_f31aa696a1_chunk_001"
       ],
       "recall@5": 1.0,
-      "mrr@5": 1.0,
-      "ndcg@5": 0.48522855511632257,
+      "mrr@5": 0.5,
+      "ndcg@5": 0.5296347172140421,
       "top_5": [
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_f31aa696a1_chunk_001",
         "astrobench_705f443da5_chunk_001",
-        "astrobench_2e4e6e49b6_chunk_000",
-        "astrobench_e1eb34802a_chunk_000",
-        "astrobench_705f443da5_chunk_000",
-        "astrobench_2e4e6e49b6_chunk_001"
+        "astrobench_1e3dee4300_chunk_001"
       ],
       "recall@10": 1.0,
-      "mrr@10": 1.0,
-      "ndcg@10": 0.48522855511632257,
+      "mrr@10": 0.5,
+      "ndcg@10": 0.7346671354126629,
       "top_10": [
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_f31aa696a1_chunk_001",
         "astrobench_705f443da5_chunk_001",
-        "astrobench_2e4e6e49b6_chunk_000",
-        "astrobench_e1eb34802a_chunk_000",
-        "astrobench_705f443da5_chunk_000",
-        "astrobench_2e4e6e49b6_chunk_001",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_7f15ee8dc6_chunk_001",
-        "astrobench_7f15ee8dc6_chunk_000"
+        "astrobench_1e3dee4300_chunk_001",
+        "astrobench_e6b347fbf5_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_3474c47fe1_chunk_000",
+        "astrobench_705f443da5_chunk_000"
       ]
     },
     {
@@ -639,40 +639,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_2dc66d12b4_chunk_001"
+        "astrobench_e6b347fbf5_chunk_001"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_2dc66d12b4_chunk_000",
-        "astrobench_c483e6054d_chunk_000"
+        "astrobench_e6b347fbf5_chunk_001",
+        "astrobench_98f72fa560_chunk_001",
+        "astrobench_cbff59e329_chunk_001"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_2dc66d12b4_chunk_000",
-        "astrobench_c483e6054d_chunk_000",
-        "astrobench_3715816dc6_chunk_001",
-        "astrobench_e79f7171c5_chunk_000"
+        "astrobench_e6b347fbf5_chunk_001",
+        "astrobench_98f72fa560_chunk_001",
+        "astrobench_cbff59e329_chunk_001",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_e6b347fbf5_chunk_000"
       ],
       "recall@10": 0.0,
       "mrr@10": 0.0,
       "ndcg@10": 0.0,
       "top_10": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_2dc66d12b4_chunk_000",
-        "astrobench_c483e6054d_chunk_000",
-        "astrobench_3715816dc6_chunk_001",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_c483e6054d_chunk_001",
-        "astrobench_896e277f9b_chunk_000",
-        "astrobench_f39a1ece76_chunk_002"
+        "astrobench_e6b347fbf5_chunk_001",
+        "astrobench_98f72fa560_chunk_001",
+        "astrobench_cbff59e329_chunk_001",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_e6b347fbf5_chunk_000",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_ef28bece42_chunk_000",
+        "astrobench_c4e7b8fe70_chunk_002"
       ]
     },
     {
@@ -690,33 +690,33 @@
       "ndcg@3": 0.0,
       "top_3": [
         "astrobench_79edfd6850_chunk_001",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_5a0fea33d4_chunk_002"
+        "astrobench_98f72fa560_chunk_001",
+        "astrobench_f31aa696a1_chunk_002"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
         "astrobench_79edfd6850_chunk_001",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_5a0fea33d4_chunk_002",
-        "astrobench_896e277f9b_chunk_000",
-        "astrobench_5a0fea33d4_chunk_001"
+        "astrobench_98f72fa560_chunk_001",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_0deff610d0_chunk_001"
       ],
       "recall@10": 0.0,
       "mrr@10": 0.0,
       "ndcg@10": 0.0,
       "top_10": [
         "astrobench_79edfd6850_chunk_001",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_5a0fea33d4_chunk_002",
-        "astrobench_896e277f9b_chunk_000",
-        "astrobench_5a0fea33d4_chunk_001",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_a92533502a_chunk_002",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_2dc66d12b4_chunk_001"
+        "astrobench_98f72fa560_chunk_001",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_3644e67b5c_chunk_001",
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_1e3dee4300_chunk_001",
+        "astrobench_f31aa696a1_chunk_001"
       ]
     },
     {
@@ -727,40 +727,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_2dc9dfa095_chunk_001"
+        "astrobench_b7b4f9944a_chunk_001"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_2dc9dfa095_chunk_001",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_f39a1ece76_chunk_001"
+        "astrobench_b7b4f9944a_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_0deff610d0_chunk_001"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_2dc9dfa095_chunk_001",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_2dc66d12b4_chunk_001"
+        "astrobench_b7b4f9944a_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_e6b347fbf5_chunk_002"
       ],
       "recall@10": 0.0,
       "mrr@10": 0.0,
       "ndcg@10": 0.0,
       "top_10": [
-        "astrobench_2dc9dfa095_chunk_001",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_b7b4f9944a_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_0deff610d0_chunk_001",
         "astrobench_79edfd6850_chunk_001",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_89946c0156_chunk_000",
-        "astrobench_751415ed9c_chunk_002"
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_e6b347fbf5_chunk_000",
+        "astrobench_15ca427d22_chunk_001",
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_6b026e54cb_chunk_000",
+        "astrobench_f31aa696a1_chunk_001"
       ]
     },
     {
@@ -771,40 +771,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_89946c0156_chunk_000"
+        "astrobench_3644e67b5c_chunk_000"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_89946c0156_chunk_000",
-        "astrobench_89946c0156_chunk_001",
-        "astrobench_751415ed9c_chunk_002"
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_3644e67b5c_chunk_001"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_89946c0156_chunk_000",
-        "astrobench_89946c0156_chunk_001",
-        "astrobench_751415ed9c_chunk_002",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_9412e325b6_chunk_000"
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_3644e67b5c_chunk_001",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_79edfd6850_chunk_001"
       ],
       "recall@10": 0.0,
       "mrr@10": 0.0,
       "ndcg@10": 0.0,
       "top_10": [
-        "astrobench_89946c0156_chunk_000",
-        "astrobench_89946c0156_chunk_001",
-        "astrobench_751415ed9c_chunk_002",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_5a0fea33d4_chunk_001",
-        "astrobench_896e277f9b_chunk_000",
-        "astrobench_79edfd6850_chunk_001"
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_3644e67b5c_chunk_001",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_1e3dee4300_chunk_000",
+        "astrobench_1e3dee4300_chunk_001",
+        "astrobench_b7b4f9944a_chunk_001",
+        "astrobench_0deff610d0_chunk_002",
+        "astrobench_cbff59e329_chunk_001"
       ]
     },
     {
@@ -815,40 +815,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_9412e325b6_chunk_000"
+        "astrobench_3644e67b5c_chunk_000"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_e79f7171c5_chunk_001"
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_0deff610d0_chunk_002"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_2dc9dfa095_chunk_001"
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_0deff610d0_chunk_002",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_f31aa696a1_chunk_001"
       ],
       "recall@10": 0.0,
       "mrr@10": 0.0,
       "ndcg@10": 0.0,
       "top_10": [
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_2dc9dfa095_chunk_001",
-        "astrobench_7b30a7e2e5_chunk_001",
-        "astrobench_71ae09d438_chunk_000",
-        "astrobench_d465ee1541_chunk_000",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_2dc66d12b4_chunk_001"
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_0deff610d0_chunk_002",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_6b026e54cb_chunk_001",
+        "astrobench_ef28bece42_chunk_001",
+        "astrobench_6b026e54cb_chunk_002"
       ]
     },
     {
@@ -859,40 +859,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_2dc66d12b4_chunk_001"
+        "astrobench_a36c60393b_chunk_000"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_2dc66d12b4_chunk_000",
-        "astrobench_f39a1ece76_chunk_002"
+        "astrobench_a36c60393b_chunk_000",
+        "astrobench_ef28bece42_chunk_001",
+        "astrobench_e6b347fbf5_chunk_002"
       ],
-      "recall@5": 1.0,
-      "mrr@5": 0.25,
-      "ndcg@5": 0.20210734650054757,
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_2dc66d12b4_chunk_000",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_c83c1593d9_chunk_001",
-        "astrobench_71ae09d438_chunk_001"
+        "astrobench_a36c60393b_chunk_000",
+        "astrobench_ef28bece42_chunk_001",
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_e6b347fbf5_chunk_001",
+        "astrobench_0deff610d0_chunk_001"
       ],
       "recall@10": 1.0,
-      "mrr@10": 0.25,
-      "ndcg@10": 0.35853358850813305,
+      "mrr@10": 0.1,
+      "ndcg@10": 0.13565197343244778,
       "top_10": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_2dc66d12b4_chunk_000",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_c83c1593d9_chunk_001",
-        "astrobench_71ae09d438_chunk_001",
-        "astrobench_7f15ee8dc6_chunk_001",
-        "astrobench_c83c1593d9_chunk_002",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_3715816dc6_chunk_001",
-        "astrobench_705f443da5_chunk_001"
+        "astrobench_a36c60393b_chunk_000",
+        "astrobench_ef28bece42_chunk_001",
+        "astrobench_e6b347fbf5_chunk_002",
+        "astrobench_e6b347fbf5_chunk_001",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_ef28bece42_chunk_000",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_25d49d337f_chunk_000"
       ]
     },
     {
@@ -903,40 +903,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_2dc66d12b4_chunk_001"
+        "astrobench_3644e67b5c_chunk_001"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_896e277f9b_chunk_000",
-        "astrobench_e79f7171c5_chunk_000"
+        "astrobench_3644e67b5c_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_0deff610d0_chunk_001"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_896e277f9b_chunk_000",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_3c4f4016f7_chunk_000",
-        "astrobench_2dc66d12b4_chunk_000"
+        "astrobench_3644e67b5c_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_f31aa696a1_chunk_000"
       ],
       "recall@10": 0.0,
       "mrr@10": 0.0,
       "ndcg@10": 0.0,
       "top_10": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_896e277f9b_chunk_000",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_3c4f4016f7_chunk_000",
-        "astrobench_2dc66d12b4_chunk_000",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_3c4f4016f7_chunk_001",
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_79edfd6850_chunk_001"
+        "astrobench_3644e67b5c_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_f31aa696a1_chunk_000",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_0deff610d0_chunk_002",
+        "astrobench_c4e7b8fe70_chunk_002"
       ]
     },
     {
@@ -947,40 +947,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_2dc66d12b4_chunk_001"
+        "astrobench_3644e67b5c_chunk_002"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_89946c0156_chunk_001"
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_3644e67b5c_chunk_001",
+        "astrobench_3644e67b5c_chunk_000"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_89946c0156_chunk_001",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_e79f7171c5_chunk_001"
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_3644e67b5c_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_f31aa696a1_chunk_002"
       ],
-      "recall@10": 0.0,
-      "mrr@10": 0.0,
-      "ndcg@10": 0.0,
+      "recall@10": 1.0,
+      "mrr@10": 0.125,
+      "ndcg@10": 0.1480409554829326,
       "top_10": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_89946c0156_chunk_001",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_e79f7171c5_chunk_001",
-        "astrobench_89946c0156_chunk_000",
-        "astrobench_9412e325b6_chunk_001",
-        "astrobench_5a0fea33d4_chunk_001",
-        "astrobench_e79f7171c5_chunk_000",
-        "astrobench_fdc3cc4d1d_chunk_002"
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_3644e67b5c_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_1e3dee4300_chunk_001",
+        "astrobench_a877243f10_chunk_001",
+        "astrobench_25d49d337f_chunk_000",
+        "astrobench_cbff59e329_chunk_000",
+        "astrobench_0deff610d0_chunk_001"
       ]
     },
     {
@@ -991,40 +991,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_2dc66d12b4_chunk_001"
+        "astrobench_3644e67b5c_chunk_000"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_9412e325b6_chunk_001",
-        "astrobench_3c4f4016f7_chunk_001"
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_cbff59e329_chunk_002",
+        "astrobench_3644e67b5c_chunk_002"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_9412e325b6_chunk_001",
-        "astrobench_3c4f4016f7_chunk_001",
-        "astrobench_77bae5d126_chunk_002",
-        "astrobench_7b30a7e2e5_chunk_001"
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_cbff59e329_chunk_002",
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_1e3dee4300_chunk_001",
+        "astrobench_cbff59e329_chunk_000"
       ],
       "recall@10": 0.0,
       "mrr@10": 0.0,
       "ndcg@10": 0.0,
       "top_10": [
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_9412e325b6_chunk_001",
-        "astrobench_3c4f4016f7_chunk_001",
-        "astrobench_77bae5d126_chunk_002",
-        "astrobench_7b30a7e2e5_chunk_001",
-        "astrobench_3c4f4016f7_chunk_002",
-        "astrobench_3715816dc6_chunk_001",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_5a0fea33d4_chunk_002",
-        "astrobench_9412e325b6_chunk_000"
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_cbff59e329_chunk_002",
+        "astrobench_3644e67b5c_chunk_002",
+        "astrobench_1e3dee4300_chunk_001",
+        "astrobench_cbff59e329_chunk_000",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_cbff59e329_chunk_001",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_b7b4f9944a_chunk_002"
       ]
     },
     {
@@ -1035,40 +1035,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_f39a1ece76_chunk_002"
+        "astrobench_c4e7b8fe70_chunk_002"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_79edfd6850_chunk_001"
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_ef28bece42_chunk_001",
+        "astrobench_0deff610d0_chunk_002"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_5a0fea33d4_chunk_000",
-        "astrobench_79edfd6850_chunk_001",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_2dc66d12b4_chunk_001"
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_ef28bece42_chunk_001",
+        "astrobench_0deff610d0_chunk_002",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_cbff59e329_chunk_001"
       ],
       "recall@10": 0.0,
       "mrr@10": 0.0,
       "ndcg@10": 0.0,
       "top_10": [
-        "astrobench_f39a1ece76_chunk_002",
-        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_c4e7b8fe70_chunk_002",
+        "astrobench_ef28bece42_chunk_001",
+        "astrobench_0deff610d0_chunk_002",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_cbff59e329_chunk_001",
         "astrobench_79edfd6850_chunk_001",
-        "astrobench_d465ee1541_chunk_001",
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_896e277f9b_chunk_000",
-        "astrobench_f39a1ece76_chunk_001",
-        "astrobench_f39a1ece76_chunk_000",
-        "astrobench_3c4f4016f7_chunk_000",
-        "astrobench_71ae09d438_chunk_000"
+        "astrobench_a36c60393b_chunk_000",
+        "astrobench_e6b347fbf5_chunk_000",
+        "astrobench_ef28bece42_chunk_000",
+        "astrobench_f31aa696a1_chunk_002"
       ]
     },
     {
@@ -1079,40 +1079,40 @@
       "mrr@1": 0.0,
       "ndcg@1": 0.0,
       "top_1": [
-        "astrobench_9412e325b6_chunk_001"
+        "astrobench_cbff59e329_chunk_000"
       ],
       "recall@3": 0.0,
       "mrr@3": 0.0,
       "ndcg@3": 0.0,
       "top_3": [
-        "astrobench_9412e325b6_chunk_001",
-        "astrobench_7aa3a655d9_chunk_002",
-        "astrobench_9412e325b6_chunk_000"
+        "astrobench_cbff59e329_chunk_000",
+        "astrobench_cbff59e329_chunk_001",
+        "astrobench_3644e67b5c_chunk_000"
       ],
       "recall@5": 0.0,
       "mrr@5": 0.0,
       "ndcg@5": 0.0,
       "top_5": [
-        "astrobench_9412e325b6_chunk_001",
-        "astrobench_7aa3a655d9_chunk_002",
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_89946c0156_chunk_001",
-        "astrobench_3c4f4016f7_chunk_002"
-      ],
-      "recall@10": 0.0,
-      "mrr@10": 0.0,
-      "ndcg@10": 0.0,
-      "top_10": [
-        "astrobench_9412e325b6_chunk_001",
-        "astrobench_7aa3a655d9_chunk_002",
-        "astrobench_9412e325b6_chunk_000",
-        "astrobench_89946c0156_chunk_001",
-        "astrobench_3c4f4016f7_chunk_002",
-        "astrobench_2dc66d12b4_chunk_001",
-        "astrobench_7aa3a655d9_chunk_001",
+        "astrobench_cbff59e329_chunk_000",
+        "astrobench_cbff59e329_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
         "astrobench_705f443da5_chunk_001",
-        "astrobench_5a0fea33d4_chunk_002",
-        "astrobench_89946c0156_chunk_000"
+        "astrobench_f31aa696a1_chunk_002"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 0.1,
+      "ndcg@10": 0.13565197343244778,
+      "top_10": [
+        "astrobench_cbff59e329_chunk_000",
+        "astrobench_cbff59e329_chunk_001",
+        "astrobench_3644e67b5c_chunk_000",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_f31aa696a1_chunk_002",
+        "astrobench_f31aa696a1_chunk_001",
+        "astrobench_98f72fa560_chunk_000",
+        "astrobench_0deff610d0_chunk_001",
+        "astrobench_98f72fa560_chunk_001",
+        "astrobench_25d49d337f_chunk_000"
       ]
     }
   ]

@@ -61,3 +61,11 @@ Week 2 should now implement:
 3. chunk creation with stable chunk ids
 4. lexical and dense retrieval baselines
 5. retrieval evaluation against this benchmark draft
+
+## Current corpus-selection status
+
+The repository now includes a first curated seed list:
+- `corpus.seed.csv` — human-editable benchmark paper seeds
+- `corpus.seed.md` — lightweight policy notes for corpus curation
+
+This replaces a purely heuristic benchmark subset with a more controllable starter corpus. The next pass should still manually validate every selected paper and attach real full-text evidence.

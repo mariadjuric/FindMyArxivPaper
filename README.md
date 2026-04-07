@@ -113,6 +113,7 @@ After the week-1 scaffold, the next implementation milestones are:
 The first week-2 implementation slice is now in the repo:
 - benchmark corpus manifest generation from the arXiv astro-ph dataset
 - stable benchmark paper ids
+- a human-editable curated seed list for benchmark paper selection
 - chunk generation with stable chunk ids over title+abstract text
 - linked benchmark questions with provisional `gold_papers` and `gold_chunks`
 - lexical baseline retrieval over chunks

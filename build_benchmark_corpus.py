@@ -16,11 +16,12 @@ MANIFEST_PATH = ROOT / "data" / "processed" / "benchmark_corpus_manifest.csv"
 CHUNKS_PATH = ROOT / "data" / "processed" / "paper_chunks.csv"
 QUESTIONS_PATH = ROOT / "benchmarks" / "astrophysics_qa" / "questions.v0.json"
 LINKED_QUESTIONS_PATH = ROOT / "benchmarks" / "astrophysics_qa" / "questions.linked.json"
+SEED_PATH = ROOT / "benchmarks" / "astrophysics_qa" / "corpus.seed.csv"
 
 
 def main() -> None:
     df = load_dataset(DATASET_PATH)
-    manifest = build_corpus_manifest(df, limit=36)
+    manifest = build_corpus_manifest(df, limit=36, seed_path=SEED_PATH)
     save_corpus_manifest(manifest, MANIFEST_PATH)
 
     chunks = build_chunk_records(manifest, ChunkingConfig(chunk_words=120, overlap_words=30, min_chunk_words=30))
