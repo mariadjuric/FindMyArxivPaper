@@ -1,6 +1,6 @@
 # FMAP: FindMyArxivPaper
 
-**FMAP: FindMyArxivPaper** is a local paper-atlas project for astrophysics and arXiv exploration.
+**FMAP: FindMyArxivPaper** started as a local paper-atlas project for astrophysics and arXiv exploration.
 
 It combines:
 - **real arXiv ingestion**
@@ -8,7 +8,36 @@ It combines:
 - **semantic embeddings** for similarity and retrieval
 - a **generated interactive HTML atlas** for browsing papers as a map
 
-The project name is **FMAP: FindMyArxivPaper**.
+FMAP is now evolving into a second, more research-heavy track:
+
+## FMAP-RAG Lab
+
+**FMAP-RAG Lab** is the new astrophysics-first research direction inside this same repository.
+It extends FMAP from atlas-style exploration into **citation-faithful question answering over scientific papers**.
+
+The long-term goal is not to build a generic chatbot over papers. The goal is to study:
+- dense retrieval over scientific text
+- reranking and late-interaction-inspired retrieval
+- flat vs section-aware or hierarchical retrieval
+- citation-grounded answer generation
+- retrieval quality, answer correctness, citation precision, and factual support
+
+This repository therefore now has **two connected tracks**:
+
+1. **FMAP Atlas**
+   - arXiv ingestion
+   - semantic search
+   - category classification
+   - UMAP-based interactive paper map
+
+2. **FMAP-RAG Lab**
+   - astrophysics QA benchmark scaffolding
+   - chunk/evidence-oriented scientific retrieval
+   - citation-faithful answer generation
+   - research-style evaluation for retrieval and factuality
+
+The project name remains **FMAP: FindMyArxivPaper**.
+**FMAP-RAG Lab** is the new flagship research track growing from the same foundation.
 
 ---
 
@@ -32,7 +61,7 @@ Important note:
 
 ---
 
-## What FMAP does
+## What FMAP currently does
 
 FMAP can:
 - ingest paper metadata from CSV
@@ -49,9 +78,38 @@ This makes it much closer to a real paper-atlas / portfolio project than a toy c
 
 ---
 
-## Modeling roadmap: v1 and v2
+## What FMAP-RAG Lab will add
 
-FMAP now has two classification tracks.
+The new research track is being built incrementally.
+
+### Week 1 milestone
+Week 1 focuses on **research scaffolding rather than model complexity**:
+- benchmark scaffold for astrophysics QA
+- processed-data schema for future chunk/evidence retrieval
+- reading list tying the project to concrete retrieval/RAG/factuality papers
+- repository refactor direction for the upcoming retrieval and QA work
+
+See:
+- [Week 1 roadmap](docs/roadmaps/fmap-rag-lab-week1.md)
+- [Astrophysics QA benchmark scaffold](benchmarks/astrophysics_qa/README.md)
+- [Reading list](docs/references/fmap-rag-reading-list.md)
+- [Processed-data layout](data/processed/README.md)
+- [Source layout scaffold](src/fmap/README.md)
+
+### Planned next steps
+After the week-1 scaffold, the next implementation milestones are:
+1. build a small astrophysics benchmark corpus
+2. extract section-aware or full-text scientific chunks
+3. compare lexical and dense retrieval baselines
+4. add reranking
+5. add citation-grounded answer generation
+6. evaluate retrieval, answer quality, citation precision, and factual support
+
+---
+
+## Modeling roadmap: FMAP Atlas v1 and v2
+
+FMAP already has two classification tracks.
 
 ### v1: classic baseline classifier
 
@@ -71,7 +129,7 @@ This is still the default model path.
 
 ### v2: deep learning classifier
 
-This is the new PyTorch-based classifier.
+This is the PyTorch-based classifier.
 
 - **Framework:** PyTorch + Hugging Face Transformers
 - **Default backbone:** `allenai/scibert_scivocab_uncased`
@@ -346,7 +404,7 @@ That plot is written to:
 
 ---
 
-## Project structure
+## Repository structure
 
 ```text
 FindMyArxivPaper/
@@ -363,12 +421,25 @@ FindMyArxivPaper/
 ├── plots.py
 ├── search.py
 ├── demo.py
+├── benchmarks/
+│   └── astrophysics_qa/
+│       ├── README.md
+│       └── questions.seed.json
+├── docs/
+│   ├── references/
+│   │   └── fmap-rag-reading-list.md
+│   └── roadmaps/
+│       └── fmap-rag-lab-week1.md
+├── src/
+│   └── fmap/
+│       └── README.md
 ├── data/
 │   ├── raw/
 │   │   ├── papers.csv
 │   │   ├── papers_perfect.csv
 │   │   └── arxiv_astro_ph_papers.csv
 │   └── processed/
+│       └── README.md
 └── outputs/
     ├── figures/
     ├── metrics/
@@ -532,7 +603,7 @@ Orchestrates the full workflow:
 
 ## What is new in v2
 
-The new deep-learning track adds:
+The deep-learning track adds:
 - PyTorch-based text classification
 - transformer fine-tuning with SciBERT by default
 - checkpoint-style saving for the deep model
@@ -545,13 +616,14 @@ That makes FMAP feel less like a pure classical-ML demo and more like a real exp
 
 ## Why this is useful
 
-FMAP is a strong portfolio-style project because it combines:
+FMAP is now a stronger long-form project because it combines:
 - real data ingestion
 - NLP embeddings
 - baseline and deep text classification
 - retrieval
 - interactive visualization
 - reproducible outputs
-- historical range analysis through year plots and year-window fetching
+- a research-facing roadmap toward citation-faithful scientific QA
 
-It is now much closer to a real **astrophysics paper atlas** than a simple CSV classification demo, while still staying lightweight and hackable.
+The existing atlas and classifier work already make the repository useful and demoable.
+The new FMAP-RAG Lab track is what will turn it into a more serious retrieval / grounded-generation / evaluation project built on astrophysics papers rather than a generic RAG app.

@@ -9,3 +9,4 @@ outputs/metrics/*.json
 outputs/figures/*.png
 outputs/site/
 *.csv
+!benchmarks/astrophysics_qa/questions.seed.json

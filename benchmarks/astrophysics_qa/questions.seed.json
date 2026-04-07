@@ -1,0 +1,52 @@
+[
+  {
+    "id": "astro_q001",
+    "question": "What physical mechanisms are commonly proposed to explain vertical phase-space spirals in the Galactic disc?",
+    "topic": "galactic dynamics",
+    "question_type": "mechanism",
+    "gold_papers": [],
+    "gold_chunks": [],
+    "reference_answer": "Expected answer should discuss perturbations such as satellite interactions, bending waves, or disequilibrium responses in the Galactic disc, depending on the selected corpus.",
+    "notes": "Seed question only; attach gold papers/chunks once the initial paper subset is fixed."
+  },
+  {
+    "id": "astro_q002",
+    "question": "How do action-angle coordinates help simplify the description of Hamiltonian orbital motion?",
+    "topic": "dynamical systems",
+    "question_type": "definition",
+    "gold_papers": [],
+    "gold_chunks": [],
+    "reference_answer": "Expected answer should explain that action-angle coordinates linearise or simplify integrable motion, making orbital frequencies and invariant structure easier to represent.",
+    "notes": "Seed question only; intended to connect to action-angle / Hamiltonian background."
+  },
+  {
+    "id": "astro_q003",
+    "question": "What observational or modelling challenges arise when inferring Milky Way distribution functions from survey data?",
+    "topic": "galactic astronomy",
+    "question_type": "challenge",
+    "gold_papers": [],
+    "gold_chunks": [],
+    "reference_answer": "Expected answer should mention selection effects, measurement uncertainty, model assumptions, and equilibrium or non-equilibrium structure.",
+    "notes": "Seed question only; useful for evaluating multi-point evidence retrieval."
+  },
+  {
+    "id": "astro_q004",
+    "question": "What are the differences between a dense embedding retriever and a lexical baseline when searching astrophysics papers?",
+    "topic": "scientific retrieval",
+    "question_type": "comparison",
+    "gold_papers": [],
+    "gold_chunks": [],
+    "reference_answer": "Expected answer should contrast exact-term or sparse retrieval with dense semantic retrieval, especially on paraphrase or vocabulary mismatch.",
+    "notes": "Method-focused question for the retrieval side of FMAP-RAG Lab."
+  },
+  {
+    "id": "astro_q005",
+    "question": "Why is citation-grounded answering stricter than ordinary semantic search over scientific abstracts?",
+    "topic": "scientific QA",
+    "question_type": "definition",
+    "gold_papers": [],
+    "gold_chunks": [],
+    "reference_answer": "Expected answer should explain that answers must be explicitly supported by cited evidence passages, not just topically related documents.",
+    "notes": "Method-focused question for the RAG evaluation track."
+  }
+]
