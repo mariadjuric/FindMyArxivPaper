@@ -1,38 +1,26 @@
-# Astrophysics QA benchmark (week 1 scaffold)
+# Astrophysics QA benchmark
 
-This directory contains the first benchmark scaffold for **FMAP-RAG Lab**.
+This directory contains the first concrete benchmark pack for **FMAP-RAG Lab**.
 
-The point of this benchmark is to stop the project from becoming a vague demo. Every retrieval, reranking, and grounded-generation change should eventually be evaluated against a stable astrophysics QA set.
+The point of this benchmark is to keep the project academically honest. Retrieval, reranking, and grounded-generation changes should eventually be evaluated against a stable astrophysics QA set with explicit evidence targets.
 
-## Week 1 deliverables
+## Current contents
 
-- Define the benchmark schema.
-- Draft a first small astrophysics-first evaluation set.
-- Keep the benchmark narrow enough that the evidence can be checked manually.
+- `schema.md` — benchmark item schema
+- `corpus-plan.md` — how to choose the first curated astrophysics paper subset
+- `questions.seed.json` — very small initial seed set kept for reference
+- `questions.v0.json` — first working benchmark draft with 25 questions
 
-## Planned benchmark fields
+## Benchmark design goals
 
-Each item should eventually include:
+The benchmark is designed to support:
 
-- `id`: stable question id
-- `question`: natural-language question
-- `topic`: broad astrophysics topic
-- `question_type`: e.g. mechanism, method, comparison, definition, result
-- `gold_papers`: one or more relevant paper ids
-- `gold_chunks`: one or more gold evidence chunk ids
-- `reference_answer`: short human-written answer
-- `notes`: optional annotation notes
-
-## Intended use
-
-This benchmark will support evaluation of:
-
-1. **Retrieval quality**
+1. **Retrieval evaluation**
    - Recall@k
    - MRR
    - nDCG
 
-2. **Answer quality**
+2. **Answer evaluation**
    - correctness / completeness
    - abstention behaviour when evidence is weak
 
@@ -42,6 +30,34 @@ This benchmark will support evaluation of:
 4. **Claim-level factuality**
    - inspired by FActScore-style support checking
 
-## Scope for the first version
+## Week 1 actual milestone
 
-Start with roughly **25 manually curated questions** over a small astrophysics corpus. Expand later to 50–100 when the pipeline is stable.
+The week-1 milestone is now considered complete when the repo contains:
+
+- a benchmark schema
+- a realistic corpus-selection plan
+- a first working benchmark draft of roughly 25 questions
+- a chunk schema for the next implementation stage
+
+This has now been done in scaffold form. The next step is to freeze the actual paper subset and replace placeholder `gold_papers` / `gold_chunks` with real ids.
+
+## Scope for the first benchmark corpus
+
+The recommended first benchmark corpus is:
+- **30–50 astrophysics papers**
+- organised around 3 topic clusters:
+  - Galactic dynamics / Milky Way disequilibria
+  - Distribution functions / inference modelling
+  - Hamiltonian dynamics / action-angle methods
+
+That is large enough for meaningful retrieval experiments and still small enough for manual evidence inspection.
+
+## Immediate next step
+
+Week 2 should now implement:
+
+1. paper subset selection
+2. full-text or section-aware extraction
+3. chunk creation with stable chunk ids
+4. lexical and dense retrieval baselines
+5. retrieval evaluation against this benchmark draft

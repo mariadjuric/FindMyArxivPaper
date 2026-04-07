@@ -15,7 +15,12 @@ This directory now supports both the original FMAP atlas pipeline and the new **
 - `chunk_embeddings.npy` or vector-store export
 - `benchmark_splits/` — optional benchmark-specific paper subsets
 
-## Chunk schema draft
+## Concrete schema docs
+
+- `chunk-schema.md` — formal retrieval chunk schema
+- benchmark-side schema docs live in `benchmarks/astrophysics_qa/`
+
+## Chunk schema summary
 
 Each retrieval chunk should eventually include:
 
@@ -32,4 +37,12 @@ Each retrieval chunk should eventually include:
 - `authors`
 - `url`
 
-The first week only defines this schema and project structure. Full-text extraction and chunk population come in the next milestone.
+Additional recommended retrieval metadata:
+
+- `word_count`
+- `token_count`
+- `topic_cluster`
+- `contains_citation_marker`
+- `contains_equation_like_text`
+
+The week-1 milestone now freezes the schema and benchmark planning documents. Full-text extraction and chunk population come in the next milestone.

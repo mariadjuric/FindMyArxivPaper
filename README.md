@@ -91,9 +91,13 @@ Week 1 focuses on **research scaffolding rather than model complexity**:
 
 See:
 - [Week 1 roadmap](docs/roadmaps/fmap-rag-lab-week1.md)
-- [Astrophysics QA benchmark scaffold](benchmarks/astrophysics_qa/README.md)
+- [Astrophysics QA benchmark pack](benchmarks/astrophysics_qa/README.md)
+- [Benchmark schema](benchmarks/astrophysics_qa/schema.md)
+- [Benchmark corpus plan](benchmarks/astrophysics_qa/corpus-plan.md)
+- [First 25-question draft](benchmarks/astrophysics_qa/questions.v0.json)
 - [Reading list](docs/references/fmap-rag-reading-list.md)
 - [Processed-data layout](data/processed/README.md)
+- [Chunk schema](data/processed/chunk-schema.md)
 - [Source layout scaffold](src/fmap/README.md)
 
 ### Planned next steps
