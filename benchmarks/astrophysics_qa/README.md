@@ -69,3 +69,13 @@ The repository now includes a first curated seed list:
 - `corpus.seed.md` — lightweight policy notes for corpus curation
 
 This replaces a purely heuristic benchmark subset with a more controllable starter corpus. The next pass should still manually validate every selected paper and attach real full-text evidence.
+
+## Full-text implementation status
+
+The repository now also includes a first full-text ingestion scaffold:
+- download arXiv PDFs for the curated benchmark corpus
+- extract raw text from PDFs
+- split extracted text into heuristic sections
+- build section-aware chunk files for later retrieval experiments
+
+This is not yet a polished PDF parser. It is a practical research scaffold for testing whether full-text retrieval materially improves over title+abstract chunks.

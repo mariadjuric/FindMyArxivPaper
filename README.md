@@ -119,11 +119,38 @@ The first week-2 implementation slice is now in the repo:
 - lexical baseline retrieval over chunks
 - dense baseline retrieval over chunks
 - retrieval evaluation script producing Recall@k, MRR@k, and nDCG@k
+- full-text ingestion scaffold for arXiv PDFs
+- extracted-section serialization and section-aware chunk generation
 
 Current limitation:
-- chunking is still title+abstract based, not full-paper PDF extraction yet
+- PDF extraction is now scaffolded, but section splitting is still heuristic
 - benchmark links are provisional and cluster-driven, not manually annotated evidence
-- this is the correct retrieval-first bridge between week-1 planning and later citation-grounded QA
+- full-text quality depends on the parseability of arXiv PDFs and installed dependencies
+- this is the correct bridge from retrieval scaffolding toward citation-grounded QA
+
+### Full-text ingestion workflow
+Once requirements are installed, the intended workflow is:
+
+```bash
+python3 build_benchmark_corpus.py
+python3 ingest_fulltext.py
+python3 build_section_chunks.py
+python3 evaluate_benchmark_retrieval.py
+```
+
+Key artifacts:
+- `data/raw/pdfs/` — downloaded arXiv PDFs
+- `data/processed/fulltext/` — extracted per-paper text files
+- `data/processed/paper_fulltext.csv` — ingestion status summary
+- `data/processed/paper_sections.json` — extracted text plus section records
+- `data/processed/paper_section_chunks.csv` — section-aware retrieval chunks
+
+Recommended first test:
+1. run full-text ingestion on the curated benchmark subset
+2. inspect extraction success/failure counts
+3. manually open 3-5 extracted text files
+4. verify section boundaries on a few papers
+5. switch retrieval evaluation from abstract chunks to section-aware chunks in the next pass
 
 ---
 

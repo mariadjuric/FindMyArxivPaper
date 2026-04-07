@@ -22,4 +22,4 @@ The source tree now includes a first retrieval-oriented implementation slice:
 - `retrieval/baselines.py` — lexical and dense chunk retrieval baselines
 - `evaluation/retrieval_eval.py` — Recall@k, MRR@k, and nDCG@k evaluation
 
-This is still an early bridge layer. Full PDF ingestion, section-aware extraction, reranking, and citation-grounded answering are still to come.
+This is still an early bridge layer. A first version of full PDF ingestion and section-aware extraction is now scaffolded, but reranking and citation-grounded answering are still to come.
