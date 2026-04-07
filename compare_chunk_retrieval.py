@@ -10,6 +10,7 @@ import pandas as pd
 from src.fmap.evaluation.retrieval_eval import evaluate_benchmark_retrieval
 from src.fmap.retrieval.baselines import BM25LikeRetriever, DenseChunkRetriever
 from src.fmap.retrieval.paper_first import PaperFirstBM25Retriever, PaperFirstDenseRetriever
+from src.fmap.retrieval.rerank import PaperFirstDenseRerankRetriever
 
 ROOT = Path(__file__).resolve().parent
 QUESTIONS_PATH = ROOT / "benchmarks" / "astrophysics_qa" / "questions.linked.json"
@@ -47,8 +48,13 @@ def run_eval(chunks_path: Path, label: str, include_paper_first: bool = False) -
         paper_first_dense.fit(chunks)
         pf_dense_results = evaluate_benchmark_retrieval(questions, paper_first_dense, top_ks=(1, 3, 5, 10))
 
+        rerank_dense = PaperFirstDenseRerankRetriever()
+        rerank_dense.fit(chunks)
+        rerank_results = evaluate_benchmark_retrieval(questions, rerank_dense, top_ks=(1, 3, 5, 10))
+
         result["paper_first_bm25"] = pf_bm25_results["aggregate"]
         result["paper_first_dense"] = pf_dense_results["aggregate"]
+        result["paper_first_rerank_dense"] = rerank_results["aggregate"]
 
     return result
 
@@ -57,8 +63,8 @@ def make_plot(results: list[dict]) -> Path:
     FIG_DIR.mkdir(parents=True, exist_ok=True)
     metrics = ["recall@10", "mrr@10", "ndcg@10"]
     x = np.arange(len(metrics))
-    width = 0.12
-    fig, ax = plt.subplots(figsize=(11, 5.5))
+    width = 0.11
+    fig, ax = plt.subplots(figsize=(12, 5.8))
 
     series = [
         ("abstract_bm25", [results[0]["bm25"][m] for m in metrics], "#64748b"),
@@ -67,15 +73,16 @@ def make_plot(results: list[dict]) -> Path:
         ("fulltext_dense", [results[1]["dense"][m] for m in metrics], "#a3be4c"),
         ("paperfirst_bm25", [results[1]["paper_first_bm25"][m] for m in metrics], "#14532d"),
         ("paperfirst_dense", [results[1]["paper_first_dense"][m] for m in metrics], "#22c55e"),
+        ("paperfirst_rerank_dense", [results[1]["paper_first_rerank_dense"][m] for m in metrics], "#86efac"),
     ]
     for idx, (name, vals, color) in enumerate(series):
-        ax.bar(x + (idx - 2.5) * width, vals, width, label=name, color=color)
+        ax.bar(x + (idx - 3.0) * width, vals, width, label=name, color=color)
 
     ax.set_xticks(x)
     ax.set_xticklabels(metrics)
     ax.set_ylim(0, 1.0)
     ax.set_ylabel("Score")
-    ax.set_title("Abstract vs direct full-text vs paper-first full-text retrieval")
+    ax.set_title("Abstract vs direct full-text vs paper-first vs reranked full-text retrieval")
     ax.legend(ncol=2)
     fig.tight_layout()
     out = FIG_DIR / "chunk_retrieval_comparison.png"
