@@ -6,7 +6,12 @@ __pycache__/
 outputs/models/*.joblib
 outputs/models/paper_classifier_v2/
 outputs/metrics/*.json
+!outputs/metrics/benchmark_retrieval_bm25.json
+!outputs/metrics/benchmark_retrieval_dense.json
 outputs/figures/*.png
 outputs/site/
 *.csv
+!data/processed/benchmark_corpus_manifest.csv
+!data/processed/paper_chunks.csv
 !benchmarks/astrophysics_qa/questions.seed.json
+!benchmarks/astrophysics_qa/questions.linked.json

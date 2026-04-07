@@ -13,3 +13,13 @@ This directory is a lightweight scaffold for a cleaner source layout as FMAP gro
 - `demo/` — local app / demonstration layer
 
 The existing top-level scripts remain usable during the transition. This scaffold exists so the next refactor has a clear destination rather than drifting file-by-file.
+
+## Current implementation status
+The source tree now includes a first retrieval-oriented implementation slice:
+- `benchmarks/corpus.py` — benchmark corpus manifest generation and topic-cluster assignment
+- `benchmarks/link_questions.py` — provisional linking from benchmark questions to paper/chunk ids
+- `retrieval/chunking.py` — stable chunk generation and chunk metadata
+- `retrieval/baselines.py` — lexical and dense chunk retrieval baselines
+- `evaluation/retrieval_eval.py` — Recall@k, MRR@k, and nDCG@k evaluation
+
+This is still an early bridge layer. Full PDF ingestion, section-aware extraction, reranking, and citation-grounded answering are still to come.

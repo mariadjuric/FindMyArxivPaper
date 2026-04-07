@@ -1,0 +1,1119 @@
+{
+  "aggregate": {
+    "recall@1": 0.08,
+    "mrr@1": 0.08,
+    "ndcg@1": 0.08,
+    "recall@3": 0.12,
+    "mrr@3": 0.09333333333333332,
+    "ndcg@3": 0.04692787260227565,
+    "recall@5": 0.24,
+    "mrr@5": 0.11933333333333333,
+    "ndcg@5": 0.05833945458207911,
+    "recall@10": 0.4,
+    "mrr@10": 0.13849206349206347,
+    "ndcg@10": 0.1024108003594633,
+    "num_questions": 25
+  },
+  "per_query": [
+    {
+      "id": "astro_q001",
+      "question": "What physical mechanisms are commonly proposed to explain vertical phase-space spirals in the Galactic disc?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_d465ee1541_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_d465ee1541_chunk_000"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_705f443da5_chunk_000"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 0.14285714285714285,
+      "ndcg@10": 0.11305340175787204,
+      "top_10": [
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_f39a1ece76_chunk_003",
+        "astrobench_c83c1593d9_chunk_001",
+        "astrobench_a92533502a_chunk_002",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_f39a1ece76_chunk_000"
+      ]
+    },
+    {
+      "id": "astro_q002",
+      "question": "How are bending waves and phase mixing used to interpret spiral structure in Galactic phase space?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_79edfd6850_chunk_000"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_f39a1ece76_chunk_003",
+        "astrobench_d465ee1541_chunk_000"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_f39a1ece76_chunk_003",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_f39a1ece76_chunk_002"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_f39a1ece76_chunk_003",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_2dc9dfa095_chunk_000",
+        "astrobench_aa4f4c72ec_chunk_000"
+      ]
+    },
+    {
+      "id": "astro_q003",
+      "question": "What kinds of external perturbations are discussed as drivers of non-equilibrium structure in the Milky Way disc?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_d465ee1541_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_79edfd6850_chunk_001"
+      ],
+      "recall@5": 1.0,
+      "mrr@5": 0.2,
+      "ndcg@5": 0.13120507751234178,
+      "top_5": [
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_c83c1593d9_chunk_001"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 0.2,
+      "ndcg@10": 0.23819820987960558,
+      "top_10": [
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_c83c1593d9_chunk_001",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_c83c1593d9_chunk_002",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_f39a1ece76_chunk_002"
+      ]
+    },
+    {
+      "id": "astro_q004",
+      "question": "Why are equilibrium assumptions often insufficient when modelling the Milky Way with modern survey data?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_d465ee1541_chunk_000"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_f39a1ece76_chunk_000"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_d465ee1541_chunk_001"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_9412e325b6_chunk_001",
+        "astrobench_89946c0156_chunk_001",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_79edfd6850_chunk_000"
+      ]
+    },
+    {
+      "id": "astro_q005",
+      "question": "What observational complications arise when inferring Galactic distribution functions from stellar surveys?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_e1eb34802a_chunk_000"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_e1eb34802a_chunk_000",
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_f39a1ece76_chunk_001"
+      ],
+      "recall@5": 1.0,
+      "mrr@5": 0.2,
+      "ndcg@5": 0.13120507751234178,
+      "top_5": [
+        "astrobench_e1eb34802a_chunk_000",
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_705f443da5_chunk_001"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 0.2,
+      "ndcg@10": 0.23330247263525344,
+      "top_10": [
+        "astrobench_e1eb34802a_chunk_000",
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_5a0fea33d4_chunk_002",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_2e4e6e49b6_chunk_001"
+      ]
+    },
+    {
+      "id": "astro_q006",
+      "question": "What is the role of Fokker\u2013Planck or diffusion-style modelling in Galactic dynamical inference?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_d465ee1541_chunk_001"
+      ],
+      "recall@3": 1.0,
+      "mrr@3": 0.3333333333333333,
+      "ndcg@3": 0.23463936301137822,
+      "top_3": [
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_705f443da5_chunk_000"
+      ],
+      "recall@5": 1.0,
+      "mrr@5": 0.3333333333333333,
+      "ndcg@5": 0.16958010263680806,
+      "top_5": [
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_e1eb34802a_chunk_000"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 0.3333333333333333,
+      "ndcg@10": 0.2765732350040718,
+      "top_10": [
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_e1eb34802a_chunk_000",
+        "astrobench_2e4e6e49b6_chunk_001",
+        "astrobench_20f06ad4c1_chunk_001",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_77bae5d126_chunk_001"
+      ]
+    },
+    {
+      "id": "astro_q007",
+      "question": "What is a distribution function in Galactic dynamics, and why is it useful?",
+      "gold_chunk_count": 5,
+      "recall@1": 1.0,
+      "mrr@1": 1.0,
+      "ndcg@1": 1.0,
+      "top_1": [
+        "astrobench_705f443da5_chunk_000"
+      ],
+      "recall@3": 1.0,
+      "mrr@3": 1.0,
+      "ndcg@3": 0.46927872602275644,
+      "top_3": [
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_d465ee1541_chunk_001"
+      ],
+      "recall@5": 1.0,
+      "mrr@5": 1.0,
+      "ndcg@5": 0.3391602052736161,
+      "top_5": [
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_79edfd6850_chunk_000"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 1.0,
+      "ndcg@10": 0.44615333764087994,
+      "top_10": [
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_e1eb34802a_chunk_000",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_89946c0156_chunk_000",
+        "astrobench_f39a1ece76_chunk_000"
+      ]
+    },
+    {
+      "id": "astro_q008",
+      "question": "How do action-angle coordinates simplify the analysis of Hamiltonian systems?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_5a7e978abc_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_5a7e978abc_chunk_001",
+        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_f39a1ece76_chunk_003"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_5a7e978abc_chunk_001",
+        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_f39a1ece76_chunk_003",
+        "astrobench_77bae5d126_chunk_002",
+        "astrobench_2e4e6e49b6_chunk_000"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_5a7e978abc_chunk_001",
+        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_f39a1ece76_chunk_003",
+        "astrobench_77bae5d126_chunk_002",
+        "astrobench_2e4e6e49b6_chunk_000",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_607ea01ed4_chunk_001",
+        "astrobench_2dc9dfa095_chunk_000",
+        "astrobench_a92533502a_chunk_002"
+      ]
+    },
+    {
+      "id": "astro_q009",
+      "question": "Why are action-angle variables attractive for describing orbital structure in galaxies?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_f39a1ece76_chunk_000"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_79edfd6850_chunk_000"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_2e4e6e49b6_chunk_000"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_2e4e6e49b6_chunk_000",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_3715816dc6_chunk_002",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_e79f7171c5_chunk_000"
+      ]
+    },
+    {
+      "id": "astro_q010",
+      "question": "What mathematical difficulties arise when trying to learn action-angle coordinates from trajectory data?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_5a7e978abc_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_5a7e978abc_chunk_001",
+        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_705f443da5_chunk_000"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_5a7e978abc_chunk_001",
+        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_3c4f4016f7_chunk_000"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 0.1,
+      "ndcg@10": 0.09803928583135704,
+      "top_10": [
+        "astrobench_5a7e978abc_chunk_001",
+        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_79edfd6850_chunk_000",
+        "astrobench_3c4f4016f7_chunk_000",
+        "astrobench_2e4e6e49b6_chunk_000",
+        "astrobench_7f15ee8dc6_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_3c4f4016f7_chunk_001",
+        "astrobench_0b92b2a07e_chunk_000"
+      ]
+    },
+    {
+      "id": "astro_q011",
+      "question": "Why might symplectic structure matter when building machine-learning models for Hamiltonian dynamics?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_7f15ee8dc6_chunk_000"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_7f15ee8dc6_chunk_000",
+        "astrobench_3c4f4016f7_chunk_000",
+        "astrobench_7f15ee8dc6_chunk_001"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_7f15ee8dc6_chunk_000",
+        "astrobench_3c4f4016f7_chunk_000",
+        "astrobench_7f15ee8dc6_chunk_001",
+        "astrobench_2e4e6e49b6_chunk_001",
+        "astrobench_705f443da5_chunk_000"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 0.125,
+      "ndcg@10": 0.2090905274901754,
+      "top_10": [
+        "astrobench_7f15ee8dc6_chunk_000",
+        "astrobench_3c4f4016f7_chunk_000",
+        "astrobench_7f15ee8dc6_chunk_001",
+        "astrobench_2e4e6e49b6_chunk_001",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_fdc3cc4d1d_chunk_002",
+        "astrobench_2e4e6e49b6_chunk_002",
+        "astrobench_0b92b2a07e_chunk_000",
+        "astrobench_0b92b2a07e_chunk_001",
+        "astrobench_77bae5d126_chunk_002"
+      ]
+    },
+    {
+      "id": "astro_q012",
+      "question": "What information do orbital frequencies capture in an action-angle description?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_5a7e978abc_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_5a7e978abc_chunk_001",
+        "astrobench_f39a1ece76_chunk_003",
+        "astrobench_5a7e978abc_chunk_000"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_5a7e978abc_chunk_001",
+        "astrobench_f39a1ece76_chunk_003",
+        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_4ab087d14c_chunk_000",
+        "astrobench_0b92b2a07e_chunk_002"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_5a7e978abc_chunk_001",
+        "astrobench_f39a1ece76_chunk_003",
+        "astrobench_5a7e978abc_chunk_000",
+        "astrobench_4ab087d14c_chunk_000",
+        "astrobench_0b92b2a07e_chunk_002",
+        "astrobench_2e4e6e49b6_chunk_000",
+        "astrobench_2dc9dfa095_chunk_001",
+        "astrobench_7cecc39f1f_chunk_002",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_77bae5d126_chunk_000"
+      ]
+    },
+    {
+      "id": "astro_q013",
+      "question": "How can survey selection effects bias inferences about Galactic structure?",
+      "gold_chunk_count": 5,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_f39a1ece76_chunk_000"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_f39a1ece76_chunk_001"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_e1eb34802a_chunk_000"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 0.1111111111111111,
+      "ndcg@10": 0.10209739512291163,
+      "top_10": [
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_e1eb34802a_chunk_000",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_d465ee1541_chunk_001"
+      ]
+    },
+    {
+      "id": "astro_q014",
+      "question": "Why is uncertainty quantification important when fitting Galactic dynamical models?",
+      "gold_chunk_count": 5,
+      "recall@1": 1.0,
+      "mrr@1": 1.0,
+      "ndcg@1": 1.0,
+      "top_1": [
+        "astrobench_705f443da5_chunk_001"
+      ],
+      "recall@3": 1.0,
+      "mrr@3": 1.0,
+      "ndcg@3": 0.46927872602275644,
+      "top_3": [
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_2e4e6e49b6_chunk_000",
+        "astrobench_e1eb34802a_chunk_000"
+      ],
+      "recall@5": 1.0,
+      "mrr@5": 1.0,
+      "ndcg@5": 0.48522855511632257,
+      "top_5": [
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_2e4e6e49b6_chunk_000",
+        "astrobench_e1eb34802a_chunk_000",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_2e4e6e49b6_chunk_001"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 1.0,
+      "ndcg@10": 0.48522855511632257,
+      "top_10": [
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_2e4e6e49b6_chunk_000",
+        "astrobench_e1eb34802a_chunk_000",
+        "astrobench_705f443da5_chunk_000",
+        "astrobench_2e4e6e49b6_chunk_001",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_7f15ee8dc6_chunk_001",
+        "astrobench_7f15ee8dc6_chunk_000"
+      ]
+    },
+    {
+      "id": "astro_q015",
+      "question": "How does semantic retrieval differ from lexical retrieval when terminology varies across related astrophysics papers?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_2dc66d12b4_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_2dc66d12b4_chunk_000",
+        "astrobench_c483e6054d_chunk_000"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_2dc66d12b4_chunk_000",
+        "astrobench_c483e6054d_chunk_000",
+        "astrobench_3715816dc6_chunk_001",
+        "astrobench_e79f7171c5_chunk_000"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_2dc66d12b4_chunk_000",
+        "astrobench_c483e6054d_chunk_000",
+        "astrobench_3715816dc6_chunk_001",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_c483e6054d_chunk_001",
+        "astrobench_896e277f9b_chunk_000",
+        "astrobench_f39a1ece76_chunk_002"
+      ]
+    },
+    {
+      "id": "astro_q016",
+      "question": "Why is a reranker useful after first-stage dense retrieval in scientific QA?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_79edfd6850_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_5a0fea33d4_chunk_002"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_5a0fea33d4_chunk_002",
+        "astrobench_896e277f9b_chunk_000",
+        "astrobench_5a0fea33d4_chunk_001"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_5a0fea33d4_chunk_002",
+        "astrobench_896e277f9b_chunk_000",
+        "astrobench_5a0fea33d4_chunk_001",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_a92533502a_chunk_002",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_2dc66d12b4_chunk_001"
+      ]
+    },
+    {
+      "id": "astro_q017",
+      "question": "What does citation-faithful answering require beyond simply retrieving topically related papers?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_2dc9dfa095_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_2dc9dfa095_chunk_001",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_f39a1ece76_chunk_001"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_2dc9dfa095_chunk_001",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_2dc66d12b4_chunk_001"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_2dc9dfa095_chunk_001",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_89946c0156_chunk_000",
+        "astrobench_751415ed9c_chunk_002"
+      ]
+    },
+    {
+      "id": "astro_q018",
+      "question": "Why can abstract-only retrieval be insufficient for citation-grounded scientific QA?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_89946c0156_chunk_000"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_89946c0156_chunk_000",
+        "astrobench_89946c0156_chunk_001",
+        "astrobench_751415ed9c_chunk_002"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_89946c0156_chunk_000",
+        "astrobench_89946c0156_chunk_001",
+        "astrobench_751415ed9c_chunk_002",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_9412e325b6_chunk_000"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_89946c0156_chunk_000",
+        "astrobench_89946c0156_chunk_001",
+        "astrobench_751415ed9c_chunk_002",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_5a0fea33d4_chunk_001",
+        "astrobench_896e277f9b_chunk_000",
+        "astrobench_79edfd6850_chunk_001"
+      ]
+    },
+    {
+      "id": "astro_q019",
+      "question": "What makes a chunk a good unit of evidence for scientific question answering?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_9412e325b6_chunk_000"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_e79f7171c5_chunk_001"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_2dc9dfa095_chunk_001"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_2dc9dfa095_chunk_001",
+        "astrobench_7b30a7e2e5_chunk_001",
+        "astrobench_71ae09d438_chunk_000",
+        "astrobench_d465ee1541_chunk_000",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_2dc66d12b4_chunk_001"
+      ]
+    },
+    {
+      "id": "astro_q020",
+      "question": "Why might section-aware chunking outperform naive fixed windows on astrophysics papers?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_2dc66d12b4_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_2dc66d12b4_chunk_000",
+        "astrobench_f39a1ece76_chunk_002"
+      ],
+      "recall@5": 1.0,
+      "mrr@5": 0.25,
+      "ndcg@5": 0.20210734650054757,
+      "top_5": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_2dc66d12b4_chunk_000",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_c83c1593d9_chunk_001",
+        "astrobench_71ae09d438_chunk_001"
+      ],
+      "recall@10": 1.0,
+      "mrr@10": 0.25,
+      "ndcg@10": 0.35853358850813305,
+      "top_10": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_2dc66d12b4_chunk_000",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_c83c1593d9_chunk_001",
+        "astrobench_71ae09d438_chunk_001",
+        "astrobench_7f15ee8dc6_chunk_001",
+        "astrobench_c83c1593d9_chunk_002",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_3715816dc6_chunk_001",
+        "astrobench_705f443da5_chunk_001"
+      ]
+    },
+    {
+      "id": "astro_q021",
+      "question": "What are the main trade-offs between lexical retrieval and dense retrieval for the first-stage candidate set?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_2dc66d12b4_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_896e277f9b_chunk_000",
+        "astrobench_e79f7171c5_chunk_000"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_896e277f9b_chunk_000",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_3c4f4016f7_chunk_000",
+        "astrobench_2dc66d12b4_chunk_000"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_896e277f9b_chunk_000",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_3c4f4016f7_chunk_000",
+        "astrobench_2dc66d12b4_chunk_000",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_3c4f4016f7_chunk_001",
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_79edfd6850_chunk_001"
+      ]
+    },
+    {
+      "id": "astro_q022",
+      "question": "Why should a scientific QA system sometimes abstain instead of answering?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_2dc66d12b4_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_89946c0156_chunk_001"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_89946c0156_chunk_001",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_e79f7171c5_chunk_001"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_89946c0156_chunk_001",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_e79f7171c5_chunk_001",
+        "astrobench_89946c0156_chunk_000",
+        "astrobench_9412e325b6_chunk_001",
+        "astrobench_5a0fea33d4_chunk_001",
+        "astrobench_e79f7171c5_chunk_000",
+        "astrobench_fdc3cc4d1d_chunk_002"
+      ]
+    },
+    {
+      "id": "astro_q023",
+      "question": "What kinds of claims would be counted as unsupported in a FActScore-style evaluation of scientific QA answers?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_2dc66d12b4_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_9412e325b6_chunk_001",
+        "astrobench_3c4f4016f7_chunk_001"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_9412e325b6_chunk_001",
+        "astrobench_3c4f4016f7_chunk_001",
+        "astrobench_77bae5d126_chunk_002",
+        "astrobench_7b30a7e2e5_chunk_001"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_9412e325b6_chunk_001",
+        "astrobench_3c4f4016f7_chunk_001",
+        "astrobench_77bae5d126_chunk_002",
+        "astrobench_7b30a7e2e5_chunk_001",
+        "astrobench_3c4f4016f7_chunk_002",
+        "astrobench_3715816dc6_chunk_001",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_5a0fea33d4_chunk_002",
+        "astrobench_9412e325b6_chunk_000"
+      ]
+    },
+    {
+      "id": "astro_q024",
+      "question": "How can multiple nearby papers make scientific retrieval harder rather than easier?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_f39a1ece76_chunk_002"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_79edfd6850_chunk_001"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_2dc66d12b4_chunk_001"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_f39a1ece76_chunk_002",
+        "astrobench_5a0fea33d4_chunk_000",
+        "astrobench_79edfd6850_chunk_001",
+        "astrobench_d465ee1541_chunk_001",
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_896e277f9b_chunk_000",
+        "astrobench_f39a1ece76_chunk_001",
+        "astrobench_f39a1ece76_chunk_000",
+        "astrobench_3c4f4016f7_chunk_000",
+        "astrobench_71ae09d438_chunk_000"
+      ]
+    },
+    {
+      "id": "astro_q025",
+      "question": "What makes an astrophysics QA benchmark academically useful rather than just demo-friendly?",
+      "gold_chunk_count": 3,
+      "recall@1": 0.0,
+      "mrr@1": 0.0,
+      "ndcg@1": 0.0,
+      "top_1": [
+        "astrobench_9412e325b6_chunk_001"
+      ],
+      "recall@3": 0.0,
+      "mrr@3": 0.0,
+      "ndcg@3": 0.0,
+      "top_3": [
+        "astrobench_9412e325b6_chunk_001",
+        "astrobench_7aa3a655d9_chunk_002",
+        "astrobench_9412e325b6_chunk_000"
+      ],
+      "recall@5": 0.0,
+      "mrr@5": 0.0,
+      "ndcg@5": 0.0,
+      "top_5": [
+        "astrobench_9412e325b6_chunk_001",
+        "astrobench_7aa3a655d9_chunk_002",
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_89946c0156_chunk_001",
+        "astrobench_3c4f4016f7_chunk_002"
+      ],
+      "recall@10": 0.0,
+      "mrr@10": 0.0,
+      "ndcg@10": 0.0,
+      "top_10": [
+        "astrobench_9412e325b6_chunk_001",
+        "astrobench_7aa3a655d9_chunk_002",
+        "astrobench_9412e325b6_chunk_000",
+        "astrobench_89946c0156_chunk_001",
+        "astrobench_3c4f4016f7_chunk_002",
+        "astrobench_2dc66d12b4_chunk_001",
+        "astrobench_7aa3a655d9_chunk_001",
+        "astrobench_705f443da5_chunk_001",
+        "astrobench_5a0fea33d4_chunk_002",
+        "astrobench_89946c0156_chunk_000"
+      ]
+    }
+  ]
+}

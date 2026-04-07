@@ -9,3 +9,4 @@ transformers>=4.44
 joblib>=1.4
 umap-learn>=0.5
 tqdm>=4.66
+pyarrow>=17.0

@@ -109,6 +109,21 @@ After the week-1 scaffold, the next implementation milestones are:
 5. add citation-grounded answer generation
 6. evaluate retrieval, answer quality, citation precision, and factual support
 
+### Week 2 implementation status
+The first week-2 implementation slice is now in the repo:
+- benchmark corpus manifest generation from the arXiv astro-ph dataset
+- stable benchmark paper ids
+- chunk generation with stable chunk ids over title+abstract text
+- linked benchmark questions with provisional `gold_papers` and `gold_chunks`
+- lexical baseline retrieval over chunks
+- dense baseline retrieval over chunks
+- retrieval evaluation script producing Recall@k, MRR@k, and nDCG@k
+
+Current limitation:
+- chunking is still title+abstract based, not full-paper PDF extraction yet
+- benchmark links are provisional and cluster-driven, not manually annotated evidence
+- this is the correct retrieval-first bridge between week-1 planning and later citation-grounded QA
+
 ---
 
 ## Modeling roadmap: FMAP Atlas v1 and v2
