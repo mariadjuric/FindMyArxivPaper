@@ -133,11 +133,38 @@ def _strip_repeated_margin_lines(page_texts: list[str]) -> list[str]:
     return cleaned_pages
 
 
-def extract_text_from_pdf(pdf_path: Path) -> str:
-    try:
-        from PyPDF2 import PdfReader
-    except Exception as exc:  # pragma: no cover
-        raise RuntimeError("PyPDF2 is required for PDF text extraction. Install requirements first.") from exc
+def _extract_text_from_pdf_pymupdf(pdf_path: Path) -> str:
+    import fitz
+
+    doc = fitz.open(str(pdf_path))
+    page_texts: list[str] = []
+    for page in doc:
+        page_rect = page.rect
+        top_cut = page_rect.height * 0.08
+        bottom_cut = page_rect.height * 0.92
+        blocks = page.get_text("blocks")
+        cleaned_blocks: list[tuple[float, float, str]] = []
+        for block in blocks:
+            x0, y0, x1, y1, text = block[:5]
+            text = (text or "").strip()
+            if not text:
+                continue
+            if y1 < top_cut or y0 > bottom_cut:
+                continue
+            text = _clean_page_text(text)
+            if not text:
+                continue
+            cleaned_blocks.append((y0, x0, text))
+        cleaned_blocks.sort(key=lambda item: (round(item[0], 1), round(item[1], 1)))
+        page_text = "\n\n".join(text for _, _, text in cleaned_blocks).strip()
+        if page_text:
+            page_texts.append(page_text)
+    pages = _strip_repeated_margin_lines(page_texts)
+    return "\n\n".join(page for page in pages if page).strip()
+
+
+def _extract_text_from_pdf_pypdf2(pdf_path: Path) -> str:
+    from PyPDF2 import PdfReader
 
     reader = PdfReader(str(pdf_path))
     raw_pages: list[str] = []
@@ -149,6 +176,16 @@ def extract_text_from_pdf(pdf_path: Path) -> str:
 
     pages = _strip_repeated_margin_lines(raw_pages)
     return "\n\n".join(page for page in pages if page).strip()
+
+
+def extract_text_from_pdf(pdf_path: Path) -> str:
+    try:
+        return _extract_text_from_pdf_pymupdf(pdf_path)
+    except Exception:
+        try:
+            return _extract_text_from_pdf_pypdf2(pdf_path)
+        except Exception as exc:  # pragma: no cover
+            raise RuntimeError("A PDF text extractor is required (PyMuPDF preferred, PyPDF2 fallback). Install requirements first.") from exc
 
 
 COMMON_SECTION_TITLES = [
