@@ -178,14 +178,26 @@ def _extract_text_from_pdf_pypdf2(pdf_path: Path) -> str:
     return "\n\n".join(page for page in pages if page).strip()
 
 
+def _extract_markdown_from_pdf_pymupdf4llm(pdf_path: Path) -> str:
+    import pymupdf4llm
+
+    markdown = pymupdf4llm.to_markdown(str(pdf_path))
+    markdown = markdown.replace("\r", "\n")
+    markdown = re.sub(r"\n{3,}", "\n\n", markdown)
+    return markdown.strip()
+
+
 def extract_text_from_pdf(pdf_path: Path) -> str:
     try:
-        return _extract_text_from_pdf_pymupdf(pdf_path)
+        return _extract_markdown_from_pdf_pymupdf4llm(pdf_path)
     except Exception:
         try:
-            return _extract_text_from_pdf_pypdf2(pdf_path)
-        except Exception as exc:  # pragma: no cover
-            raise RuntimeError("A PDF text extractor is required (PyMuPDF preferred, PyPDF2 fallback). Install requirements first.") from exc
+            return _extract_text_from_pdf_pymupdf(pdf_path)
+        except Exception:
+            try:
+                return _extract_text_from_pdf_pypdf2(pdf_path)
+            except Exception as exc:  # pragma: no cover
+                raise RuntimeError("A PDF text extractor is required (PyMuPDF4LLM preferred, PyMuPDF/PyPDF2 fallback). Install requirements first.") from exc
 
 
 COMMON_SECTION_TITLES = [
@@ -269,13 +281,68 @@ def _merge_heading_with_following_line(lines: list[str], idx: int) -> tuple[str,
 def _clean_section_body(lines: list[str]) -> str:
     text = "\n".join(lines).strip()
     text = re.sub(r"\n{3,}", "\n\n", text)
-    text = _repair_broken_words(text)
+    text = re.sub(r"^>\s*", "", text, flags=re.MULTILINE)
+    text = re.sub(r"\|\s*==>\s*picture.*", "", text)
+    text = re.sub(r"\[(\d+)\]", r"\1", text)
+    text = re.sub(r"\s+([,.;:!?])", r"\1", text)
+    text = re.sub(r"\b([A-Za-z]{2,})of\b", r"\1 of", text)
+    text = re.sub(r"\b([A-Za-z]{2,})in\b", r"\1 in", text)
+    text = re.sub(r"\b([A-Za-z]{2,})and\b", r"\1 and", text)
+    text = re.sub(r"\b([A-Za-z]{2,})the\b", r"\1 the", text)
+    text = re.sub(r"\b([A-Za-z]{2,})for\b", r"\1 for", text)
+    text = re.sub(r"\b([A-Za-z]{2,})with\b", r"\1 with", text)
+    text = re.sub(r"\b([A-Za-z]{2,})from\b", r"\1 from", text)
+    text = re.sub(r"\b([A-Za-z]{2,})to\b", r"\1 to", text)
     return text.strip()
+
+
+def _split_markdown_sections(text: str) -> list[dict]:
+    lines = [line.rstrip() for line in text.splitlines()]
+    sections: list[dict] = []
+    current_title = "front_matter"
+    current_lines: list[str] = []
+
+    def flush() -> None:
+        nonlocal current_title, current_lines, sections
+        body = _clean_section_body([ln for ln in current_lines if ln.strip()])
+        if len(body.split()) >= 20:
+            sections.append({
+                "section_title": current_title,
+                "section_path": current_title,
+                "section_text": body,
+            })
+        current_lines = []
+
+    for raw in lines:
+        line = raw.strip()
+        if not line:
+            current_lines.append("")
+            continue
+        if line.startswith("### ") or line.startswith("## ") or line.startswith("# "):
+            title = re.sub(r"^#+\s*", "", line)
+            title = re.sub(r"[*_`>#]", "", title).strip()
+            title = _normalize_heading(title)
+            if title:
+                flush()
+                current_title = title
+                continue
+        if line.startswith(">") and current_title == "front_matter":
+            continue
+        if line.lower().startswith("keywords:"):
+            continue
+        current_lines.append(re.sub(r"[*_`]+", "", line))
+    flush()
+    return sections
 
 
 def split_into_sections(text: str) -> list[dict]:
     if not text.strip():
         return []
+
+    if re.search(r"^#{1,6}\s+", text, flags=re.MULTILINE):
+        sections = _split_markdown_sections(text)
+        if sections:
+            return sections
 
     lines = [line.strip() for line in text.splitlines()]
     lines = [line for line in lines if line]
