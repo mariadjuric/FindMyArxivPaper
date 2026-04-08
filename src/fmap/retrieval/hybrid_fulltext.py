@@ -27,14 +27,28 @@ PREFERRED_SECTION_HINTS = (
 
 @dataclass
 class HybridFullTextConfig:
-    paper_top_k: int = 6
-    candidate_chunk_k: int = 80
+    paper_top_k: int = 10
+    candidate_chunk_k: int = 140
     final_top_k: int = 10
-    paper_weight: float = 0.25
-    dense_weight: float = 0.30
-    lexical_weight: float = 0.20
+    paper_weight: float = 0.20
+    dense_weight: float = 0.20
+    lexical_weight: float = 0.30
     quality_weight: float = 0.15
-    section_weight: float = 0.10
+    section_weight: float = 0.15
+
+
+def _expand_query(query: str) -> str:
+    q = query.lower()
+    extras: list[str] = []
+    if any(term in q for term in ["distribution function", "distribution functions", "fokker-planck", "survey", "selection effects"]):
+        extras.extend(["phase space", "selection function", "uncertainty", "galactic dynamics"])
+    if any(term in q for term in ["action-angle", "action angle", "hamiltonian", "symplectic", "orbital frequencies"]):
+        extras.extend(["canonical", "integrable", "actions", "angles", "frequencies"])
+    if any(term in q for term in ["retrieval", "reranker", "scientific qa", "chunk", "citation"]):
+        extras.extend(["evidence", "section aware", "full text", "semantic", "lexical"])
+    if any(term in q for term in ["milky way", "galactic disc", "phase-space spirals", "bending waves"]):
+        extras.extend(["disequilibrium", "satellite perturbation", "phase mixing", "disc dynamics"])
+    return (query + " " + " ".join(extras)).strip()
 
 
 class HybridFullTextRetriever:
@@ -79,16 +93,17 @@ class HybridFullTextRetriever:
         if self.paper_matrix is None or self.chunk_matrix is None or self.paper_embeddings is None or self.chunk_embeddings is None:
             raise RuntimeError("Retriever has not been fit.")
 
-        q_lex_paper = self.paper_vectorizer.transform([query])
+        expanded_query = _expand_query(query)
+        q_lex_paper = self.paper_vectorizer.transform([expanded_query])
         paper_lex = cosine_similarity(q_lex_paper, self.paper_matrix).ravel()
-        q_dense = np.asarray(self.model.encode([query], convert_to_numpy=True, normalize_embeddings=True, show_progress_bar=False))[0]
+        q_dense = np.asarray(self.model.encode([expanded_query], convert_to_numpy=True, normalize_embeddings=True, show_progress_bar=False))[0]
         paper_dense = self.paper_embeddings @ q_dense
         combined_paper = 0.5 * paper_lex + 0.5 * paper_dense
         paper_order = np.argsort(-combined_paper)[: self.config.paper_top_k]
         allowed_papers = {self.paper_ids[i] for i in paper_order}
         self.paper_score_lookup = {self.paper_ids[i]: float(combined_paper[i]) for i in paper_order}
 
-        q_lex_chunk = self.chunk_vectorizer.transform([query])
+        q_lex_chunk = self.chunk_vectorizer.transform([expanded_query])
         chunk_lex = cosine_similarity(q_lex_chunk, self.chunk_matrix).ravel()
         chunk_dense = self.chunk_embeddings @ q_dense
 

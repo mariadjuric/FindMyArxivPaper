@@ -33,6 +33,14 @@ DROP_SECTION_KEYWORDS = {
     "code availability",
 }
 
+DROP_SECTION_PATTERNS = (
+    "supporting information",
+    "supplementary",
+    "author information",
+    "affiliations",
+    "keywords",
+)
+
 
 def normalize_section_title(title: str) -> str:
     return re.sub(r"\s+", " ", (title or "").strip().lower())
@@ -61,6 +69,10 @@ def is_probably_bad_section(section_title: str, section_text: str) -> bool:
     text_lower = text.lower()
     words = text.split()
     if title in DROP_SECTION_KEYWORDS:
+        return True
+    if any(pattern in title for pattern in DROP_SECTION_PATTERNS):
+        return True
+    if len(words) > 0 and sum(1 for w in words[:30] if any(ch.isdigit() for ch in w)) / max(min(len(words), 30), 1) > 0.45:
         return True
     if is_equation_like_heading(section_title):
         return True

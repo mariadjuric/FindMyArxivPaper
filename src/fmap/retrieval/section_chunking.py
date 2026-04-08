@@ -13,9 +13,10 @@ class SectionChunkingConfig(ChunkingConfig):
     include_title_prefix: bool = True
     drop_bad_sections: bool = True
     prefer_semantic_sections: bool = True
-    max_chunks_per_paper: int = 40
-    max_chunks_per_section: int = 8
+    max_chunks_per_paper: int = 60
+    max_chunks_per_section: int = 12
     drop_equation_heavy_chunks: bool = True
+    drop_title_section: bool = True
 
 
 def build_section_chunks(fulltext_df: pd.DataFrame, manifest_df: pd.DataFrame, config: SectionChunkingConfig | None = None) -> pd.DataFrame:
@@ -33,6 +34,8 @@ def build_section_chunks(fulltext_df: pd.DataFrame, manifest_df: pd.DataFrame, c
             section_title = str(section.get("section_title", "full_text")).strip() or "full_text"
             section_text = str(section.get("section_text", "")).strip()
             if not section_text:
+                continue
+            if config.drop_title_section and section_title.strip().lower() == str(meta.get('title', '')).strip().lower():
                 continue
             if config.drop_bad_sections and is_probably_bad_section(section_title, section_text):
                 continue
