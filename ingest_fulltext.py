@@ -17,7 +17,7 @@ EXTRACTED_DIR = ROOT / "data" / "processed" / "fulltext"
 
 def main() -> None:
     manifest = pd.read_csv(MANIFEST_PATH)
-    config = FullTextIngestConfig(pdf_dir=PDF_DIR, extracted_dir=EXTRACTED_DIR, overwrite=True)
+    config = FullTextIngestConfig(pdf_dir=PDF_DIR, extracted_dir=EXTRACTED_DIR, overwrite=False, cache_format="md")
     fulltext = ingest_full_texts(manifest, config=config)
 
     serializable = fulltext.copy()

@@ -19,6 +19,7 @@ class FullTextIngestConfig:
     request_pause_seconds: float = 1.0
     user_agent: str = "FMAP-RAG-Lab/0.1 (+local research project)"
     overwrite: bool = False
+    cache_format: str = "md"
 
 
 def arxiv_abs_to_pdf_url(url: str) -> str:
@@ -384,6 +385,11 @@ def split_into_sections(text: str) -> list[dict]:
     return sections
 
 
+def _cache_path(config: FullTextIngestConfig, benchmark_paper_id: str) -> Path:
+    suffix = ".md" if config.cache_format == "md" else ".txt"
+    return config.extracted_dir / f"{benchmark_paper_id}{suffix}"
+
+
 def ingest_full_texts(manifest_df: pd.DataFrame, config: FullTextIngestConfig, limit: int | None = None) -> pd.DataFrame:
     rows: list[dict] = []
     subset = manifest_df.head(limit) if limit else manifest_df
@@ -394,7 +400,7 @@ def ingest_full_texts(manifest_df: pd.DataFrame, config: FullTextIngestConfig, l
         arxiv_id = extract_arxiv_id(source_url)
         pdf_url = arxiv_abs_to_pdf_url(source_url)
         pdf_path = config.pdf_dir / f"{sanitize_filename(arxiv_id)}.pdf"
-        text_path = config.extracted_dir / f"{benchmark_paper_id}.txt"
+        text_path = _cache_path(config, benchmark_paper_id)
 
         status = "missing_url"
         extracted_text = ""
@@ -402,17 +408,25 @@ def ingest_full_texts(manifest_df: pd.DataFrame, config: FullTextIngestConfig, l
 
         try:
             if pdf_url:
-                status = download_pdf(pdf_url, pdf_path, config.user_agent)
-                if config.request_pause_seconds:
+                download_status = download_pdf(pdf_url, pdf_path, config.user_agent)
+                if config.request_pause_seconds and download_status == "downloaded":
                     time.sleep(config.request_pause_seconds)
-                if config.overwrite or not text_path.exists():
+
+                use_cache = (
+                    (not config.overwrite)
+                    and text_path.exists()
+                    and pdf_path.exists()
+                    and text_path.stat().st_mtime >= pdf_path.stat().st_mtime
+                )
+
+                if use_cache:
+                    extracted_text = text_path.read_text(encoding="utf-8")
+                    status = "cached_text"
+                else:
                     extracted_text = extract_text_from_pdf(pdf_path)
                     text_path.parent.mkdir(parents=True, exist_ok=True)
                     text_path.write_text(extracted_text, encoding="utf-8")
                     status = "extracted"
-                else:
-                    extracted_text = text_path.read_text(encoding="utf-8")
-                    status = "cached_text"
         except (HTTPError, URLError, TimeoutError) as exc:
             error_message = str(exc)
             status = "download_failed"
