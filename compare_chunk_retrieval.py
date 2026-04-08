@@ -11,6 +11,7 @@ from src.fmap.evaluation.retrieval_eval import evaluate_benchmark_retrieval
 from src.fmap.retrieval.baselines import BM25LikeRetriever, DenseChunkRetriever
 from src.fmap.retrieval.paper_first import PaperFirstBM25Retriever, PaperFirstDenseRetriever
 from src.fmap.retrieval.rerank import PaperFirstDenseRerankRetriever
+from src.fmap.retrieval.hybrid_fulltext import HybridFullTextRetriever
 
 ROOT = Path(__file__).resolve().parent
 QUESTIONS_PATH = ROOT / "benchmarks" / "astrophysics_qa" / "questions.linked.json"
@@ -52,9 +53,14 @@ def run_eval(chunks_path: Path, label: str, include_paper_first: bool = False) -
         rerank_dense.fit(chunks)
         rerank_results = evaluate_benchmark_retrieval(questions, rerank_dense, top_ks=(1, 3, 5, 10))
 
+        hybrid = HybridFullTextRetriever()
+        hybrid.fit(chunks)
+        hybrid_results = evaluate_benchmark_retrieval(questions, hybrid, top_ks=(1, 3, 5, 10))
+
         result["paper_first_bm25"] = pf_bm25_results["aggregate"]
         result["paper_first_dense"] = pf_dense_results["aggregate"]
         result["paper_first_rerank_dense"] = rerank_results["aggregate"]
+        result["hybrid_fulltext"] = hybrid_results["aggregate"]
 
     return result
 
@@ -74,9 +80,11 @@ def make_plot(results: list[dict]) -> Path:
         ("paperfirst_bm25", [results[1]["paper_first_bm25"][m] for m in metrics], "#14532d"),
         ("paperfirst_dense", [results[1]["paper_first_dense"][m] for m in metrics], "#22c55e"),
         ("paperfirst_rerank_dense", [results[1]["paper_first_rerank_dense"][m] for m in metrics], "#86efac"),
+        ("hybrid_fulltext", [results[1]["hybrid_fulltext"][m] for m in metrics], "#f59e0b"),
     ]
+    center = (len(series) - 1) / 2.0
     for idx, (name, vals, color) in enumerate(series):
-        ax.bar(x + (idx - 3.0) * width, vals, width, label=name, color=color)
+        ax.bar(x + (idx - center) * width, vals, width, label=name, color=color)
 
     ax.set_xticks(x)
     ax.set_xticklabels(metrics)

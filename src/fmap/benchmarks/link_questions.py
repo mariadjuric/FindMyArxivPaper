@@ -3,6 +3,8 @@ from __future__ import annotations
 from collections import defaultdict
 
 import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 TOPIC_TO_CLUSTER = {
@@ -32,14 +34,21 @@ def _choose_chunks_for_question(question_row: pd.Series, candidate_chunks: pd.Da
     query_terms = set(question_text.replace("?", " ").replace("-", " ").split())
     query_terms = {t for t in query_terms if len(t) > 3}
 
+    texts = candidate_chunks.apply(_text_blob, axis=1).tolist()
+    tfidf = TfidfVectorizer(stop_words="english", ngram_range=(1, 2), sublinear_tf=True)
+    matrix = tfidf.fit_transform(texts)
+    query_vec = tfidf.transform([question_text])
+    sim = cosine_similarity(query_vec, matrix).ravel()
+
     scored: list[tuple[float, str]] = []
-    for _, row in candidate_chunks.iterrows():
-        blob = _text_blob(row)
+    for idx, (_, row) in enumerate(candidate_chunks.iterrows()):
+        blob = texts[idx]
         keyword_hits = sum(1 for kw in keywords if kw in blob)
         term_hits = sum(1 for term in query_terms if term in blob)
-        preferred_bonus = 1.5 if bool(row.get("preferred_section", False)) else 0.0
-        quality_bonus = float(row.get("chunk_quality_score", 0.0)) * 0.25
-        score = (3.0 * keyword_hits) + (0.35 * term_hits) + preferred_bonus + quality_bonus
+        preferred_bonus = 2.0 if bool(row.get("preferred_section", False)) else 0.0
+        quality_bonus = float(row.get("chunk_quality_score", 0.0)) * 0.35
+        lexical_bonus = float(sim[idx]) * 5.0
+        score = lexical_bonus + (3.0 * keyword_hits) + (0.35 * term_hits) + preferred_bonus + quality_bonus
         scored.append((score, str(row.get("chunk_id"))))
 
     scored.sort(key=lambda x: x[0], reverse=True)
