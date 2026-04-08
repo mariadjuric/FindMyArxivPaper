@@ -14,6 +14,8 @@ class SectionChunkingConfig(ChunkingConfig):
     drop_bad_sections: bool = True
     prefer_semantic_sections: bool = True
     max_chunks_per_paper: int = 40
+    max_chunks_per_section: int = 8
+    drop_equation_heavy_chunks: bool = True
 
 
 def build_section_chunks(fulltext_df: pd.DataFrame, manifest_df: pd.DataFrame, config: SectionChunkingConfig | None = None) -> pd.DataFrame:
@@ -37,7 +39,11 @@ def build_section_chunks(fulltext_df: pd.DataFrame, manifest_df: pd.DataFrame, c
             formatted_text = section_text
             if config.include_title_prefix:
                 formatted_text = f"{meta.get('title', '')}\n\n{section_title}\n{section_text}".strip()
+            section_records: list[dict] = []
             for start_word, end_word, chunk_text in split_text_into_chunks(formatted_text, config):
+                contains_eq = contains_equation_like_text(chunk_text)
+                if config.drop_equation_heavy_chunks and contains_eq and not is_preferred_section(section_title):
+                    continue
                 record = {
                     "paper_id": paper_id,
                     "chunk_id": f"{paper_id}_chunk_{chunk_counter:03d}",
@@ -59,14 +65,16 @@ def build_section_chunks(fulltext_df: pd.DataFrame, manifest_df: pd.DataFrame, c
                     "token_count": estimate_token_count(chunk_text),
                     "word_count": len(chunk_text.split()),
                     "contains_citation_marker": contains_citation_marker(chunk_text),
-                    "contains_equation_like_text": contains_equation_like_text(chunk_text),
+                    "contains_equation_like_text": contains_eq,
                     "source_word_start": start_word,
                     "source_word_end": end_word,
                     "preferred_section": is_preferred_section(section_title),
                     "chunk_quality_score": chunk_quality_score(section_title, chunk_text),
                 }
                 chunk_counter += 1
-                paper_records.append(record)
+                section_records.append(record)
+            section_records.sort(key=lambda r: r["chunk_quality_score"], reverse=True)
+            paper_records.extend(section_records[: config.max_chunks_per_section])
 
         if config.prefer_semantic_sections:
             paper_records.sort(key=lambda r: (r["preferred_section"], r["chunk_quality_score"]), reverse=True)

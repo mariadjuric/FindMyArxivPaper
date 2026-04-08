@@ -32,7 +32,10 @@ class PaperFirstBM25Retriever:
         self.paper_matrix = self.paper_vectorizer.fit_transform(paper_texts)
         self.paper_ids = papers["paper_id"].tolist()
 
-        chunk_texts = chunks_df["chunk_text"].fillna("").astype(str).tolist()
+        title = chunks_df.get("title", pd.Series([""] * len(chunks_df))).fillna("").astype(str)
+        section = chunks_df.get("section_title", pd.Series([""] * len(chunks_df))).fillna("").astype(str)
+        chunk = chunks_df["chunk_text"].fillna("").astype(str)
+        chunk_texts = (title + " " + section + " " + chunk).tolist()
         self.chunk_matrix = self.chunk_vectorizer.fit_transform(chunk_texts)
         self.chunk_ids = chunks_df["chunk_id"].tolist()
         self.chunk_paper_ids = chunks_df["paper_id"].astype(str).tolist()
@@ -69,7 +72,10 @@ class PaperFirstDenseRetriever:
         self.paper_embeddings = np.asarray(self.model.encode(paper_texts, convert_to_numpy=True, normalize_embeddings=True, show_progress_bar=False))
         self.paper_ids = papers["paper_id"].tolist()
 
-        chunk_texts = chunks_df["chunk_text"].fillna("").astype(str).tolist()
+        title = chunks_df.get("title", pd.Series([""] * len(chunks_df))).fillna("").astype(str)
+        section = chunks_df.get("section_title", pd.Series([""] * len(chunks_df))).fillna("").astype(str)
+        chunk = chunks_df["chunk_text"].fillna("").astype(str)
+        chunk_texts = (title + " [SEP] " + section + " [SEP] " + chunk).tolist()
         self.chunk_embeddings = np.asarray(self.model.encode(chunk_texts, convert_to_numpy=True, normalize_embeddings=True, show_progress_bar=False))
         self.chunk_ids = chunks_df["chunk_id"].tolist()
         self.chunk_paper_ids = chunks_df["paper_id"].astype(str).tolist()

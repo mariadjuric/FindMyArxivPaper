@@ -11,11 +11,11 @@
       "astrobench_1e3dee4300"
     ],
     "gold_chunks": [
+      "astrobench_eb380fd57f_chunk_000",
+      "astrobench_eb380fd57f_chunk_001",
+      "astrobench_eb380fd57f_chunk_002",
       "astrobench_79edfd6850_chunk_000",
-      "astrobench_79edfd6850_chunk_001",
-      "astrobench_e6b347fbf5_chunk_000",
-      "astrobench_e6b347fbf5_chunk_001",
-      "astrobench_e6b347fbf5_chunk_002"
+      "astrobench_cbff59e329_chunk_000"
     ],
     "reference_answer": "Expected answer should mention disequilibrium responses in the Galactic disc such as perturbations from satellites, bending waves, or related phase-mixing dynamics, depending on the chosen benchmark corpus.",
     "keywords": [
@@ -41,11 +41,11 @@
       "astrobench_1e3dee4300"
     ],
     "gold_chunks": [
-      "astrobench_79edfd6850_chunk_000",
-      "astrobench_79edfd6850_chunk_001",
-      "astrobench_e6b347fbf5_chunk_000",
-      "astrobench_e6b347fbf5_chunk_001",
-      "astrobench_e6b347fbf5_chunk_002"
+      "astrobench_eb380fd57f_chunk_000",
+      "astrobench_eb380fd57f_chunk_001",
+      "astrobench_b7b4f9944a_chunk_000",
+      "astrobench_eb380fd57f_chunk_002",
+      "astrobench_79edfd6850_chunk_000"
     ],
     "reference_answer": "Expected answer should explain that observed spiral patterns can be interpreted as signatures of disequilibrium evolution, with bending or breathing perturbations and subsequent phase mixing shaping the structure.",
     "keywords": [
@@ -70,11 +70,11 @@
       "astrobench_1e3dee4300"
     ],
     "gold_chunks": [
+      "astrobench_eb380fd57f_chunk_000",
+      "astrobench_b7b4f9944a_chunk_000",
       "astrobench_79edfd6850_chunk_000",
-      "astrobench_79edfd6850_chunk_001",
-      "astrobench_e6b347fbf5_chunk_000",
-      "astrobench_e6b347fbf5_chunk_001",
-      "astrobench_e6b347fbf5_chunk_002"
+      "astrobench_d82fccf1ca_chunk_002",
+      "astrobench_eb380fd57f_chunk_002"
     ],
     "reference_answer": "Expected answer should mention perturbers such as satellite interactions, impacts, or other large-scale disturbances capable of driving vertical or radial disequilibrium.",
     "keywords": [
@@ -100,9 +100,9 @@
     ],
     "gold_chunks": [
       "astrobench_705f443da5_chunk_000",
-      "astrobench_705f443da5_chunk_001",
-      "astrobench_f31aa696a1_chunk_000",
       "astrobench_f31aa696a1_chunk_001",
+      "astrobench_0deff610d0_chunk_000",
+      "astrobench_705f443da5_chunk_001",
       "astrobench_f31aa696a1_chunk_002"
     ],
     "reference_answer": "Expected answer should mention that modern survey data reveal non-equilibrium features, selection effects, and substructure that challenge purely steady-state assumptions.",
@@ -129,10 +129,10 @@
     ],
     "gold_chunks": [
       "astrobench_705f443da5_chunk_000",
-      "astrobench_705f443da5_chunk_001",
+      "astrobench_6b026e54cb_chunk_000",
       "astrobench_f31aa696a1_chunk_000",
-      "astrobench_f31aa696a1_chunk_001",
-      "astrobench_f31aa696a1_chunk_002"
+      "astrobench_a877243f10_chunk_000",
+      "astrobench_ef28bece42_chunk_000"
     ],
     "reference_answer": "Expected answer should mention selection biases, incomplete phase-space coverage, measurement uncertainty, and population-dependent effects.",
     "keywords": [
@@ -159,9 +159,9 @@
     "gold_chunks": [
       "astrobench_705f443da5_chunk_000",
       "astrobench_705f443da5_chunk_001",
-      "astrobench_f31aa696a1_chunk_000",
-      "astrobench_f31aa696a1_chunk_001",
-      "astrobench_f31aa696a1_chunk_002"
+      "astrobench_6b026e54cb_chunk_000",
+      "astrobench_3474c47fe1_chunk_000",
+      "astrobench_3474c47fe1_chunk_001"
     ],
     "reference_answer": "Expected answer should explain that diffusion or Fokker\u2013Planck style formalisms are used to describe the evolution or steady-state behaviour of distribution functions under stochastic or secular processes.",
     "keywords": [
@@ -186,11 +186,11 @@
       "astrobench_98f72fa560"
     ],
     "gold_chunks": [
-      "astrobench_705f443da5_chunk_000",
       "astrobench_705f443da5_chunk_001",
-      "astrobench_f31aa696a1_chunk_000",
-      "astrobench_f31aa696a1_chunk_001",
-      "astrobench_f31aa696a1_chunk_002"
+      "astrobench_6b026e54cb_chunk_000",
+      "astrobench_705f443da5_chunk_000",
+      "astrobench_a877243f10_chunk_000",
+      "astrobench_a877243f10_chunk_001"
     ],
     "reference_answer": "Expected answer should define the distribution function as a phase-space density or statistical description of orbits and explain its role in connecting theory with observed stellar populations.",
     "keywords": [
@@ -214,11 +214,11 @@
       "astrobench_a36c60393b"
     ],
     "gold_chunks": [
+      "astrobench_a36c60393b_chunk_001",
+      "astrobench_25d49d337f_chunk_000",
       "astrobench_cc18f51e25_chunk_000",
       "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000",
-      "astrobench_25d49d337f_chunk_001",
-      "astrobench_a36c60393b_chunk_000"
+      "astrobench_25d49d337f_chunk_001"
     ],
     "reference_answer": "Expected answer should explain that action-angle coordinates simplify integrable Hamiltonian motion by turning the evolution into regular angle advance with conserved actions.",
     "keywords": [
@@ -242,11 +242,11 @@
       "astrobench_a36c60393b"
     ],
     "gold_chunks": [
+      "astrobench_a36c60393b_chunk_001",
       "astrobench_cc18f51e25_chunk_000",
       "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000",
-      "astrobench_25d49d337f_chunk_001",
-      "astrobench_a36c60393b_chunk_000"
+      "astrobench_a36c60393b_chunk_000",
+      "astrobench_a36c60393b_chunk_002"
     ],
     "reference_answer": "Expected answer should mention interpretability, regular orbit description, frequency structure, and the simplification of dynamical analysis in near-integrable settings.",
     "keywords": [
@@ -271,11 +271,11 @@
       "astrobench_a36c60393b"
     ],
     "gold_chunks": [
-      "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
+      "astrobench_a36c60393b_chunk_001",
       "astrobench_25d49d337f_chunk_000",
       "astrobench_25d49d337f_chunk_001",
-      "astrobench_a36c60393b_chunk_000"
+      "astrobench_a36c60393b_chunk_000",
+      "astrobench_cc18f51e25_chunk_000"
     ],
     "reference_answer": "Expected answer should mention nonlinearity, canonical-structure constraints, frequency consistency, and the challenge of learning coordinates that remain dynamically meaningful rather than merely compressive.",
     "keywords": [
@@ -301,10 +301,10 @@
     ],
     "gold_chunks": [
       "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
       "astrobench_25d49d337f_chunk_000",
-      "astrobench_25d49d337f_chunk_001",
-      "astrobench_a36c60393b_chunk_000"
+      "astrobench_a36c60393b_chunk_001",
+      "astrobench_cc18f51e25_chunk_001",
+      "astrobench_25d49d337f_chunk_001"
     ],
     "reference_answer": "Expected answer should mention preservation of geometric structure, stability of long-term dynamics, and the value of respecting physically meaningful invariants.",
     "keywords": [
@@ -329,10 +329,10 @@
       "astrobench_a36c60393b"
     ],
     "gold_chunks": [
+      "astrobench_a36c60393b_chunk_001",
       "astrobench_cc18f51e25_chunk_000",
       "astrobench_cc18f51e25_chunk_001",
       "astrobench_25d49d337f_chunk_000",
-      "astrobench_25d49d337f_chunk_001",
       "astrobench_a36c60393b_chunk_000"
     ],
     "reference_answer": "Expected answer should say that orbital frequencies characterise how angles advance in time and encode the regular timing structure of the motion.",
@@ -357,11 +357,11 @@
       "astrobench_98f72fa560"
     ],
     "gold_chunks": [
-      "astrobench_705f443da5_chunk_000",
-      "astrobench_705f443da5_chunk_001",
-      "astrobench_f31aa696a1_chunk_000",
+      "astrobench_f31aa696a1_chunk_002",
       "astrobench_f31aa696a1_chunk_001",
-      "astrobench_f31aa696a1_chunk_002"
+      "astrobench_3644e67b5c_chunk_000",
+      "astrobench_3644e67b5c_chunk_001",
+      "astrobench_98f72fa560_chunk_000"
     ],
     "reference_answer": "Expected answer should explain that incomplete or non-uniform sampling can distort estimated distributions, trends, or inferred model parameters if not modelled properly.",
     "keywords": [
@@ -388,9 +388,9 @@
     "gold_chunks": [
       "astrobench_705f443da5_chunk_000",
       "astrobench_705f443da5_chunk_001",
-      "astrobench_f31aa696a1_chunk_000",
-      "astrobench_f31aa696a1_chunk_001",
-      "astrobench_f31aa696a1_chunk_002"
+      "astrobench_c4e7b8fe70_chunk_001",
+      "astrobench_c4e7b8fe70_chunk_002",
+      "astrobench_6b026e54cb_chunk_000"
     ],
     "reference_answer": "Expected answer should mention measurement noise, model misspecification, parameter degeneracy, and the need to communicate confidence in inferred structures or parameters.",
     "keywords": [
@@ -410,12 +410,15 @@
     "difficulty": "medium",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
+      "astrobench_25d49d337f_chunk_000",
+      "astrobench_a36c60393b_chunk_001",
+      "astrobench_705f443da5_chunk_000",
       "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_cc18f51e25_chunk_001"
     ],
     "reference_answer": "Expected answer should explain that lexical retrieval depends more directly on token overlap, while semantic retrieval can recover related meaning under paraphrase or vocabulary shift.",
     "keywords": [
@@ -436,12 +439,15 @@
     "difficulty": "medium",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
       "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_a36c60393b_chunk_000",
+      "astrobench_a36c60393b_chunk_001",
+      "astrobench_25d49d337f_chunk_000",
+      "astrobench_705f443da5_chunk_000"
     ],
     "reference_answer": "Expected answer should say that first-stage retrieval casts a wide net, while reranking can better judge fine-grained query-evidence relevance and improve final evidence quality.",
     "keywords": [
@@ -462,12 +468,15 @@
     "difficulty": "medium",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
       "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_25d49d337f_chunk_000",
+      "astrobench_a36c60393b_chunk_000",
+      "astrobench_a36c60393b_chunk_001",
+      "astrobench_705f443da5_chunk_000"
     ],
     "reference_answer": "Expected answer should explain that answers must tie specific claims to supporting evidence chunks, not merely mention a generally relevant source.",
     "keywords": [
@@ -487,12 +496,15 @@
     "difficulty": "easy",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
       "astrobench_cc18f51e25_chunk_000",
       "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_25d49d337f_chunk_000",
+      "astrobench_25d49d337f_chunk_001",
+      "astrobench_a36c60393b_chunk_000"
     ],
     "reference_answer": "Expected answer should explain that abstracts often omit the precise details, caveats, and evidence needed to support specific mechanistic or methodological claims.",
     "keywords": [
@@ -513,12 +525,15 @@
     "difficulty": "medium",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
+      "astrobench_a36c60393b_chunk_000",
       "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_25d49d337f_chunk_000",
+      "astrobench_a36c60393b_chunk_001",
+      "astrobench_705f443da5_chunk_000"
     ],
     "reference_answer": "Expected answer should mention locality of evidence, readable context, traceability back to the source paper, and enough detail to support a claim without overwhelming irrelevant text.",
     "keywords": [
@@ -539,12 +554,15 @@
     "difficulty": "medium",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
       "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_25d49d337f_chunk_000",
+      "astrobench_a36c60393b_chunk_000",
+      "astrobench_a36c60393b_chunk_001",
+      "astrobench_705f443da5_chunk_000"
     ],
     "reference_answer": "Expected answer should explain that scientific papers have structured discourse, so section boundaries can better preserve coherent evidence units than arbitrary windows alone.",
     "keywords": [
@@ -565,12 +583,15 @@
     "difficulty": "medium",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
       "astrobench_cc18f51e25_chunk_000",
       "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_25d49d337f_chunk_001",
+      "astrobench_a36c60393b_chunk_000",
+      "astrobench_a36c60393b_chunk_001"
     ],
     "reference_answer": "Expected answer should contrast exact-match precision and interpretability against semantic robustness to paraphrase and vocabulary mismatch, while noting that each may fail in different ways.",
     "keywords": [
@@ -591,12 +612,15 @@
     "difficulty": "easy",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
       "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_25d49d337f_chunk_000",
+      "astrobench_25d49d337f_chunk_001",
+      "astrobench_a36c60393b_chunk_000",
+      "astrobench_a36c60393b_chunk_002"
     ],
     "reference_answer": "Expected answer should say that when retrieved evidence is weak, incomplete, or conflicting, abstention is preferable to fabricating unsupported scientific claims.",
     "keywords": [
@@ -617,12 +641,15 @@
     "difficulty": "hard",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
       "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_25d49d337f_chunk_000",
+      "astrobench_a36c60393b_chunk_000",
+      "astrobench_a36c60393b_chunk_001",
+      "astrobench_705f443da5_chunk_000"
     ],
     "reference_answer": "Expected answer should explain that unsupported claims are atomic statements not backed by cited or retrieved evidence, even if the broader topic is related.",
     "keywords": [
@@ -643,12 +670,15 @@
     "difficulty": "hard",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
+      "astrobench_705f443da5_chunk_001",
       "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_25d49d337f_chunk_000",
+      "astrobench_a36c60393b_chunk_000",
+      "astrobench_a36c60393b_chunk_001"
     ],
     "reference_answer": "Expected answer should mention near-duplicate terminology, overlapping topic space, and the need for fine-grained ranking to separate merely related context from directly supporting evidence.",
     "keywords": [
@@ -669,12 +699,15 @@
     "difficulty": "medium",
     "gold_papers": [
       "astrobench_cc18f51e25",
-      "astrobench_25d49d337f"
+      "astrobench_25d49d337f",
+      "astrobench_a36c60393b"
     ],
     "gold_chunks": [
+      "astrobench_25d49d337f_chunk_000",
+      "astrobench_25d49d337f_chunk_001",
+      "astrobench_705f443da5_chunk_000",
       "astrobench_cc18f51e25_chunk_000",
-      "astrobench_cc18f51e25_chunk_001",
-      "astrobench_25d49d337f_chunk_000"
+      "astrobench_a36c60393b_chunk_000"
     ],
     "reference_answer": "Expected answer should mention stable question sets, explicit gold evidence, reproducible metrics, meaningful baselines, and error analysis rather than impressionistic examples alone.",
     "keywords": [

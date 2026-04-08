@@ -23,7 +23,10 @@ class BM25LikeRetriever:
         self.chunk_ids: list[str] = []
 
     def fit(self, chunks_df: pd.DataFrame) -> None:
-        texts = chunks_df["chunk_text"].fillna("").astype(str).tolist()
+        title = chunks_df.get("title", pd.Series([""] * len(chunks_df))).fillna("").astype(str)
+        section = chunks_df.get("section_title", pd.Series([""] * len(chunks_df))).fillna("").astype(str)
+        chunk = chunks_df["chunk_text"].fillna("").astype(str)
+        texts = (title + " " + section + " " + chunk).tolist()
         self.matrix = self.vectorizer.fit_transform(texts)
         self.chunk_ids = chunks_df["chunk_id"].tolist()
 
@@ -44,7 +47,10 @@ class DenseChunkRetriever:
         self.model_name = model_name
 
     def fit(self, chunks_df: pd.DataFrame) -> None:
-        texts = chunks_df["chunk_text"].fillna("").astype(str).tolist()
+        title = chunks_df.get("title", pd.Series([""] * len(chunks_df))).fillna("").astype(str)
+        section = chunks_df.get("section_title", pd.Series([""] * len(chunks_df))).fillna("").astype(str)
+        chunk = chunks_df["chunk_text"].fillna("").astype(str)
+        texts = (title + " [SEP] " + section + " [SEP] " + chunk).tolist()
         self.embeddings = np.asarray(self.model.encode(texts, convert_to_numpy=True, normalize_embeddings=True, show_progress_bar=False))
         self.chunk_ids = chunks_df["chunk_id"].tolist()
 

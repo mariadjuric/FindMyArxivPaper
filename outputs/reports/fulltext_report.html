@@ -5,589 +5,524 @@
   <meta charset='utf-8'>
   <title>FMAP Full-text Report</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 24px; line-height: 1.4; }
-    .figure img { max-width: 720px; border: 1px solid #ddd; margin-bottom: 20px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 24px; line-height: 1.45; color: #111827; }
+    .figure img { max-width: 840px; border: 1px solid #ddd; margin-bottom: 20px; border-radius: 8px; }
     .card { border: 1px solid #ddd; border-radius: 10px; padding: 16px; margin: 16px 0; }
     pre { white-space: pre-wrap; background: #fafafa; padding: 10px; border-radius: 6px; }
+    h1, h2, h3 { color: #0f172a; }
+    ul { padding-left: 20px; }
   </style>
 </head>
 <body>
   <h1>FMAP full-text ingestion report</h1>
   <p>This report shows ingestion status, extraction quality indicators, detected sections, and chunking diagnostics for the curated benchmark corpus.</p>
-  <div class='figure'><img src='../figures/fulltext_status_counts.png' alt='fulltext_status_counts.png'></div><div class='figure'><img src='../figures/fulltext_char_count_hist.png' alt='fulltext_char_count_hist.png'></div><div class='figure'><img src='../figures/fulltext_section_count_hist.png' alt='fulltext_section_count_hist.png'></div><div class='figure'><img src='../figures/section_chunk_count_per_paper.png' alt='section_chunk_count_per_paper.png'></div>
+  <div class='figure'><img src='../figures/fulltext_status_counts.png' alt='fulltext_status_counts.png'></div><div class='figure'><img src='../figures/fulltext_char_count_hist.png' alt='fulltext_char_count_hist.png'></div><div class='figure'><img src='../figures/fulltext_section_count_hist.png' alt='fulltext_section_count_hist.png'></div><div class='figure'><img src='../figures/section_chunk_count_per_paper.png' alt='section_chunk_count_per_paper.png'></div><div class='figure'><img src='../figures/preferred_section_chunk_mix.png' alt='preferred_section_chunk_mix.png'></div>
   <h1>Sample extracted papers</h1>
-  <section class='card'><h2>Laplace-Legendre expansion of the planar planetary Hamiltonian</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 26 | <strong>Chars:</strong> 50612</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2603.16528v1.pdf</p><ul><li><strong>front_matter</strong><br><pre>Laplace-Legendre expansion of the planar
-planetary Hamiltonian
-Aya Alnajjarine1*, Jacques Laskar1*and Federico Mogavero2,1
-1LTE, CNRS, Observatoire de Paris, Universit´ e PSL, Sorbonn e
-Universit´ e, 77 Avenue Denfert-Rochereau, 75014 Paris, Fr ance.
-2Dipartimento di Matematica “Tullio Levi-Civita”, Univers it` a degli
-Studi di Padova, Via Trieste 63, 35121 Padova, Italy.
-*Corresponding author(s). E-mail(s): aya.alnajjarine@obspm.fr ;
-jacques.laskar@obspm.fr ;
-Contributing authors: mogavero@math</pre></li><li><strong>Abstract</strong><br><pre>We explore a hybrid expansion of the disturbing function in p lanetary dynamics
-that combines elements of the classical Laplace and Legendr e developments. This
-formulation retains the structure of the Laplace expansion , but expresses the
-inverse of the mutual distance as a series whose terms keep an exact dependence
-on both the eccentricity and the semi-major axis ratio. We us e it to construct
-the ﬁrst-order secular Hamiltonian of the planar 3-body pro blem, relevant for
-modeling the long-ter</pre></li><li><strong>1 Introduction</strong><br><pre>In planetary systems, the disturbing function plays a central role in understanding
-the long-term dynamical evolution of planetary orbits. It encodes the gravitational
+  <section class='card'><h2>Laplace-Legendre expansion of the planar planetary Hamiltonian</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 14 | <strong>Chars:</strong> 48785</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2603.16528v1.pdf</p><h3>Best extracted sections</h3><ul><li><strong>Abstract We explorea hybrid expansionof the disturbing function inp lanetary dynamics</strong><br><pre>that combines elementsof the classical Laplace and Legendre developments. This
+formulation retains the structureof the Laplace expansion, but expresses the
+inverseof the mutual distance asa series whose terms keepan exact dependenceon both the eccentricity and the semi-major axis ratio. We useitto construct
+the first-order secular Hamiltonianof the planar 3-body pro blem, relevant for
+modeling the long-term evolutionof planetary systems. Wea ssess the conver
+genceof the new expansion numerically</pre></li><li><strong>1 Introduction</strong><br><pre>In planetary systems, the disturbing function playsa central rolein understanding
+the long-term dynamical evolutionof planetary orbits. It encodes the gravitational
 interactions between planets and provides the foundation for stu dying both secular
-1arXiv:2603.16528v1 [astro-ph.EP] 17 Mar 2026
-and resonant dynamics. Expanding the disturbing function as a pow er series in the
-orbital elements has long been a key focus in celestial mechanics and fundamental to
-constructing perturbative models o</pre></li><li><strong>2 Hamiltonian formulation and expansion of the</strong><br><pre>disturbing function
-We consider a 3-body system consisting of a central star of mass m0and two planets
-of masses m1andm2, withmi≪m0. Using canonical heliocentric variables ( Poincar´ e
-1896;Laskar 1991 ), the Hamiltonian governing the Newtonian dynamics reads
-H=2/summationdisplay
-i=1/parenleftbigg/bardbl˜ri/bardbl2
+and resonant dynamics. Expanding the disturbing function asa power seriesin the
+orbital elements has long beena key focusin celestial mechanics and fundamentalto
+constructing perturbative modelsof planetary motion. In the con textof the 3-body
+problem</pre></li><li><strong>5 Conclusion In this work, we exploredan alternative expansionof the disturbing function</strong><br><pre>for the planar planetary 3-body problem. This formulation, referredtoas the
+Laplace–Legendre expansion, combines elements from both the cla ssical Laplace and
+Legendreseries.ItusesthesameseriesstructureastheLaplac eformulation,but diﬀersin that each termof the expansion retains its full dependencein both the semi-major
+axis ratio and eccentricity. The method provides, for example, ana lternative meansto construct the secular Hamiltonian suitable for modeling the long-t erm evolutionof
+planetary </pre></li><li><strong>References Brouwer, D., Clemence, G.M.: Methodsof Celestial Mechanics.Acade mic Press, New</strong><br><pre>York (1961)
+Bou´ e, G., Laskar, J., Farago, F.: A simple modelof the chaotic eccen
+tricityof Mercury. Astronomy and Astrophysics 548, 43 (2012)
+Boquet,F.:Developpementdelafonctionperturbatrice:calculde stermesduhuiti` eme
+ordre. Annales del’Observatoirede Paris 19, 1 (1889)
+Brumberg, V.: Developmentof the perturbative functionin satellite problems. Akad.
+Nauk-Byull. Inst. Teor. Astr. XI 2, 73–84 (1967)
+Ellis, K.M., Murray,C.D.: The Disturbing Functionin Solar System Dynamics. Icarus
+147(1), 129–</pre></li><li><strong>Laplace-Legendre expansionof the planar planetary Hamiltonian</strong><br><pre>Aya Alnajjarine1*, Jacques Laskar1*and Federico Mogavero2,1
+1LTE, CNRS, Observatoirede Paris, Universit´ e PSL, Sorbonne
+Universit´ e, 77 Avenue Denfert-Rochereau, 75014 Paris, Fr ance.
+2Dipartimentodi Matematica “Tullio Levi-Civita”, Universit` a degli
+Studidi Padova, Via Trieste 63, 35121 Padova, Italy.
+*Corresponding author(s). E-mail(s): aya.alnajjarine@obspm.fr;
+jacques.laskar@obspm.fr;
+Contributing authors: mogavero@math.unipd.it;</pre></li><li><strong>2 Hamiltonian formulation and expansionof the disturbing function</strong><br><pre>We considera 3-body system consisting ofa central starof mass m0and two planetsof masses m1andm2, withmi≪m0. Using canonical heliocentric variables ( Poincar´ e
+1896;Laskar 1991 ), the Hamiltonian governing the Newtonian dynamics readsH=2/summationdisplayi=1/parenleftbigg/bardbl˜ri/bardbl2
 2βi−µiβi
 /bardblri/bardbl/parenrightbigg
 /bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright
 H0+˜r1·˜r2
 m0
-/bracehtipupleft/bracehtipdownright/bracehtipdownleft/bra</pre></li><li><strong>U1, (1)</strong><br><pre>whereriare the heliocentric position vectors of the planets, ˜riare their conju-
-gate barycentric momenta, Gthe gravitational constant, µi=G(m0+mi), and
-βi=m0mi/(m0+mi). The indices i= 1,2 refer to the inner and outer planets,
-respectively. The Keplerian part of the Hamiltonian H0describes decoupled Keplerian
-motions, each governed by the classical orbital elements: semi-ma jor axisa, eccen-
-tricitye, inclination I, mean anomaly M, argument of pericenter ω, and longitude
-of ascending node Ω. In </pre></li><li><strong>2.1 Legendre expansion of the direct part</strong><br><pre>We denote the mutual distance between the planets as ∆ = /bardblr1−r2/bardbl. Its inverse can
-be expanded using Legendre polynomials as
-a2
-∆=a2
-r2/summationdisplay
-n∈N/parenleftbiggr1
-r2/parenrightbiggn
-Pn(cosS), (2)
-whereSis the angle between the position vectors r1andr2, andPndenotes the
-Legendre polynomial of degree n. Following the formalism of ( Laskar and Bou´ e 2010 ),
-this expression can be transformed into a Fourier series in the mean anomalies Miand
-written as a power series in the sem</pre></li></ul></section><section class='card'><h2>Democratic heliocentric coordinates underestimate the rate of instabilities in long-term integrations of the Solar System</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 8 | <strong>Chars:</strong> 28040</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2601.08019v1.pdf</p><ul><li><strong>front_matter</strong><br><pre>Draft version January 14, 2026
-Democratic heliocentric coordinates underestimate the rate of instabilities in long-term integrations
-of the Solar System
-Hanno Rein
+/bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright
+T1−Gm1m2
+/ba</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>5 Conclusion In this work, we exploredan alternative expansionof the disturbing function</strong> <em>(180 words | score 5.0)</em><br><pre>comparedto the classical method most appropriate for that regime. Nevertheless, its clear advantageisto span ina single formulation both the Laplace and Legendre expansions. It may thereforebe useful when the system transitions between diﬀerent dynamical regimes, or when the prevailing regime cannotbe determineda priori. Overall, the Laplace–Legendre expansion provides consistent per formance acrossa wide rangeof orb</pre></li><li><strong>5 Conclusion In this work, we exploredan alternative expansionof the disturbing function</strong> <em>(180 words | score 4.5)</em><br><pre>Laplace-Legendre expansion of the planar planetary Hamiltonian 5 Conclusion In this work, we exploredan alternative expansionof the disturbing function for the planar planetary 3-body problem. This formulation, referredtoas the Laplace–Legendre expansion, combines elements from both the cla ssical Laplace and Legendreseries.ItusesthesameseriesstructureastheLaplac eformulation,but diﬀersin that each termof the expansi</pre></li><li><strong>5 Conclusion In this work, we exploredan alternative expansionof the disturbing function</strong> <em>(180 words | score 4.5)</em><br><pre>small (e.g., e= 0.01,α= 0.01). It can also outperform both classical methodsinan intermediate regime, where neither param eteris particularly small but their product remains small (e.g., e= 0.1,α= 0.1). In the hierarchical limit ( α &lt;0.1), the Laplace–Legendre expansion improves upon the Legendre expansionat low eccentricities ( e &lt;0.1), whileat higher eccentricities (e≥0.2) it closely reproduces the performanceof th</pre></li><li><strong>1 Introduction</strong> <em>(180 words | score 4.0)</em><br><pre>Laplace-Legendre expansion of the planar planetary Hamiltonian 1 Introduction In planetary systems, the disturbing function playsa central rolein understanding the long-term dynamical evolutionof planetary orbits. It encodes the gravitational interactions between planets and provides the foundation for stu dying both secular and resonant dynamics. Expanding the disturbing function asa power seriesin the orbital eleme</pre></li></ul></section><section class='card'><h2>Democratic heliocentric coordinates underestimate the rate of instabilities in long-term integrations of the Solar System</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 10 | <strong>Chars:</strong> 26291</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2601.08019v1.pdf</p><h3>Best extracted sections</h3><ul><li><strong>ABSTRACT</strong><br><pre>Wisdom-Holman (WH) integrators are symplectic operator-splitting methods widely used for long
+termN-body simulationsof planetary systems. Most implementations use either Jacobi coordinatesor
+democratic heliocentric coordinates (DHC) for the Hamiltonian splitting, resultingin slightly different
+algorithms. In this paperwe report results from numerical experiments, which show that integrationsof the Solar System using DHC coordinates with typical timesteps ofa few days suppress instabilitiesof
+the</pre></li><li><strong>1.INTRODUCTION Numerical integrationsof the Solar System, havea</strong><br><pre>long history (seee.g. W. J. Eckertetal. 1951 for oneof the first simulationsof this kind, andJ. Laskar 2013
+fora historical summaryof the field). Although dif
+ferent authors use different numerical algorithms, most
+modern long-term simulations use symplectic integra
+tors that make useof the Wisdom-Holman splitting
+(J. L. Wisdom 1981; J. Wisdom &amp; M. Holman 1991;
+H. Kinoshitaetal. 1991). Various variationsof the
+Wisdom-Holman (WH) algorithm exist, differingin the
+orderof the scheme, the coordinate</pre></li><li><strong>3.DISCUSSION Our results from Sec.2 show clear evidence that Ja</strong><br><pre>cobi coordinates perform better than DHC in Solar Sys
+tem integrations. Thisis because when using Jacobico
+ordinates for the Hamiltonian splitting, Mercury’smo
+tionis decomposed intoa Keplerian step ona two-body
+orbit around the Sun, andan interaction step with the
+other planets. In the limit where Mercury hasa high
+eccentricity, the Kepler solver still correctly solves for
+the Keplerian motion around the Sun-Mercury barycen
+ter for arbitrarily large timesteps. And because both
+the orbital times</pre></li><li><strong>4.CONCLUSIONS Different instability ratesof the Solar System have</strong><br><pre>been reportedin the literature, ranging from∼0.1% to
+1% (J. Laskar &amp; M. Gastineau 2009; R. E. Zeebe 2015;
+D. S. Abbotetal. 2021; D. S. Abbotetal. 2023; N. A.
+Kaib &amp; S. N. Raymond 2025). In this paperwe traced
+this discrepancy backto the coordinate system usedin
+the Hamiltonian splittingof the Wisdom-Holman inte
+grator. We showed that simulations using democratic
+heliocentric coordinates (DHC) requirea significantly
+smaller timestepin ordertobe statistically converged
+comparedto simulations using</pre></li><li><strong>Democratic heliocentric coordinates underestimate the rateof instabilitiesin long-term integrationsof the Solar System</strong><br><pre>Hanno Rein
 ,1, 2, 3Kavi Dey
 ,4and Daniel Tamayo
-4
-1Dept. of Physical and Environmental Sciences, University of Toronto at Scarborough, Toronto, Ontario, M1C 1A4, Canada
-2Dept. of Physics, University of Toronto, Toronto, Ontario, M5S 3H4, Canada
-3Dept. of Astronomy and Astrophysics, University of Toronto, Toronto, Ontario, M5S 3H4, Canada
-4Dept. </pre></li><li><strong>ABSTRACT</strong><br><pre>Wisdom-Holman (WH) integrators are symplectic operator-splitting methods widely used for long-
-term N-body simulations of planetary systems. Most implementations use either Jacobi coordinates or
-democratic heliocentric coordinates (DHC) for the Hamiltonian splitting, resulting in slightly different
-algorithms. In this paper we report results from numerical experiments, which show that integrations
-of the Solar System using DHC coordinates with typical timesteps of a few days suppress instabiliti</pre></li><li><strong>1.INTRODUCTION</strong><br><pre>Numerical integrations of the Solar System, have a
-long history (see e.g. W. J. Eckert et al. 1951 for one
-of the first simulations of this kind, and J. Laskar 2013
-for a historical summary of the field). Although dif-
-ferent authors use different numerical algorithms, most
-modern long-term simulations use symplectic integra-
-tors that make use of the Wisdom-Holman splitting
-(J. L. Wisdom 1981; J. Wisdom &amp; M. Holman 1991;
-H. Kinoshita et al. 1991). Various variations of the
-Wisdom-Holman (WH) al</pre></li><li><strong>2.TESTS</strong><br><pre>All simulations were performed with the REBOUND
-package (H. Rein &amp; S. F. Liu 2012). REBOUND in-
-cludes several integrators, in particular the WH integra-
-tor WHFast (H. Rein &amp; D. Tamayo 2015) which allows
-us to choose the coordinate system for the Hamiltonian
+1Dept. of Physical and Environmental Sciences, Universityof Torontoat Scarborough, Toronto, Ontario, M1C 1A4, Canada
+2Dept. of Physics, Universityof Toronto, Toronto, Ontario, M5S 3H4, Canada
+3Dept. of Astronomy and Astrophysics, Universityof Toronto, Toronto, Ontario, M5S 3H4, Canada
+4Dept. of Physics, Harvey Mudd College, 301 Platt Blvd., Claremont 91711, USA</pre></li><li><strong>2.TESTS All simulations were performed with the REBOUND</strong><br><pre>package (H. Rein &amp; S. F. Liu 2012). REBOUND in
+cludes several integrators, in particular the WH integra
+tor WHFast (H. Rein &amp; D. Tamayo 2015) which allowsusto choose the coordinate system for the Hamiltonian
 splitting. We also run simulations with the WHFast512
-integrator (P. Javaheri et al. 2023), which only supports
-DHC. We include comparisons with WHFast512 because
-it does not reuse any code from WHFast, and can there-
-fore be seen as an ind</pre></li><li><strong>3.DISCUSSION</strong><br><pre>Our results from Sec. 2 show clear evidence that Ja-
-cobi coordinates perform better than DHC in Solar Sys-
-tem integrations. This is because when using Jacobi co-
-ordinates for the Hamiltonian splitting, Mercury’s mo-
-tion is decomposed into a Keplerian step on a two-body
-orbit around the Sun, and an interaction step with the
-other planets. In the limit where Mercury has a high
-eccentricity, the Kepler solver still correctly solves for
-the Keplerian motion around the Sun-Mercury barycen-
-ter fo</pre></li><li><strong>4.CONCLUSIONS</strong><br><pre>Different instability rates of the Solar System have
-been reported in the literature, ranging from∼0.1% to
-1% (J. Laskar &amp; M. Gastineau 2009; R. E. Zeebe 2015;
-D. S. Abbot et al. 2021; D. S. Abbot et al. 2023; N. A.
-Kaib &amp; S. N. Raymond 2025). In this paper we traced
-this discrepancy back to the coordinate system used in
-the Hamiltonian splitting of the Wisdom-Holman inte-
-grator. We showed that simulations using democratic
-heliocentric coordinates (DHC) require a significantly
-smaller timestep </pre></li></ul></section><section class='card'><h2>Exploring the formation mechanisms of tidal structures in globular clusters of extragalactic origin</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 17 | <strong>Chars:</strong> 96574</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2601.01110v2.pdf</p><ul><li><strong>front_matter</strong><br><pre>Astronomy&amp;Astrophysicsmanuscript no. aa57628-25©ESO 2026
-February 24, 2026
-Exploring the formation mechanisms of tidal structures in globular
-clusters of extragalactic origin
-Shouzhi Wang1,2,3, Jundan Nie3,⋆, Biwei Jiang1,2, Hao Tian3, Chao Liu3, and Ying-Hua Zhang3,4
-1Institute for Frontiers in Astronomy and Astrophysics, Beijing Normal University, Beijing 102206, People’s Republic of China
-2School of Physics and Astronomy, Beijing Normal University, Beijing 100875, People’s Republic of China
-3</pre></li><li><strong>ABSTRACT</strong><br><pre>Tidal structures around globular clusters provide valuable insights into cluster evolution and the hierarchical assembly of the Milky
-Way. Using wide-field imaging data from the DESI Legacy Survey combined with a color-magnitude matched-filter technique, we
-performed a systematic analysis of extratidal features in 28 Galactic globular clusters of likely extragalactic origin, representing
-the largest homogeneous sample examined in this context to date. The clusters display diverse morphologies: 1</pre></li><li><strong>6235, NGC 6333, IC 1257, FSR 1758, ESO-SC06, NGC 6715,</strong><br><pre>and NGC 6779) are located in regions not covered by DESI
-Legacy Surveys. In addition, NGC 2808 and NGC 6101 are
-covered only in thegandibands, respectively; NGC 5139 suf-
-fers from severely incomplete coverage, with many areas lack-
-ing photometric detections; IC 4499 is heavily contaminated by
-field stars and has poor photometric quality; and NGC 2419, at a
-distance of about 88 kpc (Baumgardt &amp; Vasiliev 2021), is too re-
-mote for our photometric selection criteria to be reliably applied.
-After </pre></li><li><strong>NGC 6341 12.44 45.70 5.44 36.4 1.68 0.03 0.21 -2.31 1.00 G2 GSE</strong><br><pre>Terzan 7 4.17 8.78 4.35 4.6 0.93 0.20 0.08 -0.32 0.39 G1 Sag
-Arp 2 9.03 10.41 4.59 4.5 0.88 0.22 0.08 -1.75 0.26 G1 Sag
-Terzan 8 3.98 13.51 4.88 6.0 0.60 0.20 0.03 -2.16 0.01 G1 Sag</pre></li><li><strong>NGC 7099 18.97 28.93 5.08 21.0 2.50 0.06 0.26 -2.27 1.10 G3 GSE</strong><br><pre>Pal 12 19.10 11.89 3.79 2.5 2.98 0.16 0.22 -0.85 0.82 G3 Sag
-Pal 13 2.19 5.51 3.44 1.8 0.66 0.42 0.43 -1.88 0.82 G1 Seq</pre></li><li><strong>NGC 7492 4.51 12.08 4.29 4.4 0.72 0.12 0.37 -1.78 0.77 G1 GSE</strong><br><pre>Notes.Columns list: cluster name, King and dynamical tidal radii, present-day cluster mass (logarithmic scale), central escape velocity, central
-concentration, ratio of half-mass radius to dynamical tidal radius, mass-loss fraction, metallicity, relaxation-age ratio, classification type, and
-possible progenitor system. Among them,rKing
-t,cand [Fe/H] are taken from the Harris catalog (Harris 1996, 2010 edition); the classification type
-and progenitor system are derived in this work; all other par</pre></li></ul></section><section class='card'><h2>Distribution function-based modelling of discrete kinematic datasets, in application to the Milky Way nuclear star cluster</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 24 | <strong>Chars:</strong> 106290</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2603.29502v1.pdf</p><ul><li><strong>front_matter</strong><br><pre>Draft version April 1, 2026
-Typeset using L ATEXtwocolumn style in AASTeX7.0.1
-Distribution function-based modelling of discrete kinematic datasets,
-in application to the Milky Way nuclear star cluster
-Eugene Vasiliev,1Anja Feldmeier-Krause,2and Mattia C. Sormani3
-1University of Surrey, Guildford GU2 7XH, UK
-2University of Vienna, T¨ urkenschanzstraße 17, 1180 Vienna, Austria
-3Como Lake centre for AstroPhysics (CLAP), DiSAT, Universit` a dell’Insubria, Via Valleggio 11, 22100 Como, Italy</pre></li><li><strong>ABSTRACT</strong><br><pre>We present a method for constructing dynamical models of stellar systems described by distribution
-functions and constrained by discrete-kinematic data. We implement various improvements compared
-to earlier applications of this approach, demonstrating with several examples that it can deliver mean-
-ingful constraints on the mass distribution even in situations when the density profile of tracers and
-the selection function of the kinematic catalogue are unknown. We then apply this method to the
-M</pre></li><li><strong>1.INTRODUCTION</strong><br><pre>The centre of our Galaxy contains two exciting ob-
-jects: the supermassive black hole (SMBH) Sgr A⋆of
-mass M•≈4.3×106M⊙(GRAVITY Collaboration
+integrator (P. Javaherietal. 2023), which only supports
+DHC. We include comparisons with WHFast512 becauseit does not reuse any code from WHFast, and can there
+forebe seenasan independent implementation ofa WHintegrator with DHC. This hel</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>3.DISCUSSION Our results from Sec.2 show clear evidence that Ja</strong> <em>(180 words | score 5.0)</em><br><pre>Rein &amp; D. Tamayo 2019). The jump step dependson Mercury’s momentum (and thatof the other planets) relativeto the Solar System barycenter. The Keplerian motion solved forin the Ke pler stepis also different from Jacobi case. Mercury does not orbit the Mercury-Sun barycenterasin the Jacobicase, but rather the Solar System barycenter5. In the limitof high eccentricity, the difference between Mer cury’s true trajectory a</pre></li><li><strong>4.CONCLUSIONS Different instability ratesof the Solar System have</strong> <em>(180 words | score 5.0)</em><br><pre>tric velocities. SeeM. J. Duncanetal. (1998); H. Rein &amp; D. Tamayo (2019). the eccentricityof planetsis high. The Solar Systemis one example where high accuracyis requiredto measure the correct instability rate because the eccentricityof Mercury becomes large (≳0.4) just before instabilities occur and numerical errors can suppress the behaviour. Reducing the timestepin simulations using DHC is one possible solution. A</pre></li><li><strong>1.INTRODUCTION Numerical integrationsof the Solar System, havea</strong> <em>(180 words | score 4.0)</em><br><pre>Democratic heliocentric coordinates underestimate the rate of instabilities in long-term integrations of the Solar System 1.INTRODUCTION Numerical integrationsof the Solar System, havea long history (seee.g. W. J. Eckertetal. 1951 for oneof the first simulationsof this kind, andJ. Laskar 2013 fora historical summaryof the field). Although dif ferent authors use different numerical algorithms, most modern long-term si</pre></li><li><strong>1.INTRODUCTION Numerical integrationsof the Solar System, havea</strong> <em>(180 words | score 4.0)</em><br><pre>becomes challengingat highor bital eccentricities like those achieved when Mercury goes unstable (K. P. Rauch &amp; M. Holman 1999; J. Wis dom 2015; D. M. Hernandezetal. 2022). This paper shows that this criterion dependson the coordinate system used. To clarify, wedo not referto thecoordinate systemin which the user inputs and outputs their positions and velocities (e.g. eclipticvs equato rial). Our focusis ratheron the</pre></li></ul></section><section class='card'><h2>Exploring the formation mechanisms of tidal structures in globular clusters of extragalactic origin</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 22 | <strong>Chars:</strong> 90649</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2601.01110v2.pdf</p><h3>Best extracted sections</h3><ul><li><strong>ABSTRACT</strong><br><pre>Tidal structures around globular clusters provide valuable insights into cluster evolution and the hierarchical assemblyof the Milky
+Way. Using wide-field imaging data from the DESI Legacy Survey combined witha color-magnitude matched-filter technique, we
+performeda systematic analysisof extratidal featuresin 28 Galactic globular clustersof likely extragalactic origin, representing
+the largest homogeneous sample examinedin this contextto date. The clusters display diverse morphologies: 12 exhibi</pre></li><li><strong>1.Introduction</strong><br><pre>Globular clusters (GCs) are among the oldest stellar systemsin the Universe, and they serveas valuable tracersof the for
+mation and assembly historyof their host galaxies. In thehi
+erarchical frameworkof Lambda cold dark matter cosmology
+model (Planck Collaborationetal. 2016), many Galactic GCs
+are thoughtto have been accreted from satellite galaxies during
+past merger events (Searle &amp; Zinn 1978; Bullock &amp; Johnston
+2005; Kruijssenetal. 2020). This ideais supportedby the
+discoveryof phase-space s</pre></li><li><strong>3.Matched filter method To detect potential extratidal structures around each globu</strong><br><pre>lar cluster, we employed the matched filtering techniquede
+velopedby Rockosietal. (2002), which enhances the con
+trast between cluster members and field starsin CMD space
+andis effective for detecting low-surface-brightness structures.
+This technique has been successfully appliedin several sub
+sequent studiesof tidal features around star clusters (e.g.,
+Chunetal. 2010; Jordi &amp; Grebel 2010; Navarreteetal. 2017;
+Carballo-Belloetal. 2018; Shippetal. 2018; Sollima 2020;
+Nieetal. 2022; Yangetal. 2023</pre></li><li><strong>4.2.1.Possible group-sensitive parameters From analysisof Fig.3, we observeda positive correlationbe</strong><br><pre>tween log10(M/M⊙) andv esc. Clustersin Group G1, which have
+lower mass, also exhibit lower escape velocity, whereas clustersin Group G2 and G3 generally occupy higher valuesin both
+parameters. This behavioris consistent with theoretical expec
+tations, as the total mass determines the depth ofa cluster’s
+gravitational potential well and shallower gravitational poten
+tial wells make clusters more susceptibleto external perturba
+tions and easyto escape (Baumgardt &amp; Makino 2003). The two
+sampleK-S t</pre></li><li><strong>4.5.Limitationsin the detectionof tidal structures Despite recent advancesin wide-field surveys and data pro</strong><br><pre>cessing techniques, the identificationof tidal structures around
+Galactic GCs remains subjectto several observational and
+methodological limitations. These factors may introduce biasesin the detection and interpretationof extended features, poten
+tially leadingtoan underestimationof their prevalence, morphol
+ogy, or physical origin.
+Limitationsof data depthThe data depthis crucial foras
+sessing the completenessof tidal structures. In this work, we
+make useof imaging data from the DESI Legacy Sur</pre></li><li><strong>5.Summary In this study, we conducteda systematic investigationof theex</strong><br><pre>tratidal structures associated with Galactic GCsof likely extra
+galactic origin, aimingto explore their formation mechanisms
+and the key physical factors driving their morphological diver
+sity. Usinga homogeneous dataset from the DESI Legacy Imag
+ing Surveys anda uniform matched-filtering procedure, we iden
+tified and morphologically classified the tidal featuresof our
+cluster sample. We then explored the connections betweenex
+tratidal structures and clusters’ intrinsic properties, orbitaldy
+nam</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>3.Matched filter method To detect potential extratidal structures around each globu</strong> <em>(180 words | score 5.0)</em><br><pre>Exploring the formation mechanisms of tidal structures in globular clusters of extragalactic origin 3.Matched filter method To detect potential extratidal structures around each globu lar cluster, we employed the matched filtering techniquede velopedby Rockosietal. (2002), which enhances the con trast between cluster members and field starsin CMD space andis effective for detecting low-surface-brightness structures. </pre></li><li><strong>3.Matched filter method To detect potential extratidal structures around each globu</strong> <em>(180 words | score 5.0)</em><br><pre>whilen bgdenotes the background num ber density distributionin the same bin, whichis usedas the corresponding background template. The parameterαserves asa scaling factor that quantifies the number (or surface density) of stars following the cluster’s CMD distribution within the given sky region. Subsequently, the calculationof this parameter canbe derived using the minimum-variance estimator (see Equation 2 in Rocko</pre></li><li><strong>3.Matched filter method To detect potential extratidal structures around each globu</strong> <em>(180 words | score 5.0)</em><br><pre>clusters with relatively small tidal radius and more diffuse stellar distributions (e.g., Whiting 1 and Pal 13), plate was constructed from stars located between this exclusion zone (when applied) and the cluster’s tidal radius (from Harris (1996), 2010 edition). In addition, to reduce field-star contami nation and obtaina clean cluster CMD templatefcl, we selected stars with−0.5&lt;g−r&lt;1.0 and 14&lt;r&lt;23 mag, and sub trac</pre></li><li><strong>4.2.1.Possible group-sensitive parameters From analysisof Fig.3, we observeda positive correlationbe</strong> <em>(180 words | score 5.0)</em><br><pre>tidal tails. Two-sampleKS tests further indicate significant differences between G1 and G2/G3 (q=0.01), while G2 and G3 show similar distributions (q=0.27), supporting the interpretationof G2 asa transitional population. Fig. 2: Signal-to-noise ratio distributions for partof the cluster sample, derived from the matched-filter output. The red circle indicates the King tidal radius (r tKing) from the Harris catalog, wh</pre></li></ul></section><section class='card'><h2>Distribution function-based modelling of discrete kinematic datasets, in application to the Milky Way nuclear star cluster</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 23 | <strong>Chars:</strong> 102054</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2603.29502v1.pdf</p><h3>Best extracted sections</h3><ul><li><strong>ABSTRACT</strong><br><pre>We presenta method for constructing dynamical modelsof stellar systems describedby distribution
+functions and constrainedby discrete-kinematic data. We implement various improvements comparedto earlier applicationsof this approach, demonstrating with several examples thatit can deliver mean
+ingful constraintson the mass distribution evenin situations when the density profileof tracers and
+the selection functionof the kinematic catalogue are unknown. We then apply this methodto the
+Milky Way nucl</pre></li><li><strong>1.INTRODUCTION The centreof our Galaxy contains two excitingob</strong><br><pre>jects: the supermassive black hole (SMBH) SgrA⋆of
+massM•≈4.3×106M⊙(GRAVITY Collaboration
 2022) and the surrounding nuclear star cluster (NSC).
-The NSC, in turn, is embedded in the nuclear stellar
-disc (NSD), which extends up to a couple hundred pc
-(see, e.g., Schultheis et al. 2025 for a review), and at
+The NSC, in turn, is embeddedin the nuclear stellar
+disc (NSD), which extendsup toa couple hundredpc
+(see, e.g., Schultheisetal. 2025 fora review), andat
 even larger distances (a few kpc), by the Galactic bar,
 then the Galactic stellar disc and halo, and finally the
-rest of the known Universe.
-N</pre></li><li><strong>2.CONSTRUCTION OF DYNAMICAL MODELS</strong><br><pre>2.1. Overview of methods
-Several approaches have been used for modelling the
-Milky Way NSC and NSD in the past. Most stud-
-ies relied on the Jeans equations, either spherical (e.g.,
-Sch¨ odel et al. 2009; Do et al. 2013b; Chatzopoulos et al.
-2015a; Fritz et al. 2016) or axisymmetric (Feldmeier
-et al. 2014; Chatzopoulos et al. 2015a; Sormani et al.
-2020; Feldmeier-Krause et al. 2025). These are easy to
-understand and fast to run, but have a few fundamen-
-tal limitations. First, Jeans equations ty</pre></li><li><strong>J02#</strong><br><pre>1 +κtanhJϕ
-Jϕ,0
-,
-g(J)≡grJr+gzJz+ (3−gr−gz)|Jϕ|,
-h(J)≡hrJr+hzJz+ (3−hr−hz)|Jϕ|,
-It is well suited to modelling spheroidal components,
-and has the following free parameters, listed in Table 1
-along with their fiducial values and allowed range. The
-total mass MNSCis log-scaled in the fitting process, as
-are other dimensional parameters. The characteristic
-(scale) action J0defines the transition between the in-
-ner and outer asymptotic regimes. The power-law slope
-of the DF in action space in the </pre></li><li><strong>3.MODEL FITTING</strong><br><pre>Throughout this work, we denote the position and ve-
-locity in the intrinsic coordinate system of the model by
-lowercase x,v, and in the observed system by uppercase
-X,V. In the application to the NSC, we adopt the stan-
-dard right-handed Galactocentric coordinate system for
-the model, shifted slightly to place the SMBH exactly at
-origin, with xybeing the equatorial plane and the Sun
-located at x=−D0≈ −8.2 kpc (GRAVITY Collabo-
-ration 2019). Although there are indications that the
-major axis of </pre></li></ul></section><section class='card'><h2>Forward-modelling Milky Way Cepheids: selection effects and physical priors in the Gaia-HST calibration</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 96 | <strong>Chars:</strong> 125936</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2603.09880v1.pdf</p><ul><li><strong>front_matter</strong><br><pre>MNRAS000, 1–26 (2025) Preprint 11 March 2026 Compiled using MNRAS L ATEX style file v3.0
-Forward-modelling Milky Way Cepheids: selection effects and
-physical priors in theGaia–HSTcalibration
-Richard Stiskalek1⋆, Adam G. Riess2,3, Harry Desmond4, Guilhem Lavaux5
-and Dan Scolnic6
-1Astrophysics, University of Oxford, Denys Wilkinson Building, Keble Road, Oxford, OX1 3RH, UK
-2Space Telescope Science Institute, 3700 San Martin Drive, Baltimore, MD 21218, USA
-3Department of Physics and Astronomy, John</pre></li><li><strong>ABSTRACT</strong><br><pre>The advent of high-precisionGaiaparallaxes for Milky Way Cepheids enables percent-
+restof the known Universe.
+NSCs frequently coexist with SMBHsin galaxiesof
+Milky Way masso</pre></li><li><strong>2.1.Overviewof methods Several approaches have been used for modelling the</strong><br><pre>Milky Way NSC and NSD in the past. Most stud
+ies reliedon the Jeans equations, either spherical (e.g.,
+Sch¨ odeletal. 2009; Doetal. 2013b; Chatzopoulosetal.
+2015a; Fritzetal. 2016) or axisymmetric (Feldmeieretal. 2014; Chatzopoulosetal. 2015a; Sormanietal.
+2020; Feldmeier-Krauseetal. 2025). These are easyto
+understand and fastto run, but havea few fundamen
+tal limitations. First, Jeans equations typically only use
+the first two momentsof the velocity distribution; al
+though there are implementat</pre></li><li><strong>3.4.Teston mock data To validate our dynamical modelling procedure, we</strong><br><pre>performeda test run ona mock dataset having the same
+spatial footprintas the observational data describedin
+Section 4. We createda fiducial model with parameters
+givenin Table 1, and for each starin the observational
+sample, assigned its missing Zcoordinate from the con
+ditional distributionp(Z) =ρ(X, Y, Z )/Σ(X, Y), and all
+velocity components that have been actually measured
+from the conditional distributionf 
+v|x
+composedof
+both the DF of the dynamical model and the VDF of
+the bar contaminat</pre></li><li><strong>4.OBSERVATIONAL DATA Feldmeier-Krauseetal.(2025) compileda catalogue</strong><br><pre>ofVLOSand PM measurements from several sources,
+whichwe use asa starting point for the present study
+and apply various additional cuts described below.
+The spectroscopic datasetis taken from several
+sources. Feldmeier-Krauseetal. (2017a) and Feldmeier
+Krauseetal. (2020) observed spectraof ∼700 stars each
+with KMOS/VLT (Sharplesetal. 2013; Daviesetal.
+2013, R ∼4000) outto 127′′(∼5 pc). Xuetal. (in prep.)
+observed ∼900 stars outto 247′′(∼9.6 pc) projected dis
+tance with KMOS/VLT. Unlike Feldmeier-</pre></li><li><strong>6.SUMMARY In this work, we developeda DF-based approach for</strong><br><pre>constructing dynamical modelsof stellar systems con
+strainedby discrete-kinematics data, accounting for pos
+sible foreground contamination and imposing dynamical
+self-consistency for the stellar distribution. We tailored
+our modelling workflowto the specific caseof the Milky
+Way nuclear star cluster, but the general approach canbe appliedto any resolved stellar system. We explored
+various solutionsto technical problems that made ourimplementation computationally feasible while retain
+ing suffici</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>1.INTRODUCTION The centreof our Galaxy contains two excitingob</strong> <em>(180 words | score 5.0)</em><br><pre>Distribution function-based modelling of discrete kinematic datasets, in application to the Milky Way nuclear star cluster 1.INTRODUCTION The centreof our Galaxy contains two excitingob jects: the supermassive black hole (SMBH) SgrA⋆of massM•≈4.3×106M⊙(GRAVITY Collaboration 2022) and the surrounding nuclear star cluster (NSC). The NSC, in turn, is embeddedin the nuclear stellar disc (NSD), which extendsup toa couple </pre></li><li><strong>1.INTRODUCTION The centreof our Galaxy contains two excitingob</strong> <em>(180 words | score 5.0)</em><br><pre>is usually inferred froma single kinematic snapshot with integrated-light spectroscopic dataof unresolved stellar populations. In rare cases (globular clustersor satellite Email: eugvas@protonmail.comgalaxiesof the Milky Way), one can work with line-of sight velocity ( VLOS) or proper motion (PM) measure mentsof resolved stars (e.g., den Broketal. 2014), but even then the dynamical inference must rely ona sin gle kin</pre></li><li><strong>1.INTRODUCTION The centreof our Galaxy contains two excitingob</strong> <em>(180 words | score 5.0)</em><br><pre>larger distances usually produce much larger uncertaintieson the SMBH mass, andin many studies the inferredM•has beenbi ased lowbyupto 50% (see the introduction sectionin Magorrian 2019 foran overviewof prior work). Despite this mixed successin the galaxywe know best, valuesof SMBH massesin external galaxies determined from (sometimes ≲10%), even though the qualityof observa tional datais clearly inferiorto the Milky</pre></li><li><strong>1.INTRODUCTION The centreof our Galaxy contains two excitingob</strong> <em>(180 words | score 5.0)</em><br><pre>the ones found ina recent paper (Sormanietal. 2022a). The latter study used kinematic dataon larger scales (10–300 pc) and thus aimedat determining the parametersof the NSD while treating the NSC asa fixed mass component. While the modelling method usedin that paperis largely the same, in the present workwe have implemented significant upgrades thatde servea detailed description, whichis givenin Section 3. In particu</pre></li></ul></section><section class='card'><h2>Forward-modelling Milky Way Cepheids: selection effects and physical priors in the Gaia-HST calibration</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 29 | <strong>Chars:</strong> 117291</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2603.09880v1.pdf</p><h3>Best extracted sections</h3><ul><li><strong>ABSTRACT</strong><br><pre>The adventof high-precisionGaiaparallaxes for Milky Way Cepheids enables percent
 levelcalibrationofthelocaldistanceladderandH 0.WerevisittheMilkyWayCepheid
-calibrationfromGaiaEDR3parallaxesusingafullyforward-modelledBayesianframe-
+calibrationfromGaiaEDR3parallaxesusingafullyforward-modelledBayesianframe
 work that simultaneously infers the period–luminosity relation, theGaiaparallax
 zero-point offset, and individual stellar distances while explicitly incorporating the
-disk geometry of the Galaxy through the distance prior and the selection functions
-specified in two </pre></li><li><strong>1 INTRODUCTION</strong><br><pre>The∼5σdiscrepancybetweenlocaldistance-ladderandcos-
-mic microwave background (CMB)-calibrated inferences of
-H0, known as the Hubble tension, is one of the most press-
-ing problems in cosmology (e.g. Riess et al. 2022a; Planck
-Collaboration et al. 2020; Louis et al. 2025; Camphuis et al.
-2025; Freedman et al. 2025; Di Valentino et al. 2025). While
-there are many routes to localH 0, which contribute to the
-overall tension (see H0DN Collaboration et al. 2025 for their
-⋆richard.stiskalek@physics.ox.</pre></li><li><strong>2 GEOMETRIC AND CEPHEID DATA</strong><br><pre>We use the MW Cepheids compiled by R21, withHSTpho-
-tometry in the F555W, F814W, and F160W bands andGaia
-EDR3 parallaxes (Gaia Collaboration et al. 2021). Of the75
-Cepheids in the R21 catalogue, seven lackGaiaEDR3 par-
+disk geometryof the Galaxy through the distance prior and the selection functions
+specifiedin two disti</pre></li><li><strong>1 INTRODUCTION The∼5σdiscrepancybetweenlocaldistance-ladderandcos</strong><br><pre>mic microwave background (CMB)-calibrated inferencesof
+H0, knownas the Hubble tension, is oneof the most press
+ing problemsin cosmology (e.g. Riessetal. 2022a; Planck
+Collaborationetal. 2020; Louisetal. 2025; Camphuisetal.
+2025; Freedmanetal. 2025; Di Valentinoetal. 2025). While
+there are many routesto localH 0, which contributeto the
+overall tension (see H0DN Collaborationetal. 2025 for their
+⋆richard.stiskalek@physics.ox.ac.ukcovariance-weighted combination), the sharpest local con
+straint com</pre></li><li><strong>2 GEOMETRIC AND CEPHEID DATA We use the MW Cepheids compiledby R21, withHSTpho</strong><br><pre>tometryin the F555W, F814W, and F160W bands andGaia
+EDR3 parallaxes (Gaia Collaborationetal. 2021). Of the75
+Cepheidsin the R21 catalogue, seven lackGaiaEDR3 par
 allaxes that pass the RUWE or GOF quality cuts (CY Aur,
-DL Cas, RW Cam, SV Per, SY Nor, RX Cam, and U Aql)
-and are excluded. We further exclude S Vul and SV Vul,
-which were flagged as possible outliers in R21. Both ex-
-hibit significant secular period evolution, and as the longest</pre></li><li><strong>MNRAS000, 1–26 (2025)</strong><br><pre>Forward-modelling Milky Way Cepheids3
-via the reddening-free Wesenheit magnitudemW
-H(Madore
-1982).
-TheCepheidswereobservedacrosstwoHSTcampaigns
-with distinct selection criteria given in R21: Cycle 22 (C22)
-targeted long-period Cepheids (P &gt;8 days) within a dis-
-tance range of∼6.6 kpc, while Cycle 27 (C27) targeted
-nearby Cepheids at distances&lt;1.25 kpc, withV &gt;6 magto
-avoidGaiasaturation. C27 was undertaken after the discov-
-ery of theGaiaparallax offset anomaly and the subsequent
-need for a broa</pre></li><li><strong>H−˜MW</strong><br><pre>H,1−˜bW
-logP
-1 day−1
-−˜ZW[Fe/H]−10
-,(1)
-where ˜MW
-H,1,˜bW, and ˜ZWare the period–luminosity zero-
-point, slope, and metallicity coefficient from Riess et al.
-(2016). This cut was applied to the predicted photomet-
-ric parallax rather than theGaiatrigonometric parallax
-because the C27 proposal was written beforeGaiaDR3;
-the DR2 parallax uncertainties were roughly twice as large,
-making the photometric estimate more precise. However, we
-shall later treat this selection as a smooth lower limit o</pre></li></ul></section><section class='card'><h2>A Selection Aware View of Black Hole-Galaxy Coevolution at High Redshift</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 11 | <strong>Chars:</strong> 62768</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2603.04358v1.pdf</p><ul><li><strong>front_matter</strong><br><pre>Astronomy &amp; Astrophysicsmanuscript no. main©ESO 2026
-March 5, 2026
-A Selection Aware View of Black Hole–Galaxy Coevolution at
-High Redshift
-F. Ziparo1, S. Carniani1, S. Gallerani1, and B. Trefoloni1
-Scuola Normale Superiore, Piazza dei Cavalieri 7, I-56126 Pisa, Italy
-e-mail:francesco.ziparo@sns.it</pre></li><li><strong>ABSTRACT</strong><br><pre>The large population of broad-line Active Galactic Nuclei (AGN) observed with the James Webb Space Telescope
-(JWST) atz≳4opens a new window onto the black hole–galaxy connection in the first Gyr of cosmic history. We
-use the JADES survey-level dataset and develop a forward-modeling Bayesian framework that explicitly accounts for
+DL Cas, RW Cam, SV Per, SY Nor, RX Cam, andU Aql)
+and are excluded. We further excludeS Vul and SV Vul,
+which were flaggedas possible outliersin R21. Bothex
+hibit significant secular period evolution, andas the longest
+period, most massive Cepheidsin the sample, their largean
+gular</pre></li><li><strong>4 RESULTS The fiducial inference combines the C22 and C27 samples</strong><br><pre>with the disk distance prior (Eq. 2) and selection modelling
+appliedto both MW campaigns; the LMC and N4258 are
+optionally includedas additional geometric calibrators. The
+term “MW Cepheids” denotes the joint C22+C27 sample;
+individual campaign results appearin AppendixB. Subse
+quent variants omit the selection modellingor replace the
+The R21χ2method appliedto the MW Cepheids yields
+results closely matching our forward model. In AppendixD
+we show that this agreementis drivenby the small intrinsi</pre></li><li><strong>6 CONCLUSION We have presenteda Bayesian forward modelof the MW</strong><br><pre>Cepheidpopulationthatjointlyinferstheperiod–luminosity
+relation parameters, theGaiaparallax zero-point offset, and
+the intrinsic population distributions, while marginalising
+overthedistancesandlatenttrueperiodsandmetallicitiesof
+individualCepheidsandexplicitlyaccountingforthesample
+selection function and the disk geometryof the MW. Com
+bined with geometric calibrationof the LMC and N4258,
+our fiducial model yieldsa period–luminosity zero-pointof
+MWH,1=−5.909±0.022 magand aGaiaparallax offsetof
+</pre></li><li><strong>RESULTS</strong><br><pre>Table B1 reports posteriors for the C22 and C27 cam
+paigns analysed separately, each combined with the LMC
+and N4258; Fig. B1 shows the corresponding corner plots.
+The LMC and N4258 are requiredto break theMWH,1–δϖde
+generacy inherentin parallax-only data, sowe include them
+throughout.
+With the LMC and N4258—which dominate the con
+straint onMWH,1—the two campaigns yield consistent zero
+points:MWH,1=−5.865±0.026 mag(C22) and−5.916±
+0.024 mag(C27), differing by1.4σ. The slopes and metallic
+ity coe</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>1 INTRODUCTION The∼5σdiscrepancybetweenlocaldistance-ladderandcos</strong> <em>(180 words | score 5.0)</em><br><pre>Forward-modelling Milky Way Cepheids: selection effects and physical priors in the Gaia-HST calibration 1 INTRODUCTION The∼5σdiscrepancybetweenlocaldistance-ladderandcos mic microwave background (CMB)-calibrated inferencesof H0, knownas the Hubble tension, is oneof the most press ing problemsin cosmology (e.g. Riessetal. 2022a; Planck Collaborationetal. 2020; Louisetal. 2025; Camphuisetal. 2025; Freedmanetal. 2025; D</pre></li><li><strong>1 INTRODUCTION The∼5σdiscrepancybetweenlocaldistance-ladderandcos</strong> <em>(180 words | score 5.0)</em><br><pre>distance prior, and infers the intrinsic population properties jointly with the period–luminosity relation and theGaiaparallax zero-point 2R. Stiskaleketal. offset. In particular, we show that the reduced Hubble ten sion reportedby Högas &amp; Mörtsell (2026, hereafter HM26), lection modelling, isan artefactof that omission. We show that when Galactic disk geometry and survey truncation aremodelledconsistently,theinferre</pre></li><li><strong>1 INTRODUCTION The∼5σdiscrepancybetweenlocaldistance-ladderandcos</strong> <em>(180 words | score 5.0)</em><br><pre>the statistical framework usedto infer the Cepheid calibra-tion and the treatmentof selection effects. Several studies have explored the sensitivityof the distance ladderto mod elling assumptions. For example, Efstathiou (2021) exam ined alternative implementationsof the SH0ES analysis and discussed the impactof specific modelling choices; Kush nir &amp; Sharon (2025) removed the requirement ofa Cepheid period–luminosity</pre></li><li><strong>2 GEOMETRIC AND CEPHEID DATA We use the MW Cepheids compiledby R21, withHSTpho</strong> <em>(180 words | score 5.0)</em><br><pre>Forward-modelling Milky Way Cepheids: selection effects and physical priors in the Gaia-HST calibration 2 GEOMETRIC AND CEPHEID DATA We use the MW Cepheids compiledby R21, withHSTpho tometryin the F555W, F814W, and F160W bands andGaia EDR3 parallaxes (Gaia Collaborationetal. 2021). Of the75 Cepheidsin the R21 catalogue, seven lackGaiaEDR3 par allaxes that pass the RUWE or GOF quality cuts (CY Aur, DL Cas, RW Cam, SV </pre></li></ul></section><section class='card'><h2>A Selection Aware View of Black Hole-Galaxy Coevolution at High Redshift</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 11 | <strong>Chars:</strong> 60050</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2603.04358v1.pdf</p><h3>Best extracted sections</h3><ul><li><strong>ABSTRACT</strong><br><pre>The large populationof broad-line Active Galactic Nuclei (AGN) observed with the James Webb Space Telescope
+(JWST) atz≳4opensa new window onto the black hole–galaxy connectionin the first Gyrof cosmic history. We
+use the JADES survey-level dataset and developa forward-modeling Bayesian framework that explicitly accounts for
 broad Hαdetectability, ensuring that selection effects are incorporated into the likelihood function. With this approach,
-we constrain the black hole–stellar mass (M BH–</pre></li><li><strong>G,(2)</strong><br><pre>which we inverted to obtainσ dyn. The effective radiusR eff
-was derived from the stellar mass using the empiricalM ⋆–
-Reffrelation by Allen et al. (2025). We fixed the structural
-parameters toK(n) = 8.06andK(q) = 1.02, correspond-
-ing to a Sérsic index ofn= 1and an axis ratio ofq≈0.73,
-consistent with typical star-forming disk galaxies at high
-redshift (e.g., van der Wel et al. 2022). The resulting dis-
-persionσ dynwas then used as the Gaussian standard de-
-viation of the narrow mock Hαcomponent</pre></li><li><strong>M⊙</strong><br><pre>= 6.6 + 0.47 logLbroad
-Hα
-1042erg s−1
-+ 2.06 logFWHM broad
-103km s−1
-.(4)
-To simulate NIRSpec data observations with a spectral res-
-olution of∆λ/λ≈2700, each synthetic spectrum was con-
-volved with the line spread function of the instrument andsampled with a spectral channel of 40km/s. We then added
-Gaussian white noise to each synthetic spectrum. We gen-
-erated two datasets: a deep dataset with a noise level of
-6×10−21ergs−1cm−2Å−1,matchingthedepthofthedeep-
-est observations in the JADES s</pre></li><li><strong>RMS2,(5)</strong><br><pre>whereF iandM i(p)denote the observed and model flux
-densities in thei-th spectral channel, respectively, and we
-compute the Bayesian information criterion (BIC)
-BIC =−2 lnL+klnN,(6)
-wherekisthenumberoffreeparametersandNthenumber
-of spectral channels.
-A broad component was considered significantly de-
-tected when at least one of the following conditions was
-satisfied:
-(i)∆BIC = BIC single−BIC double &gt;10, which indicates
-very strong statistical preference for the two-component
-modeloverthesingle-G</pre></li><li><strong>–M BH= 106–1010M⊙</strong><br><pre>–λEdd= 0.1–1
-We sampled theM BH–M⋆space with a50×50loga-
-rithmic grid. For each grid point, we generated 100 realiza-
-tions by randomly selecting values ofλ Eddand SFR within
-their allowed ranges, assuming uniform distributions in log-
-space. For each realization, a synthetic Hαspectrum was
-created and processed through the spectral fitting and de-
-tection procedure described in Sec.2.2.
-We then computed, for each point on a grid of inde-
-pendently sampledM BHandM ⋆values, the fraction of re-
-al</pre></li></ul></section><section class='card'><h2>Distribution functions for spheroids</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 31 | <strong>Chars:</strong> 46035</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2602.23127v1.pdf</p><ul><li><strong>front_matter</strong><br><pre>Mon. Not. R. Astron. Soc. 000, 000–000 (0000) Printed 27 February 2026 (MN L ATEX style ﬁle v2.2)
-Distribution functions for spheroids
-James Binney⋆
-Rudolf Peierls Centre for Theoretical Physics, Clarendon L aboratory, Oxford OX1 3PU, United Kingdom</pre></li><li><strong>ABSTRACT</strong><br><pre>Galaxymodels comprisingseveralcomponents (including dark matte r) that arebound
-by the self-consistently generated gravitational ﬁeld are readily c onstructed from dis-
-tribution functions (DFs) that are analytic functions of the action integrals J. We
-explain why such models have unphysical velocity distributions unless the DFs of hot
-components satisfy certain conditions as Jφ→0. We show how DFs for both isotropic
-and radially biased spherical systems can be constructed with spec iﬁedf(J). We </pre></li><li><strong>1 INTRODUCTION</strong><br><pre>Theextentandqualityofthedatathatareavailable for both
-our Galaxy and external galaxies has increased enormously
-in the last few years. In the case of the Milky Way, the
+we constrain the black hole–stellar mass (M BH–M⋆) r</pre></li><li><strong>1.Introduction Supermassive black holes (SMBHs), with masses ranging</strong><br><pre>from106to over1010M⊙, are ubiquitously foundat the
+centersof massive galaxies (Kormendy &amp; Ho 2013; Reines
+&amp; Volonteri 2015) bothin the local and high-zUniverse.
+A wealthof observational evidence has established that the
+growthofSMBHsiscloselylinkedtotheformationandevo
+lutionof their host galaxies. Thisco-evolutionis supportedby tight empirical correlations between SMBH mass and
+large-scale galactic properties suchas stellar mass, bulge
+luminosity, and velocity dispersion (Magorrianetal. 1998;
+Fe</pre></li><li><strong>2.Methods In this section, we describe the procedure adoptedto gen</strong><br><pre>erate synthetic Hαspectra andto assess the detectabil
+ityof AGN signatures under varying physical conditions.
+Throughout this analysis, we consider only unobscured,
+broad-line(type1)AGN,excludingsourceswherethebroad
+componentis hiddenby nuclear obscuration. Our approachis based ona forward-modeling frameworkin which the
+emission-line profiles are derived analytically from theun
+derlying galaxy and BH properties, allowingusto quantify
+how observational selection affects the recoveryof broad
+line </pre></li><li><strong>3.Results In this section, we present the resultsof our detectabil</strong><br><pre>ity analysis and the inferredM BH–M⋆relation atz≳4.
+We beginby examining how the observabilityof broad Hα
+components varies across the parameter spaceof black hole
+and galaxy properties. We then use these resultsto test
+the biaseson theM BH–M⋆diagram introducedby NIR
+Spec observations. Finally, we incorporate the detectability
+maps intoa truncated-likelihood framework when fitting
+theM BH–M⋆relation. This approach allowsusto obtain
+constraintson the slope, normalization, and intrinsic scat
+terof</pre></li><li><strong>4.Discussion</strong><br><pre>Motivatedby the larger intrinsic dispersionwe infer atz∼6, we discuss the physical mechanisms that broaden
+theM BH–M⋆relationat early times. The varianceof the
+relationis expectedto arise from three main contributions:
+stochastic BH accretion and feedback, the hierarchicalas
+semblyof galaxies through mergers, and any residual diver
+Fig. 4.Black hole–host galaxy scaling relation for the Juodžbalisetal. (2025a) sample. The solid blue line indicates our best
+fittingM BH–M⋆relation obtained with the</pre></li><li><strong>6.Conclusions We have presenteda statistically rigorous determinationof</strong><br><pre>theM BH–M⋆relation atz≳4, based ona sampleof broad
+line AGN from the JADES survey anda selection-aware
+modelingframework.Bycombiningdetectabilitymapswitha truncated-likelihood MCMC fit, we explicitly account for
+the non-uniform probabilityof detecting broad Hαemis
+sion. This approach allowsusto mitigate selection effects
+that can bias black hole mass estimatesat fixed host stel
+lar mass, leading toa more reliable characterizationof the
+underlying relation.
+Ourmainresultisthattheinferredslopeandn</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>1.Introduction Supermassive black holes (SMBHs), with masses ranging</strong> <em>(180 words | score 5.0)</em><br><pre>A Selection Aware View of Black Hole-Galaxy Coevolution at High Redshift 1.Introduction Supermassive black holes (SMBHs), with masses ranging from106to over1010M⊙, are ubiquitously foundat the centersof massive galaxies (Kormendy &amp; Ho 2013; Reines &amp; Volonteri 2015) bothin the local and high-zUniverse. A wealthof observational evidence has established that the growthofSMBHsiscloselylinkedtotheformationandevo lutionof </pre></li><li><strong>1.Introduction Supermassive black holes (SMBHs), with masses ranging</strong> <em>(180 words | score 5.0)</em><br><pre>galactic nucleus (AGN) can inject energy and momentum into the surrounding interstellar medium, in the formof radiation, winds, or relativistic jets, thereby regulating star formation and SMBH accretion (Harrison 2017). This self-regulating cycleis expectedto playa key rolein shaping the observed scaling relations andto drive thejointevolutionofSMBHsandgalaxiesovercosmictime. Although the scaling relations between SM</pre></li><li><strong>1.Introduction Supermassive black holes (SMBHs), with masses ranging</strong> <em>(180 words | score 5.0)</em><br><pre>and dust extinction comparedto UV lines suchas Civor Mgii(e.g., Greene &amp; Ho 2005). However, detect ing and accurately decomposing the broad Hαemission atz &gt;4is challenging, since the limited spectral quality often hampersa clean separation between the broad and nar row components (Carnalletal. 2023; Mattheeetal. 2024). Asa result, current samples maybe biased toward the most luminousL Hα≳1042ergs−1, high-accretion SM</pre></li><li><strong>1.Introduction Supermassive black holes (SMBHs), with masses ranging</strong> <em>(180 words | score 5.0)</em><br><pre>empirical constraintson theM BH–M⋆relationat early cosmic times using spectroscopically confirmed broad-line AGN samples (Harikaneetal. 2023; Kocevskietal. 2023; Maiolinoetal. 2024; Mattheeetal. 2024; Juodžbalisetal. 2025a). How ever,thesesamplesremainheterogeneousandareoftenlim itedby small-number statistics, spectral quality, and obser vational biases that favor the most luminous sources. A recent attemptto address</pre></li></ul></section><section class='card'><h2>Distribution functions for spheroids</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 17 | <strong>Chars:</strong> 43835</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2602.23127v1.pdf</p><h3>Best extracted sections</h3><ul><li><strong>ABSTRACT</strong><br><pre>Galaxymodels comprisingseveralcomponents (including dark matter) that areboundby the self-consistently generated gravitational field are readilyc onstructed from dis
+tribution functions (DFs) that are analytic functionsof the action integralsJ. We
+explain why such models have unphysical velocity distributions unless the DFsof hot
+components satisfy certain conditionsas Jφ→0. We show how DFs for both isotropic
+and radially biased spherical systems canbe constructed with spec ifiedf(J). We show
+ho</pre></li><li><strong>1 INTRODUCTION Theextentandqualityofthedatathatareavailable for both</strong><br><pre>our Galaxy and external galaxies has increased enormouslyin the last few years. In the caseof the Milky Way, the
 Gaia data releases (Gaia Collaboration &amp; Brown 2018; Gaia
-Collaboration et al. 2023) and data released by several spec -
-troscopic surveys (Steinmetz et al. 2020; Deng et al. 2012;
-Abdurro’uf et al. 2022; Buder et al. 2025) have enabled us
-to study the chemodynamics of our archetypal Galaxy in ex-
-traordinary detail. Meanwhile, a</pre></li><li><strong>2 THE PROBLEM</strong><br><pre>Binney(2014)proposedgeneratinganisotropic modelsbyre -
-placingH(J) as the argument of the DF f(H) of an ergodic
-model by a similar function of Jin which its components Ji
-receive diﬀerent weights: weighting an action more heavily
-depopulates orbits with large values of that action relativ e
-to the ergodic model. For example, decreasing the weighting
-ofJrinduces a radial bias in the model, while weighting Jz
-more strongly than Jφﬂattens the model.
-Posti et al. (2015) showed that DFs that are doub</pre></li><li><strong>©0000 RAS, MNRAS 000, 000–000</strong><br><pre>Distribution functions for spheroids 3
-Figure 2. The distributions of radial and azimuthal velocities at
-(R,z) = (5,0)kpc when the same population as that shown in
-Fig. 1 is conﬁned by the equivalent spherical potential.
-ted curve) and σφ(dashed curve). These runs are very much
-what one would expect in a system that has a modest de-
-gree of radial bias. The lower panel shows the distributions
-ofvRin black and vφin cyan at ( R,z) = (5,0)kpc. The
-distribution of vφis sharply peaked to an extent th</pre></li><li><strong>3 ANALYTIC CONSIDERATIONS</strong><br><pre>We now explain why some DFs yield unacceptable distribu-
-tionsofvφ.Consider thevelocitydistribution n(v) =f(x,v)
-at a given point xin an ergodic model, i.e., one such that
-the DF can be written f(H). Then
+Collaborationetal. 2023) and data releasedby several spec -
+troscopic surveys (Steinmetzetal. 2020; Dengetal. 2012;
+Abdurro’ufetal. 2022; Buderetal. 2025) have enabledusto study the chemodynamicsof our archetypal Galaxyinex
+traordinary detail. Meanwhile, a new generationof integral
+field units (IFUs) has dramatically increased </pre></li><li><strong>3.3 Summary At the beginningof this sectionwe saw that ∂f/∂v φwill</strong><br><pre>not vanish with vφunless certain productsof derivativesof
+fandof the actions cancel nicely. We further saw that for
+such cancellationto occur the partial derivativesof fas
+Jφ→0 must satisfy ∂f/∂Jr=1
+2∂f/∂J φatJzless thana critical value and ∂f/∂Jz=∂f/∂J φat lager Jz. These
+conditions should ensure that ∂f/∂v φvanishesby virtue ofa relation thatwe inferred between derivativesof the actions
+with respectto vφ.</pre></li><li><strong>8 CONCLUSIONS</strong><br><pre>Althoughan axisymmetric model ofa stellar system canbe derived from any non-negative and normalisable func
+tionf(J), the model willbe unphysical unless fsatisfies the
+conditionsof equation (16). These conditions serve bothto
+ensure that histogramsof vφdo not have cuspsat vφ= 0
+andto ensure that velocity distribution becomes appropri
+ately symmetric near the centre and near the potential’s
+symmetry axis.
+In Section 3 we saw the need for non-trivial cancella
+tionsif∂f/∂v φisto vanishas vφ→0, andby</pre></li><li><strong>2 THE PROBLEM Binney(2014)proposedgeneratinganisotropic modelsbyre</strong><br><pre>placingH(J) as the argumentof the DFf(H) ofan ergodic
+model bya similar functionof Jin which its components Ji
+receive diﬀerent weights: weightingan action more heavily
+depopulates orbits with large valuesof that action relativeto the ergodic model. For example, decreasing the weighting
+ofJrinducesa radial biasin the model, while weighting Jz
+more strongly than Jφflattens the model.
+Postietal. (2015) showed that DFs that are doubleFigure 1. A halo witha DF givenby equations (1) and (2)
+trappedin</pre></li><li><strong>3 ANALYTIC CONSIDERATIONS We now explain why some DFs yield unacceptable distribu</strong><br><pre>tionsofvφ.Consider thevelocitydistributionn(v) =f(x,v)
+ata given point xinan ergodic model, i.e., one such that
+the DF canbe writtenf(H). Then
 ∂f
 ∂Jr=df
 dH∂H
 ∂Jr=df
 dHΩr (3)
 where Ω r(J) is the radial frequency. From the equivalent
-equations for derivatives wrt JzandJφit follows that an
-ergodic DF satisﬁes
-∂f/∂J r
+equations for derivatives wrt JzandJφit follows thatan
+ergodic DF satisfies
+∂f/∂Jr
 ∂f/∂J φ=Ωr
-Ωφand∂f/∂J z
+Ωφand∂f/∂Jz
 ∂f/∂J φ=Ωz
 Ωφ. (4)
-The Hamiltonian H=1
-2v2+Φ,f(v) is an even function
-ofv, so in the ergodic case </pre></li></ul></section><section class='card'><h2>Scattering, Migration, Re-circularization and Relaxation to Build Out Galaxy Disks with Exponential Profiles</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 11 | <strong>Chars:</strong> 58791</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2602.21171v1.pdf</p><ul><li><strong>front_matter</strong><br><pre>Draft version February 25, 2026
-Typeset using L ATEXdefaultstyle in AASTeX7.0.1
-Scattering, Migration, Re-circularization and Relaxation to Build Out Galaxy Disks with Exponential
-Profiles
-Curtis Struck,1Bruce G. Elmegreen,2and Elena D’Onghia3, 4
-1Iowa State University
-2Retired, Katonah, NY 10536
-3Department of Physics, University of Wisconsin-Madison, Madison, WI 53706, USA
-4Department of Astronomy, University of Wisconsin-Madison, Madison, WI 53706, USA</pre></li><li><strong>ABSTRACT</strong><br><pre>Scattering of stars by interstellar clouds or massive clumps increases the stellar velocity dispersion and
-promotes a radial disk profile that is exponential. Here we show that such scattering reaches a steady-
-state distribution function of stellar eccentricity, after which eccentricity increases and decreases occur
-at equal rates. The implication is that clump/cloud scattering recircularizes eccentric stellar orbits,
-keeping the stellar velocity dispersion in a limited range. This re-circulari</pre></li><li><strong>1.INTRODUCTION</strong><br><pre>The radial profiles of galaxy stellar disks are approximately exponential for several scale lengths in the main parts,
-with either a continuation (Type I), a downturn (Type II), or an upturn (Type III) to a further exponential over
-many more scale lengths in the outer parts (Freeman 1970; Erwin et al. 2005; Pohlen &amp; Trujillo 2006; Erwin et al.
-2008; Meert et al. 2015). Exponential profiles are observed in both spirals and dwarfs (Herrmann et al. 2013), whether
-barred or non-barred (Hunter &amp; Elme</pre></li><li><strong>2.MODEL DESCRIPTION</strong><br><pre>2.1.Numerical Disk Model
-The results presented below are based on test particle model scattering disks, which are modified versions of the
-code used in Elmegreen &amp; Struck (2013) and subsequent papers in this series. The disk is initialized with 9759 test
-particles placed on circular orbits in the central x-y plane in a rigid halo gravitational potential. The initial surface
-density is constant out to a radius of 8.0 units to highlight the subsequent development of the exponential. The test
-parti</pre></li><li><strong>3.A FIDUCIAL MODEL PAIR</strong><br><pre>3.1.Model Evolution
-In this section we consider the evolution of two realizations of a fiducial model of the scattering disk system. These
-models are essentially the same except for different values of the random variables in the initialization. (These initial
-random variables are: the initial particle azimuth, the initial particle vertical position as a fraction of the maximum of
-0.3 units, and the initial particle vertical velocity as a fraction of the maximum of 1.5 units.) They will be compa</pre></li><li><strong>4.SYSTEMATICS</strong><br><pre>In the previous section we described the general characteristics of a fiducial scattering model, and something of the
-range of evolution by comparing to a second realization. In this section we consider an ensemble including several
-additional models to get a better understanding of the range of steady structures to which the scattering disk evolves,
-as well as the role of recircularization.
-Panel a) of Fig. 4 shows the mean eccentricity evolution of six model runs (thin curves), the mean eccent</pre></li></ul></section><section class='card'><h2>Probabilistic inference in very large universes</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 25 | <strong>Chars:</strong> 150523</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2602.02667v1.pdf</p><ul><li><strong>MIT-CTP-LI/5999</strong><br><pre>Probabilistic inference in very large universes
-Feraz Azhar,1,∗Alan H. Guth,2,†and Mohammad Hossein Namjoo3,‡
-1Department of Philosophy, University of Notre Dame, Notre Dame, IN 46556, USA
-2Department of Physics, Laboratory for Nuclear Science,
+The HamiltonianH=1
+2v2+Φ,f(v) isan even function
+ofv, soin the ergodic case ∂f/∂vi→0 asvi→0. However,
+from the perspectiveof the expression
+∂f
+</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>1 INTRODUCTION Theextentandqualityofthedatathatareavailable for both</strong> <em>(180 words | score 5.0)</em><br><pre>Distribution functions for spheroids 1 INTRODUCTION Theextentandqualityofthedatathatareavailable for both our Galaxy and external galaxies has increased enormouslyin the last few years. In the caseof the Milky Way, the Gaia data releases (Gaia Collaboration &amp; Brown 2018; Gaia Collaborationetal. 2023) and data releasedby several spec - troscopic surveys (Steinmetzetal. 2020; Dengetal. 2012; Abdurro’ufetal. 2022; Buder</pre></li><li><strong>1 INTRODUCTION Theextentandqualityofthedatathatareavailable for both</strong> <em>(180 words | score 5.0)</em><br><pre>the models fitted. For example, if the data suﬃce onlyto constrain the first three momentsof the distribution function (DF), namely the luminosity density, the meanve locity and the velocity dispersion, models constructed from the Jeans equations suﬃce (e.g. Binneyetal. 1990; Lietal. 2023; Pickettetal. 2025). Gaia data yield the full veloc ity distributionsat large numbersof locations, and Jeans ⋆E-mail: James.Binney</pre></li><li><strong>1 INTRODUCTION Theextentandqualityofthedatathatareavailable for both</strong> <em>(180 words | score 5.0)</em><br><pre>the initial conditions and the final modelis opaque, soitis hardto fita modelto given data. Such fits have been achievedby the Madeto Measure (M2M) technique (Syer &amp; Tremaine 1996; de Lorenzietal. 2007) in which the weightsof particles aread justedto optimise the fitto data, but only witha great dealof painstaking labour (e.g. Portailetal. 2017). Another popular, and slightly less labour-intensiveap proachto galaxy m</pre></li><li><strong>1 INTRODUCTION Theextentandqualityofthedatathatareavailable for both</strong> <em>(180 words | score 5.0)</em><br><pre>2022a,b; Binney &amp; Vasiliev 2023, 2024), todwarfspheroidalgalaxies (Pascale etal. 20 18, 2019, 2024), andto globular clusters (Della Croceetal. 2024), one assignsan analytic functionof the action inte gralsto each ofa galaxy’s componentsas its DF, and then determines the observablesby integrating over velocities. In early work, the galaxy’s gravitational potential was assumed upfrontasin Schwarzschildmodelling, butlat</pre></li></ul></section><section class='card'><h2>Scattering, Migration, Re-circularization and Relaxation to Build Out Galaxy Disks with Exponential Profiles</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 11 | <strong>Chars:</strong> 56149</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2602.21171v1.pdf</p><h3>Best extracted sections</h3><ul><li><strong>ABSTRACT</strong><br><pre>Scatteringof starsby interstellar cloudsor massive clumps increases the stellar velocity dispersion and
+promotesa radial disk profile thatis exponential. Herewe show that such scattering reachesa steady
+state distribution functionof stellar eccentricity, after which eccentricity increases and decreases occurat equal rates. The implicationis that clump/cloud scattering recircularizes eccentric stellar orbits,
+keeping the stellar velocity dispersion ina limited range. Thisre-circularization regula</pre></li><li><strong>1.INTRODUCTION</strong><br><pre>The radial profilesof galaxy stellar disks are approximately exponential for several scale lengthsin the main parts,
+with eithera continuation (TypeI), a downturn (Type II), oran upturn (Type III) toa further exponential over
+many more scale lengthsin the outer parts (Freeman 1970; Erwinetal. 2005; Pohlen &amp; Trujillo 2006; Erwinetal.
+2008; Meertetal. 2015). Exponential profiles are observedin both spirals and dwarfs (Herrmannetal. 2013), whether
+barredor non-barred (Hunter &amp; Elmegreen 2006), so t</pre></li><li><strong>6.CONCLUSIONS</strong><br><pre>In this paperwe presenteda setof numerical experiments showing how gravitational scatteringby interstellar clouds
+leadsto the formationof exponential stellar disks. Cloud-star scattering has long been knownto heata stellar disk,
+increasing the eccentricitiesof stars (Spitzer &amp; Schwarzschild 1951; Sunetal. 2025). Itis oneof several possible
+heating mechanisms (Garzonetal. 2024). Cloud scattering stalls once stars move off the thin cloud layer, so there isa natural regulationof the velocity disper</pre></li><li><strong>2.1.Numerical Disk Model</strong><br><pre>The results presented below are basedon test particle model scattering disks, which are modified versionsof the
+code usedin Elmegreen &amp; Struck (2013) and subsequent papersin this series. The diskis initialized with 9759 test
+particles placedon circular orbitsin the centralx-y plane ina rigid halo gravitational potential. The initial surface
+densityis constant out toa radiusof 8.0 unitsto highlight the subsequent developmentof the exponential. The test
+particles are then given random vertical (z)</pre></li><li><strong>2.2.Units We use dimensionless units, specificallywe take,H= 1, andGMH= 1.0, thenV2</strong><br><pre>H=GMH/H= 1, andTH=
+H/VH= 1. As per previous papersin the serieswe can adopt representative scalings fora normal anda dwarf type
+disk. For the normal disk these are:H= 2 kpc,VH= 50 kms−1,T= 40 Myr, andMH= 5.0×109M⊙. This gives
+rotation periods atR= 2 and 10 kpcof 250 and 1460 Myr, respectively. (The addition ofa massive disk, bulgeor
+bar component could increase rotation velocities and decrease these times significantly, without similarly affecting the
+velocity dispersions discussed below.) For t</pre></li><li><strong>2.3.Precessing Ellipse Fitting</strong><br><pre>Important resultsof this paper derive from analyzing the evolutionof the disk plane orbital eccentricitiesof the
+them overa full orbital period, or even overa half period from pericenterto apocenteris not entirely relevant, nor
+computationally efficient.
+Insteadwe have chosento estimate eccentricities and semi-major axes using the precessing ellipse (p-ellipse) ap
+proximationof Struck (2006). This approximationis quite accurate for orbitsin power-law potentials (Struck 2015),
+especially near fla</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>2.1.Numerical Disk Model</strong> <em>(180 words | score 5.0)</em><br><pre>Scattering, Migration, Re-circularization and Relaxation to Build Out Galaxy Disks with Exponential Profiles 2.1.Numerical Disk Model The results presented below are basedon test particle model scattering disks, which are modified versionsof the code usedin Elmegreen &amp; Struck (2013) and subsequent papersin this series. The diskis initialized with 9759 test particles placedon circular orbitsin the centralx-y plane ina</pre></li><li><strong>3.1.Model Evolution</strong> <em>(180 words | score 5.0)</em><br><pre>Scattering, Migration, Re-circularization and Relaxation to Build Out Galaxy Disks with Exponential Profiles 3.1.Model Evolution In this sectionwe consider the evolutionof two realizations ofa fiducial modelof the scattering disk system. These models are essentially the same except for different valuesof the random variablesin the initialization. (These initial random variables are: the initial particle azimuth, the </pre></li><li><strong>3.1.Model Evolution</strong> <em>(180 words | score 5.0)</em><br><pre>among our runs, witha ratioof mean vertical (z) valuesof 0.63/0.39 (or 1.3 kpc and 0.78 kpcin the disk galaxy units above) at the endof the runs. The effect does not depend sensitivelyon clump mass, but smaller clump mass runs needto involve more clumpsin the large scale asymmetry. This bifurcation betweena minorityof models that develop strong clump alignments and subsequent disk heating, versus those thatdo not, do</pre></li><li><strong>3.1.Model Evolution</strong> <em>(154 words | score 5.0)</em><br><pre>star particles are color coded and binnedby their initial radii, and only halfof those usedin the model are plotted. Extensive mixingis evidentat late times. The second row showsx-z viewsof the disk, showing the effectsof vertical scattering. The third row shows the disk plane again, but with color codingof the eccentricity; blue colors are the lowest eccentricity, while red are the highest (blue fore &lt;0.3, cyan for </pre></li></ul></section><section class='card'><h2>Probabilistic inference in very large universes</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 11 | <strong>Chars:</strong> 139544</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2602.02667v1.pdf</p><h3>Best extracted sections</h3><ul><li><strong>V.Conclusion 18 Acknowledgments 20</strong><br><pre>Appendices: 20
+Indifferenceassuming that the modelU ∗for the
+real universeis known 20
+B. Motivating thePrincipleof Self-Locating
+Indifference: Dropping the assumption thatU ∗is
+known 22
+C. Comparing prescriptionsin simple box models 24
+References 26</pre></li><li><strong>I.INTRODUCTIONA striking possibility suggestedby the theories that</strong><br><pre>underlie our current understandingof the observable
+universe—suchas cosmic inflation [1–4]—is that the
+observable universeis just one “domain” ina vast
+(mostly unobservable) multi-domain structure (hence
+forth, a “very large universe”, also known asa “mul
+tiverse”) [5–7]. In such theories, the parameters that
+appearin the effective, low-energy laws may vary from
+one domainto the next. A central concern that arisesin
+this contextis: howdowe test theories ofa very large
+universe?
+There areof cours</pre></li><li><strong>V.CONCLUSION Probabilistic reasoningin very large universes isa</strong><br><pre>tings have ledto confusion and controversyin the litera
+ture. We are interestedin theories that describe universesin which the effective, low-energy approximationsto the
+lawsof physics can vary from one regionto another, so
+the measurementsof any observer will strongly dependon where she lives. Furthermore, the local low-energy
+lawsof physicsin any region can havea strong influenceon whether observers existin the region. If observersdo exist, their number and their characteristics will alsobe st</pre></li><li><strong>front_matter</strong><br><pre>MIT-CTP-LI/5999
+Probabilistic inferencein very large universes
+Feraz Azhar,1,∗AlanH. Guth,2,†and Mohammad Hossein Namjoo3,‡
+1Departmentof Philosophy, Universityof Notre Dame, Notre Dame, IN 46556, USA
+2Departmentof Physics, Laboratory for Nuclear Science,
 and Center for Theoretical Physics – A Leinweber Institute,
-Massachusetts Institute of Technology, Cambridge, MA 02139
-3School of Astronomy, Institute for Research in Fundamental Sciences (IPM), Tehran, Iran
+Massachusetts Instituteof Technology, Cambridge, MA 02139
+3Schoolof Astronomy, Institute for Researchin Fundamental Sciences (IPM), Tehran, Iran
 (Dated: February 2, 2026)
-Our current favored c</pre></li><li><strong>CONTENTS</strong><br><pre>I. Introduction 2
-II. Bayesian theory assessment 6
-III. Calculating first-person probabilities in very large
-universes 6
-A. Probabilities, third person and first person 7
-B.Principle of Self-Locating Indifference7
+Our current f</pre></li><li><strong>III.Calculating first-person probabilitiesin very large universes 6</strong><br><pre>A. Probabilities, third person and first person 7
+B.Principleof Self-Locating Indifference7
 C. Motivating indifference 9
 ∗Email address: fazhar@nd.edu
 †Email address: guth@ctp.mit.edu
-‡Email address: mh.namjoo@ipm.irIV. Other thoughts on probabilities in very large
+‡Email address: mh.namjoo@ipm.irIV. Other thoughtson probabilitiesin very large
 universes 11
 A. TheSelection Fallacyfallacy 11
-B. When we evaluate theories, should we use
-only what we know for</pre></li><li><strong>I. INTRODUCTION</strong><br><pre>A striking possibility suggested by the theories that
-underlie our current understanding of the observable
-universe—such as cosmic inflation [1–4]—is that the
-observable universe is just one “domain” in a vast
-(mostly unobservable) multi-domain structure (hence-
-forth, a “very large universe”, also known as a “mul-
-tiverse”) [5–7]. In such theories, the parameters that
-appear in the effective, low-energy laws may vary from
-one domain to the next. A central concern that arises in
-this context is:</pre></li><li><strong>II. BAYESIAN THEORY ASSESSMENT</strong><br><pre>We will use a Bayesian framework for theory assess-
-ment, which we describe in this section—mainly to es-
-tablish notation. When Bayes’ theorem is used to update
-the probabilities that we assign to our theories, we will
-need to use first-person probabilities, because they are
-the relevant probabilities for our measurements. First-
-person probabilities were described briefly in the Intro-
-duction, and a precise proposal for calculating them will
-be described in the following section.
-In general t</pre></li><li><strong>P(B),(1)</strong><br><pre>provided thatP(B) andP(A) are both nonzero.10
-One important application of Eq. (1) describes how
-new data,D new, impacts the probabilities that we assign
-to theoriesT i. If we set, in Eq. (1),A=T iandB=D new,
-we obtain
-P(Ti|Dnew) =P(D new|Ti)P(T i)
-P(D new),(2)
-provided thatP(D new) is nonzero.
-The quantity on the left-hand side of Eq. (2), namely
-P(Ti|Dnew), is the probability that we assign toT iafter
-Dnewis obtained, and is known as theposterior proba-
-bilityofT i. The probability that we ass</pre></li><li><strong>PROBABILITIES IN VERY LARGE UNIVERSES</strong><br><pre>We begin by assuming that we are exploring the predic-
-tions of a fully detailed cosmological theory. An (ideal)
-complete cosmological theory provides a set of possible
-universes{U α}, where eachU αis afull descriptionof
-a possible spacetimeandeverything that happens in it.
-EachU αdescribes an entire universe, even if the universe
-has disconnected components. (Some theories may pre-
-dict universes with disconnected components, and others
-may not. We are allowing for both possibilities.) Each
-Uαi</pre></li></ul></section><section class='card'><h2>Galactic disc warps from $z = 2.5$ to modern epoch: ruling out observational effects</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 9 | <strong>Chars:</strong> 18600</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2602.01286v1.pdf</p><ul><li><strong>JOURNAL SECTION OR CONFERENCE SECTION</strong><br><pre>Galactic disc warps from z= 2.5to modern epoch:
-ruling out observational eﬀects
-I.V. Chugunov,1,∗V.P. Reshetnikov,1and A.A. Marchuk1
-1Pulkovo Astronomical Observatory, Russian Academy of Scie nces, St.Petersburg 196140, Russia
-(Received xx.xx.2025; Revised xx.xx.2025; Accepted xx.xx .2025)
-A signiﬁcant fraction of galaxies show warps in their discs, usually noticeable at its periphery.
-The exact origin of this phenomenon is not fully established , although multiple warp formation
-mechanisms are </pre></li><li><strong>1. INTRODUCTION</strong><br><pre>Galactic discs, both stellar and gaseous, can demon/hyphen.alt
-strate warps in vertical direction, or, in other words,
-deviation of their shape from the planar form. The
-frequency of warps depends on the detection thresh/hyphen.alt
-old, but common numbers in the literature indicate
-that nearly half of disc galaxies in the local Universe
-are warped. The disc of our Milky Way is also long
-known to be warped [ 1,2]. Warps can be primarily
-seen in galaxies observed edge-on, they usually have
-an ampl</pre></li><li><strong>2. SAMPLE AND DATA ANALYSIS</strong><br><pre>The ﬁnal sample of galaxies for this study is pre/hyphen.alt
-sented in [ 16] and consists of two subsamples. In the
-ﬁrst, there are objects from COSMOS ﬁeld observed
-by HST in F814W ﬁlter, selected in [ 17]. For a small
-part of galaxies from the mentioned work it was not
-possible to measure the shape of the disc (see below)
-and we limited ourselves with galaxies with stellar
-massM∗higher than 109M⊙, so only 780 galaxies (out
-of 950 in [ 17]) were studied in this work. These galax/hyphen.alt
-ies </pre></li><li><strong>HST</strong><br><pre>109
-M
-⊙
-Figure 1. Distribution of galaxies by redshift (top) and the
-diagram showing stellar mass in solar units and redshift for
-galaxies in the sample (bottom).
-tons of diﬀerent isophotes, we averaged the locations
-of skeletons and obtained the centre-line of a disc this
-way, with an example shown in Figure 2. The fol/hyphen.alt
-lowing measurements of warp properties, in particular
-their existence in each individual galaxy, warp angle
-and other parameters, are based on the parameters
-of centre</pre></li><li><strong>3. RESULTS</strong><br><pre>For each galaxy in the sample, we measured some
-of warp properties, most importantly ψe. We adopt
-a commonly-used distinction between S-shaped and
-U-shaped warps based on the apparent shape of the
-warp (see, for example, [ 3]). If a galaxy has warp angle
-ψe&gt;4◦, we consider it to have a strong warp. The gen/hyphen.alt
-eral results of the measurements were presented in [ 16]
-and now are available online at https://github.com/
-IVChugunov/Distant_disc_warps .
-In Figure 3, the observed fraction of st</pre></li><li><strong>3.1. VALIDATION</strong><br><pre>After we observe the trend of warp frequency and
-amplitude to increase towards higher z, we have to
-ensure that it is not caused by any observational ef/hyphen.alt
-fects and has physical nature. First, our sample is not
-complete by mass, and galaxies in our data become
-more massive at higher z(see Figure 1). Indeed, a
-connection between the galaxy mass and warp angle
-exists, but more massive galaxies have smaller warp an/hyphen.alt
-gles [3,10]. Therefore, incompleteness of our sample
-could not c</pre></li></ul></section><section class='card'><h2>The LEGARE Project. I. Chemical evolution model of the Nuclear Stellar Disc in a Bayesian framework</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 9 | <strong>Chars:</strong> 58645</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2601.21032v1.pdf</p><ul><li><strong>front_matter</strong><br><pre>Astronomy&amp;Astrophysicsmanuscript no. spitoni©ESO 2026
-January 30, 2026
-The LEGARE Project. I.
-Chemical evolution model of the Nuclear Stellar Disc in a Bayesian framework
-E. Spitoni1,2⋆, M. Schultheis3, F. Matteucci1,4,5, N. Ryde6, G. Cescutti4,5,1, A. Saro4,2,1,5,7,
-M.C. Sormani8and B. Thorsbro3,6
-1I.N.A.F. Osservatorio Astronomico di Trieste, via G.B. Tiepolo 11, 34143, Trieste, Italy
-2IFPU, Institute for Fundamental Physics of the Universe, Via Beirut 2, I-34151 Trieste, Italy
-3Université Côt</pre></li><li><strong>ABSTRACT</strong><br><pre>Context.The Nuclear Stellar Disc (NSD) of the Milky Way is a dense, rotating stellar system in the central ~200 pc. The NSD is
-thought to be primarily fuelled by bar-driven gas inflows from the inner Galactic disc.
-Aims.As part of the LEGARE project, we aim to construct the first chemical evolution models for the NSD using a Bayesian approach
-tailored to reproduce the observed metallicity distribution functions and compared with the available abundance ratios for Mg, Si, Ca
-relative to Fe. In pa</pre></li><li><strong>PRIM ENR_D10 ENR_D05 ENR_D03 ENR</strong><br><pre>XF,NS D (t) PrimordialX 4D(t)/10X 4D(t)/5X 4D(t)/3X 4D(t)
-MCMC Results
-τ[Gyr] 3.812+0.204
-−0.2534.624+0.502
-−0.4475.324+0.872
-−0.6554.732+0.920
-−0.6203.358+1.408
-−1.048
-ω 0.001+0.002
-−0.0010.003+0.005
-−0.0020.008+0.013
-−0.0060.030+0.036
-−0.0221.959+2.492
-−1.222
-ν[Gyr−1] 31.205+10.343
-−6.61310.673+2.354
-−1.8994.041+0.733
-−0.4731.710+0.284
-−0.1840.260+0.185
-−0.046
-NSD DATA Sample A Sample B
-Notes.In the upper part of the Table we show the chemical composition of the gas flow into the NSD. In the l</pre></li><li><strong>References</strong><br><pre>Ahumada, R., Allende Prieto, C., Almeida, A., et al. 2020, ApJS, 249, 3
-Asplund, M., Grevesse, N., Sauval, A. J., &amp; Scott, P. 2009, ARA&amp;A, 47, 481
-Athanassoula, E. 1992, MNRAS, 259, 345
-Baba, J. &amp; Kawata, D. 2020, MNRAS, 492, 4500
-Bittner, A., Sánchez-Blázquez, P., Gadotti, D. A., et al. 2020, A&amp;A, 643, A65
-Brooks, S., Gelman, A., Jones, G., &amp; Meng, X.-L. 2011, Handbook of Markov
-Chain Monte Carlo (CRC press)
-Cescutti, G., Molaro, P., &amp; Fu, X. 2020, Mem. Soc. Astron. Italiana, 91, 153
-Chiappini,</pre></li><li><strong>MNRAS, 445, 3352</strong><br><pre>Contopoulos, G. &amp; Grosbol, P. 1989, A&amp;A Rev., 1, 261
-Côté, B., O’Shea, B. W., Ritter, C., Herwig, F., &amp; Venn, K. A. 2017, ApJ, 835,
-128
-Dahmen, G., Huttemeister, S., Wilson, T. L., &amp; Mauersberger, R. 1998, A&amp;A,
-331, 959
-Article number, page 12 of 13
-Spitoni et al.: CEMs of the NSD
-Ekström, S., Meynet, G., Chiappini, C., Hirschi, R., &amp; Maeder, A. 2008, A&amp;A,
-489, 685
-Fernandes, L., Mason, A. C., Horta, D., et al. 2023, MNRAS, 519, 3611
-Ferrière, K., Gillard, W., &amp; Jean, P. 2007, A&amp;A, 467, 611
-Fore</pre></li><li><strong>RAS, 450, 2094</strong><br><pre>Hatchfield, H. P., Sormani, M. C., Tress, R. G., et al. 2021, ApJ, 922, 79
-Hawkins, K., Jofré, P., Masseron, T., &amp; Gilmore, G. 2015, MNRAS, 453, 758
-Henshaw, J. D., Barnes, A. T., Battersby, C., et al. 2023, in Astronomical Society
-of the Pacific Conference Series, V ol. 534, Protostars and Planets VII, ed.
-S. Inutsuka, Y . Aikawa, T. Muto, K. Tomida, &amp; M. Tamura, 83
-Hirschi, R. 2005, in From Lithium to Uranium: Elemental Tracers of Early Cos-
-mic Evolution, ed. V . Hill, P. Francois, &amp; F. Prima</pre></li></ul></section><section class='card'><h2>Hierarchical bayesian inference: constraining population distribution of dark matter halo shapes via stellar streams</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 41 | <strong>Chars:</strong> 80570</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2601.15373v2.pdf</p><ul><li><strong>front_matter</strong><br><pre>MNRAS000, 1–15 (2026) Preprint 27 January 2026 Compiled using MNRAS L ATEX style file v3.3
-Hierarchical bayesian inference: constraining population distribution of
-dark matter halo shapes via stellar streams
-David Chemaly1★, Elisabeth Sola1, Vasily Belokurov1, Sergey E. Koposov1,2, GyuChul Meyong1,
-HanYuan Zhang1, Denis Erkal3
-1Institute of Astronomy, Madingley Rd, Cambridge CB3 0HA, UK
-2Institute for Astronomy, University of Edinburgh, Royal Observatory, Blackford Hill, Edinburgh EH9 3HJ, UK
-3D</pre></li><li><strong>ABSTRACT</strong><br><pre>Stellarstreams,thedebrisoftidallydisruptedsatellites,tracetheirhost’sgravitationalpotentialandthusprobedarkmatterhalo
-structure. While six-dimensional phase-space data of Galactic streams enable precise dark matter halo modelling in the Milky
-Way, streams around external galaxies are typically available only as low surface brightness features without kinematics (i.e.
-two-dimensional photometric data), providing only weak constraints when considered individually. We present a hierarchical
-Bayesia</pre></li><li><strong>1 INTRODUCTION</strong><br><pre>Stellar streams, elongated structures formed when dwarf galaxies or
-globular clusters are tidally disrupted by their host’s gravitational
+B. Whenwe evaluate theories, shouldwe use
+only whatwe know for certain? 12
+C. Rejectionof theoriesin which Boltzmann
+Brains dominate 14
+D. Humans and Jovians 16
+E. Useof “Old Evidence” 17</pre></li><li><strong>II.BAYESIAN THEORY ASSESSMENT We will usea Bayesian framework for theory assess</strong><br><pre>ment, whichwe describein this section—mainlytoes
+tablish notation. When Bayes’ theoremis usedto update
+the probabilities thatwe assignto our theories, we will
+needto use first-person probabilities, because they are
+the relevant probabilities for our measurements. First
+person probabilities were described brieflyin the Intro
+duction, anda precise proposal for calculating them willbe describedin the following section.
+In general terms, Bayes’ theorem canbe derived from
+the definitionof conditional</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>I.INTRODUCTIONA striking possibility suggestedby the theories that</strong> <em>(180 words | score 5.0)</em><br><pre>We adopta standard Bayesian framework for testing theories, in which the probabilities assignedto theories are updated accordingto the resultsof experiments. To calculate the updated probabilities, however, we needto know the probabilities that the theory being tested pre dicts for the possible outcomesof the experiment. Since these are probabilities for experimentstobe performedbyus, they are unambiguously first-per</pre></li><li><strong>I.INTRODUCTIONA striking possibility suggestedby the theories that</strong> <em>(180 words | score 5.0)</em><br><pre>observed.” Note that the “features” mentionedin this definitiondo not havetobe qualitatively new characteristics, but might simplybe shiftsin statistical distributions. problem, we should assume thatwe (and thus our future observations) aretypical[8, 20–24]. By typical, we mean that probabilities for our future observations canbeob tainedby treating ourselvesasifwe were randomly and uniformly chosen from some specifi</pre></li><li><strong>I.INTRODUCTIONA striking possibility suggestedby the theories that</strong> <em>(180 words | score 5.0)</em><br><pre>proceed under the assumptionof typicality. Typ icality has traditionally been the assumption underlying probabilistic reasoning, andit hasso far been very suc cessful. When theories make only probabilistic predic that correct conclusions will result. However, we willar gue that the assumptionof typicality will always leadto the largest expectation value for the fractionof observers who reach correct conclusions. We w</pre></li><li><strong>I.INTRODUCTIONA striking possibility suggestedby the theories that</strong> <em>(180 words | score 5.0)</em><br><pre>choosingan appropriate reference classisisto employ anthropic constraints, namely, conditions that are viewedas being necessary for the existenceof any observers (in the styleof Carter’s Weak Anthropic Principle [31]), but such constraints are difficultto make precise. Another optionisto conditionalizeon all pre vious datawe have accumulated, butit remains neces saryto define exactly whatis meantby “data”. (See Refs.</pre></li></ul></section><section class='card'><h2>Galactic disc warps from $z = 2.5$ to modern epoch: ruling out observational effects</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 8 | <strong>Chars:</strong> 16934</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2602.01286v1.pdf</p><h3>Best extracted sections</h3><ul><li><strong>1.INTRODUCTION Galactic discs, both stellar and gaseous, can demon</strong><br><pre>strate warpsin vertical direction, or, in other words,
+deviationof their shape from the planar form. The
+frequencyof warps dependson the detection thresh
+old, but common numbersin the literature indicate
+that nearly halfof disc galaxiesin the local Universe
+are warped. The discof our Milky Wayis also long
+knowntobe warped [ 1,2]. Warps canbe primarily
+seenin galaxies observed edge-on, they usually havean amplitude ofa few degrees and become noticeableat the periphery ofa galaxy, making them hard</pre></li><li><strong>2.SAMPLE AND DATA ANALYSIS The final sampleof galaxies for this studyis pre</strong><br><pre>sentedin [ 16] and consistsof two subsamples. In the
+first, there are objects from COSMOS field observedby HST in F814W filter, selectedin [ 17]. Fora small
+partof galaxies from the mentioned workit was not
+possibleto measure the shapeof the disc (see below)
+andwe limited ourselves with galaxies with stellar
+massM∗higher than 109M⊙, so only 780 galaxies (outof 950 in [ 17]) were studiedin this work. These galax
+ies are mostly located atz/lessorsimilar1.
+The second subsample which was constructed</pre></li><li><strong>3.RESULTS</strong><br><pre>For each galaxyin the sample, we measured someof warp properties, most importantly ψe. We adopta commonly-used distinction betweenS-shaped andU-shaped warps basedon the apparent shapeof the
+warp (see, for example, [ 3]). Ifa galaxy has warp angle
+ψe&gt;4◦, we consideritto havea strong warp. The gen
+eral resultsof the measurements were presentedin [ 16]
+and now are available onlineat https://github.com/
+IVChugunov/Distant_disc_warps.
+In Figure 3, the observed fractionof strong warps
+against redshift</pre></li><li><strong>4.CONCLUSIONS In this work, we analysed the sampleof more than</strong><br><pre>1000 distant edge-on galaxies, observedby the HST
+and JWST. We measured warp anglesof their stel
+lar discs and studied how warp frequencies and ampli
+tudes change with redshift. We observe that strongS-shaped warps were much more commonin the past,
+being presentin nearly 50% atz≈2, whereas atz≈0
+only 10–15% of galaxies have them. ForU-shapedx–3
+We paid attentionto check how observational eﬀects
+could influence our findings. We examined the possi
+ble dependenceof warp angleson wavelength, galaxy
+</pre></li><li><strong>JOURNAL SECTION OR CONFERENCE SECTION Galactic disc warps fromz= 2.5to modern epoch</strong><br><pre>ruling out observational eﬀectsI.V. Chugunov,1,∗V.P. Reshetnikov,1andA.A. Marchuk1
+1Pulkovo Astronomical Observatory, Russian Academyof Scie nces, St.Petersburg 196140, RussiaA significant fractionof galaxies show warpsin their discs, usually noticeableat its periphery.
+The exact originof this phenomenonis not fully established, although multiple warp formation
+mechanisms are proposed. In this study, we createa sampleof more than 1000 distant ( z/lessorsimilar2.5)
+edge-on galaxies imagedby HST a</pre></li><li><strong>HSTM ⊙</strong><br><pre>Figure 1. Distributionof galaxiesby redshift (top) and the
+diagram showing stellar massin solar units and redshift for
+galaxiesin the sample (bottom).
+tonsof diﬀerent isophotes, we averaged the locationsof skeletons and obtained the centre-line ofa disc this
+way, withan example shownin Figure 2. The fol
+lowing measurementsof warp properties, in particular
+their existencein each individual galaxy, warp angle
+and other parameters, are basedon the parametersof centre-line. Formally, centre-lineis t</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>1.INTRODUCTION Galactic discs, both stellar and gaseous, can demon</strong> <em>(180 words | score 5.0)</em><br><pre>Galactic disc warps from $z = 2.5$ to modern epoch: ruling out observational effects 1.INTRODUCTION Galactic discs, both stellar and gaseous, can demon strate warpsin vertical direction, or, in other words, deviationof their shape from the planar form. The frequencyof warps dependson the detection thresh old, but common numbersin the literature indicate that nearly halfof disc galaxiesin the local Universe are warped</pre></li><li><strong>2.SAMPLE AND DATA ANALYSIS The final sampleof galaxies for this studyis pre</strong> <em>(180 words | score 5.0)</em><br><pre>Galactic disc warps from $z = 2.5$ to modern epoch: ruling out observational effects 2.SAMPLE AND DATA ANALYSIS The final sampleof galaxies for this studyis pre sentedin [ 16] and consistsof two subsamples. In the first, there are objects from COSMOS field observedby HST in F814W filter, selectedin [ 17]. Fora small partof galaxies from the mentioned workit was not possibleto measure the shapeof the disc (see below) </pre></li><li><strong>4.CONCLUSIONS In this work, we analysed the sampleof more than</strong> <em>(180 words | score 5.0)</em><br><pre>Galactic disc warps from $z = 2.5$ to modern epoch: ruling out observational effects 4.CONCLUSIONS In this work, we analysed the sampleof more than 1000 distant edge-on galaxies, observedby the HST and JWST. We measured warp anglesof their stel lar discs and studied how warp frequencies and ampli tudes change with redshift. We observe that strongS-shaped warps were much more commonin the past, being presentin nearly </pre></li><li><strong>4.CONCLUSIONS In this work, we analysed the sampleof more than</strong> <em>(115 words | score 5.0)</em><br><pre>shownby measurementsof diﬀerent indicatorsof interaction rate, for exam ple statisticsof close pairs [ 24], or merger observa tions [ 25]. Therefore, if interactions playa significant role inS-shaped warp formation, one should expect higher fractionof warpsin the past, when interactions were more common. More broadly, the diﬀerent evolution ofS-shaped andU-shaped fractions itself canbe evidenceof dif ferent mechanism</pre></li></ul></section><section class='card'><h2>The LEGARE Project. I. Chemical evolution model of the Nuclear Stellar Disc in a Bayesian framework</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 17 | <strong>Chars:</strong> 55656</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2601.21032v1.pdf</p><h3>Best extracted sections</h3><ul><li><strong>ABSTRACT</strong><br><pre>Context.The Nuclear Stellar Disc (NSD) of the Milky Way isa dense, rotating stellar systemin the central ~200 pc. The NSD is
+thoughttobe primarily fuelledby bar-driven gas inflows from the inner Galactic disc.
+Aims.As partof the LEGARE project, we aimto construct the first chemical evolution models for the NSD usinga Bayesian approach
+tailoredto reproduce the observed metallicity distribution functions and compared with the available abundance ratios for Mg, Si, Ca
+relativeto Fe. In particular, </pre></li><li><strong>1.Introduction The central regionsof the Milky Way providea unique labora</strong><br><pre>toryto study the interplay between gas dynamics, star forma
+tion, and chemical enrichment. The NSD isa significant com
+ponent within the central regionof our Milky Way, alongside
+the nuclear star cluster (NSC) and the central massive black hole
+(see Schultheisetal. 2025 fora review and references therein).
+Among these structures, the NSD stands out asa massive, rotat
+ing component confined within the central few hundred parsecs,
+⋆emailto: emanuele.spitoni@inaf.itwitha scale radiusof∼100 pc anda </pre></li><li><strong>2.2.The chemical evolution model for the NSD As indicatedin the Introduction, the NSD is primarily fueledby</strong><br><pre>gas channeled inwardby the Galactic bar from the inner discre
+gions. In this work, we refer genericallyto gas &quot;flows&quot; without
+distinguishing between material originatingin the disc and any
+possible residual contribution from other Galactic components.
+Our focusison the chemical enrichment expected for the NSD,
+andin particularon constraining the degreeof chemical pre
+enrichment from the Galactic disc thatis requiredto reproduce
+the available spectroscopic observations. We emphasise that our
+mode</pre></li><li><strong>3.Data sample for the NSD metallicity distribution The models presentedin this work willbe constrainedby the</strong><br><pre>MDF derived froman updated stellar sampleof candidate NSD
+members originally presentedby Schultheisetal. (2021). In
+Schultheisetal. (2021), they presented the kinematics and global
+metallicities for NSD candidates basedon the observations ofK/M giant stars viaa dedicated KMOS (VLT, ESO) spectro
+scopic survey.
+We call SampleA the same subsampleof stars usedin Sor
+manietal. (2022) to construct self-consistent dynamical mod
+elsof the NSD. These authors useda preliminary versionof the
+second version</pre></li><li><strong>4.Fitting procedure with MCMC methods Here, we present the main characteristicsof the Bayesian anal</strong><br><pre>ysis basedon MCMC methods adoptedin this work. In Section
+4.1, we introduce the adopted likelihood, andin Section 4.2 we
+introduce the parameters priors and the MCMC sampling proce
+dure.
+Fig. 3.Comparison between the observed NSD MDF (SampleA, filled distributions, see Section 3 for details) and the predictionsof the best-fit
+models (with parameters listedin Table 1), after applyinga Gaussian convolution withσ [Fe/H]=0.2 dex (“Model smooth”). The analytical fitto this
+distribution, indicatedas “</pre></li><li><strong>4.1.Likelihood definition Bayesian analysis basedon MCMC methods has transformed</strong><br><pre>scientific researchin the past decade. Since there alreadyex
+ist several textbooks and reviewson Bayesian statistics (seee.g.
+Jaynes 2003; Gelmanetal. 2013) andon MCMC methods (seee.g. Brooksetal. 2011; Sharma 2017; Hogg &amp; Foreman-Mackey
+2018; Speagle 2019), herewe only summarise the general frame
+work and highlight the aspects specificto the problemat hand. In
+the contextof Galactic chemical evolution, Bayesian inference
+and MCMC techniques have already proven extremely effectivein constraining</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>1.Introduction The central regionsof the Milky Way providea unique labora</strong> <em>(180 words | score 5.0)</em><br><pre>has been relatively unex plored until recent times, primarily dueto challenges suchasex treme extinction and stellar crowding. NSDs are also seeninex tragalactic systems and showan inside- out formation (e.g., Bit tneretal. 2020). The Galactic bar isa structure that cannotbeig noredifwe wantto describe properly the evolutionof the NSD. Simulations suggest that mostof the NSD mass forms within ∼1 Gyrof the bar formati</pre></li><li><strong>1.Introduction The central regionsof the Milky Way providea unique labora</strong> <em>(180 words | score 5.0)</em><br><pre>disc (Contopoulos &amp; Grosbol 1989). In the recent workof Nieuwmunsteretal. (2024), they presentedade tailed orbital analysisof stars locatedin the NSD of the Milky Way, investigating also the dynamical historyof this structure. Based ona detailed orbital analysis, they were ableto classify orbits into various families, mostof which are characterisedby x2-type orbits, which are dominantin the inner partof the bar. This</pre></li><li><strong>1.Introduction The central regionsof the Milky Way providea unique labora</strong> <em>(180 words | score 5.0)</em><br><pre>vided exquisite photometric constraints, revealinga complex star formation history with evidence for both old and intermediate age populations (Nogueras-Laraetal. 2021). At the chemical level, recent high-resolution abundance studies have delivered unprecedented detail. Rydeetal. (2025) used IGRINS/Gemini Southto measure abundancesof 18 elementsin nine NSDM gi ants, covering−1.0≲[Fe/H]≲+0.5. Their results show strong</pre></li><li><strong>1.Introduction The central regionsof the Milky Way providea unique labora</strong> <em>(180 words | score 5.0)</em><br><pre>NSD’s unique environ ment—shapedby bar-driven gas inflows, CMZ dynamics, and intense star formation—requiresa tailored approach. In particu lar, Friske &amp; Schönrich (2025) have recently attemptedto model the chemo-dynamical evolutionof the NSD. While their models provide valuable insights into the roleof gas inflows and dynam ical processes, their predicted abundance-ratioin the gas phase trends display significantly </pre></li></ul></section><section class='card'><h2>Hierarchical bayesian inference: constraining population distribution of dark matter halo shapes via stellar streams</h2><p><strong>Status:</strong> extracted | <strong>Sections:</strong> 18 | <strong>Chars:</strong> 76624</p><p><strong>PDF:</strong> /Users/mariadjuric/FindMyArxivPaper/data/raw/pdfs/2601.15373v2.pdf</p><h3>Best extracted sections</h3><ul><li><strong>ABSTRACT</strong><br><pre>Stellarstreams,thedebrisoftidallydisruptedsatellites,tracetheirhost’sgravitationalpotentialandthusprobedarkmatterhalo
+structure. While six-dimensional phase-space dataof Galactic streams enable precise dark matter halo modellingin the Milky
+Way, streams around external galaxies are typically available onlyas low surface brightness features without kinematics (i.e.
+two-dimensional photometric data), providing only weak constraints when considered individually. We presenta hierarchical
+Bayesian fr</pre></li><li><strong>1 INTRODUCTION Stellar streams, elongated structures formed when dwarf galaxiesor</strong><br><pre>globular clusters are tidally disruptedby their host’s gravitational
 field,arepowerfulprobesofgalacticpotentialsandtracersofgalaxy
-assembly (Johnston et al. 1995; Helmi &amp; White 1999). As satellites
+assembly (Johnstonetal. 1995; Helmi &amp; White 1999). As satellites
 orbit their hosts, tidal forces strip stars from the progenitor galaxy,
 producing coherent, narrow features that approximately follow the
-progenitor’s orbit and can persist for gigayears, retaining dynami-
-cal memory of their past tr</pre></li><li><strong>MNRAS000, 1–15 (2026)</strong><br><pre>Population fit Stellar Streams3
-modelling. Using residual images from the DESI Legacy Imaging
-Surveys (DESI-LS, Dey et al. (2019)), which enhance faint features
-bymodellingandsubtractingallbrightsources,wevisuallyinspected
-thousands of galaxies and segmented streams meeting our criteria.
-Theresultingsampleprovideshighquality,welldefinedstreamtracks
-ideal for forward modelling. In future work currently underway, we
-will apply the methodology developed here directly toSTRRINGS
-to infer the populat</pre></li><li><strong>2 METHODS</strong><br><pre>This work aims to infer the morphology of dark matter haloes
-fromextragalacticstellarstreamswithnokinematicinformation.To
-achieve this, we first construct a three-dimensional model of a tidal
-streamevolvinginagivengravitationalpotential,whichisthenpro-
+progenitor’s orbit and can persist for gigayears, retaining dynami
+cal memoryof their past trajectories (Johnstonetal. 1995; Helmi
+&amp; White 1999; Bullock &amp; Johnston 20</pre></li><li><strong>2 METHODS This work aimsto infer the morphologyof dark matter haloes</strong><br><pre>fromextragalacticstellarstreamswithnokinematicinformation.To
+achieve this, we first constructa three-dimensional model ofa tidal
+streamevolvinginagivengravitationalpotential,whichisthenpro
 jectedontotheplaneofthesky.Fromthisprojection,weextractthe
-stream’s track defined as a one-dimensional ridgeline, an idealised,
-widthless trajectory tracing its central path. The parameters govern-
-ing this forward-modelling pipeline will be descr</pre></li><li><strong>2.1 Stream Generation</strong><br><pre>A variety of methods exist to generate stellar streams, trading real-
-ismforcomputationalcost.Themoststraightforwardapproximation,
-treating stream tracks as orbits (e.g. Koposov et al. 2010; Malhan &amp;
-Ibata 2019), is known to be biased (Sanders &amp; Binney 2013). Early
-work therefore used orbit fits with corrective terms (Varghese et al.
-2011), followed by test-particle, streakline, or particle-spray tech-
-niquesthatmorefaithfullycaptureleadingandtrailingtails(Küpper
-et al. 2012; Gibbons et al. 2014</pre></li></ul></section>
+stream’s track defined asa one-dimensional ridgeline, an idealised,
+widthless trajectory tracing its central path. The parameters govern
+ing this forward-modelling pipeline willbe describedat the endof
+this section, along with the physically motivated </pre></li><li><strong>2.1 Stream GenerationA varietyof methods existto generate stellar streams, trading real</strong><br><pre>ismforcomputationalcost.Themoststraightforwardapproximation,
+treating stream tracksas orbits (e.g. Koposovetal. 2010; Malhan &amp;
+Ibata 2019), is knowntobe biased (Sanders &amp; Binney 2013). Early
+work therefore used orbit fits with corrective terms (Vargheseetal.
+2011), followedby test-particle, streakline, or particle-spray tech
+niquesthatmorefaithfullycaptureleadingandtrailingtails(Küpperetal. 2012; Gibbonsetal. 2014).𝑁-body simulations best model
+disruptionandself-gravitybutareordersofmagnitudemor</pre></li><li><strong>Data</strong><br><pre>Figure 4.Summaryof the 1000 samples drawn uniformlyat random from the posterior (blue) comparedto the ground truth (red) fora single stream. Shading
+indicatesthe1,2,and3𝜎drawnedsampleenvelopes.Left:Comparisonbetweenthesamplestothemockdataonthe𝑋𝑌plane.Middle:Samecomparaisonin
+the radial distance versus angle plan, where the likelihoodis evaluatedas the radial differenceat fixed angle bins.Right:Radius residuals (data minus model)
+asa functionof angle. Fits track the mock data well; larger deviati</pre></li><li><strong>5 DISCUSSION AND CONCLUSIONS We developeda linearly scalable,JAX-accelerated hierarchical</strong><br><pre>Bayesian frameworkto infer the population-level morphologyof
+DM halos using tracksof projected stellar streams. Our stream gen
+erator,StreaMAX /github, achieves substantial speedups via compilation
+and vectorised parallelism. Tailoredto extragalactic applications,
+kinematic inputs. First, we fit streams individually leadingto broad
+posterioron the halo flattening. Second, by treating the individual
+fits asa population, we combine individual posteriors and obtaine
+tight constrainson the populatio</pre></li></ul><h3>Best retrieval chunks</h3><ul><li><strong>1 INTRODUCTION Stellar streams, elongated structures formed when dwarf galaxiesor</strong> <em>(180 words | score 5.0)</em><br><pre>histories and halo ★E-mail: dc824@cam.ac.ukgrowth (e.g., Bullock &amp; Johnston 2005; Deason &amp; Belokurov 2024; Bonaca &amp; Price-Whelan 2025). Early theoretical work and simulations established the sensitivityof streamsto host mass distributions over large radial ranges (John stonetal. 1995; Helmi &amp; White 1999; Johnstonetal. 2001; Ibataetal. 2001). Subsequent surveys and follow-up observations (e.g., Grillmair &amp; Dionatos 20</pre></li><li><strong>1 INTRODUCTION Stellar streams, elongated structures formed when dwarf galaxiesor</strong> <em>(180 words | score 5.0)</em><br><pre>Vasilievetal. 2021). 2D. Chemalyetal. WithinΛCDM, halos are approximately self-similar across mass scales: they follow universal density profiles (Navarroetal. 1997; Zhaoetal. 2003; Ludlowetal. 2014), followa mass–concentration relation (Wechsleretal. 2002; Macciò etal. 2008; Dutton &amp; Mac ciò 2014; Diemer &amp; Kravtsov 2015), and are intrinsically triaxialif baryons are neglected (Jing &amp; Suto 2002a; Allgoodetal. 2006; D</pre></li><li><strong>1 INTRODUCTION Stellar streams, elongated structures formed when dwarf galaxiesor</strong> <em>(180 words | score 5.0)</em><br><pre>sensitive testof galaxy formation physics and, in par ticular, of dark matter self-interactions through their impacton the shapesof galaxies. WithintheMilkyWay,thecombinationofastrometric,photomet ric, and spectroscopic data, most notably fromGaia(Gaia Collabo rationetal.2018,2021),SDSS(Yorketal.2000),DES(Abbottetal. 2018),LAMOST(Cuietal. 2012)APOGEE(Majewskietal. 2017) and dedicatedsurveys,forexample𝑆5(Lietal.2019),</pre></li><li><strong>1 INTRODUCTION Stellar streams, elongated structures formed when dwarf galaxiesor</strong> <em>(180 words | score 5.0)</em><br><pre>Nibaueretal. 2025; Vallurietal. 2025), offering insights into the small-scaleDMdistributionandstreamevolutionintime-dependent potentials (e.g., Dillamoreetal. 2022; Yavetzetal. 2023; Weera sooriyaetal.2025).BeyondtheMW,M31’sGiantSouthernStream, spanningawiderangeofgalactocentricradii,hasprovidedstringent constraintson its halo mass despite only semi-resolved photometric and spectroscopic stellar data (Fardaletal. 201</pre></li></ul></section>
 </body>
 </html>
