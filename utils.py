@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any 
 
 
 def save_json(data: dict[str, Any], path: Path) -> None:
