@@ -51,13 +51,9 @@ The project name remains **FMAP: FindMyArxivPaper**.
 </div>
 
 Tracked site snapshot in the repo:
-- [HTML entry point](docs/site/index.html)
+- [HTML](docs/site/index.html)
 - [Data payload](docs/site/data.js)
 
-Important note:
-- GitHub will happily store these files, but it will **not automatically serve the HTML snapshot as a live interactive app** unless you use GitHub Pages or another static host.
-- So in the README, the image is the reliable preview.
-- The tracked HTML is useful as a repo artifact, downloadable snapshot, and source reference.
 
 ---
 
@@ -73,8 +69,6 @@ FMAP can:
 - evaluate both classification and retrieval quality
 - generate plots, including **year distribution**
 - generate a **static interactive HTML site** with a dense paper map
-
-This makes it much closer to a real paper-atlas / portfolio project than a toy classifier demo.
 
 ---
 
@@ -145,7 +139,7 @@ Key artifacts:
 - `data/processed/paper_sections.json` — extracted text plus section records
 - `data/processed/paper_section_chunks.csv` — section-aware retrieval chunks
 
-Recommended first test:
+Planned first test:
 1. run full-text ingestion on the curated benchmark subset
 2. inspect extraction success/failure counts
 3. manually open 3-5 extracted text files
@@ -242,17 +236,6 @@ This comes from `TEST_SIZE = 0.25` in `config.py`.
 
 It also tries to **stratify by category**, so category balance is preserved when possible.
 
-Examples:
-- 5,000 papers → 3,750 train / 1,250 test
-- 8,580 papers → 6,435 train / 2,145 test
-- 10,000 papers → 7,500 train / 2,500 test
-
-Important:
-- the **classifier** is trained only on the training split
-- the **map** is built from **all loaded papers**, not just the test set
-
-So if you want a denser map, the main lever is to **load more papers overall**.
-
 ---
 
 ## Real arXiv support
@@ -300,8 +283,6 @@ python3 main.py --source arxiv --max-results 5000
 
 will usually behave like a **recent-tail fetch**, because the export API is sorted by newest submissions.
 
-That means you may mostly see the newest years unless you explicitly fetch by year range.
-
 To expand historical coverage, FMAP now supports:
 - `--from-year`
 - `--to-year`
@@ -347,19 +328,6 @@ means:
 
 FMAP generates a static website at:
 - `outputs/site/index.html`
-
-The site currently includes:
-- dark atlas-style layout
-- black background with a cooler cyan / mint / violet accent palette
-- category-colored points
-- search over title / abstract / author / category
-- category filter chips
-- result list tied to current filters
-- click-to-lock paper details
-- hover previews
-- hover-time vector-neighborhood highlighting
-- recommended nearby papers with approximate match percentages
-- zoom and pan controls
 
 It is a local/static visualization, so you can open the generated HTML directly in a browser.
 
@@ -656,8 +624,6 @@ The deep-learning track adds:
 - checkpoint-style saving for the deep model
 - CLI switches for versioned modeling experiments
 - a clean baseline-vs-deep split in the project story
-
-That makes FMAP feel less like a pure classical-ML demo and more like a real experimental NLP project.
 
 ---
 
